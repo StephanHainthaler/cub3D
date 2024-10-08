@@ -6,7 +6,7 @@
 /*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 10:35:26 by shaintha          #+#    #+#             */
-/*   Updated: 2024/10/08 12:13:02 by shaintha         ###   ########.fr       */
+/*   Updated: 2024/10/08 13:00:04 by shaintha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,42 +14,42 @@
 
 int	parse_map(t_cube *cube, char *map_name)
 {
-	int		fd;
 	char	*map_str;
 	
 	(void)cube;
-	fd = open(map_name, O_RDONLY);
-	if (fd < 0)
-		return (put_error("Failed to find/open the file!"), 1);
-	map_str = ft_strdup("");
-	if (!map_str)
-		return (close(fd), put_error("Malloc error!"), 1);
-	map_str = read_map(fd, map_str);
+	map_str = get_map_str(map_name);
 	if (map_str == NULL)
-		return (free(map_str), 1);
+		return (1);
 	printf("%s\n", map_str);
 	free(map_str);
-	//VALIDATE MAP
 	return (0);
 }
 
-char	*read_map(int fd, char *line)
+char	*get_map_str(char *map_name)
 {
+	char	*map_str;
+	char	*line;
 	char	*temp;
 	int		bytes_read;
-	char	*line2;
+	int		fd;
 
+	fd = open(map_name, O_RDONLY);
+	if (fd < 0)
+		return (put_error("Failed to find/open the file!"), NULL);
+	line = ft_strdup("");
+	if (line == NULL)
+		return (close(fd), put_error("Malloc error!"), NULL);
 	temp = (char *)malloc((1 + 1) * sizeof(char));
-	if (!temp)
-		return (ft_free(line), put_error("Malloc error!"), NULL);
+	if (temp == NULL)
+		return (close(fd), free(line), put_error("Malloc error!"), NULL);
 	bytes_read = 1;
-	line2 = read_map_2(fd, line, temp, bytes_read);
-	if (line2 == NULL)
-		return (NULL);
-	return (line2);
+	map_str = read_map(fd, line, temp, bytes_read);
+	if (map_str == NULL)
+		return (close(fd), NULL);
+	return (close(fd), map_str);
 }
 
-char	*read_map_2(int fd, char *line, char *temp, int bytes_read)
+char	*read_map(int fd, char *line, char *temp, int bytes_read)
 {
 	int	i;
 
@@ -75,7 +75,7 @@ char	*read_map_2(int fd, char *line, char *temp, int bytes_read)
 		if (!line)
 			return (put_error("Malloc error!"), NULL);
 	}
-	return (free(temp), close(fd), line);
+	return (free(temp), line);
 }
 
 bool	check_map_elements(char **map)
