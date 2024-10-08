@@ -6,7 +6,7 @@
 /*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 09:19:21 by shaintha          #+#    #+#             */
-/*   Updated: 2024/10/08 12:17:06 by shaintha         ###   ########.fr       */
+/*   Updated: 2024/10/08 12:56:16 by shaintha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,12 @@ typedef struct s_cube
 	void	*mlx_ptr;
 	void	*window_ptr;
 	char	**map;
+	char	*n_path;
+	char	*e_path;
+	char	*s_path;
+	char	*w_path;
+	char	*f_color;
+	char	*c_color;
 	t_image	*wall_north;
 	t_image	*wall_east;
 	t_image	*wall_south;
@@ -59,8 +65,8 @@ bool    is_format_valid(char *file, char *format);
 void	initialize_cube(t_cube *cube);
 
 int		parse_map(t_cube *cube, char *map_name);
-char	*read_map(int fd, char *line);
-char	*read_map_2(int fd, char *line, char *temp, int bytes_read);
+char	*get_map_str(char *map_name);
+char	*read_map(int fd, char *line, char *temp, int bytes_read);
 bool	check_map_elements(char **map);
 bool	is_map_border_valid(char **map);
 
