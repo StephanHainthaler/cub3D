@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juitz <juitz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 12:12:38 by shaintha          #+#    #+#             */
-/*   Updated: 2024/10/08 12:13:23 by shaintha         ###   ########.fr       */
+/*   Updated: 2024/10/08 15:01:37 by juitz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,30 @@ void	put_error(char *error_message)
 {
 	ft_putendl_fd("Error", 2);
 	ft_putendl_fd(error_message, 2);
+}
+
+int	ft_strncmp_pos(const char *str1, const char *str2, size_t n, int *pos)
+{
+	int					res;
+	unsigned char		*str1ptr;
+	unsigned char		*str2ptr;
+	size_t				i;
+
+	str1ptr = (unsigned char *)str1;
+	str2ptr = (unsigned char *)str2;
+	res = 0;
+	if (n == 0)
+		return (0);
+	i = 0;
+	while ((str1ptr[i] != '\0' || str2ptr[i] != '\0') && i < n)
+	{
+		if (str1ptr[i] != str2ptr[i])
+		{
+			res = str1ptr[i] - str2ptr[i];
+			return (res);
+		}
+		i++;
+	}
+	*pos = i;
+	return (res);
 }
