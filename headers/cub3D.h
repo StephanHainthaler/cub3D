@@ -6,7 +6,7 @@
 /*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 09:19:21 by shaintha          #+#    #+#             */
-/*   Updated: 2024/10/08 12:56:16 by shaintha         ###   ########.fr       */
+/*   Updated: 2024/10/08 14:19:56 by shaintha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,5 +71,7 @@ bool	check_map_elements(char **map);
 bool	is_map_border_valid(char **map);
 
 void	put_error(char *error_message);
+bool	is_map_valid(char **map);
+bool	is_in_border(char **map, unsigned int x, unsigned int y);
 
 #endif
