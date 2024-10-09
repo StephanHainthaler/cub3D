@@ -6,7 +6,7 @@
 /*   By: juitz <juitz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 09:19:21 by shaintha          #+#    #+#             */
-/*   Updated: 2024/10/09 12:33:30 by juitz            ###   ########.fr       */
+/*   Updated: 2024/10/09 12:52:27 by juitz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ typedef struct s_cube
 	t_image	*wall_east;
 	t_image	*wall_south;
 	t_image	*wall_west;
+	int		map_pos;
 }			t_cube;
 
 
