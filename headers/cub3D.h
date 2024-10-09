@@ -6,7 +6,7 @@
 /*   By: juitz <juitz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 09:19:21 by shaintha          #+#    #+#             */
-/*   Updated: 2024/10/08 15:07:06 by juitz            ###   ########.fr       */
+/*   Updated: 2024/10/09 11:52:11 by juitz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	initialize_cube(t_cube *cube);
 int		parse_map(t_cube *cube, char *map_name);
 char	*get_map_str(char *map_name);
 char	*read_map(int fd, char *line, char *temp, int bytes_read);
-void	get_identifier(t_cube *cube, char *map_str);
+int	get_identifier(t_cube *cube, char *map_str);
 bool	check_map_elements(char **map);
 bool	is_map_border_valid(char **map);
 
