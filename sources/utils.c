@@ -6,7 +6,7 @@
 /*   By: juitz <juitz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 12:12:38 by shaintha          #+#    #+#             */
-/*   Updated: 2024/10/08 15:01:37 by juitz            ###   ########.fr       */
+/*   Updated: 2024/10/09 12:32:26 by juitz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,33 @@ int	ft_strncmp_pos(const char *str1, const char *str2, size_t n, int *pos)
 	}
 	*pos = i;
 	return (res);
+}
+
+char	*ft_strdup_nl(const char *src)
+{
+	char	*dup;
+	int		count;
+	int		i;
+
+	count = 0;
+	while (src[count] != '\0')
+		count++;
+	dup = (char *)malloc((count + 1) * sizeof(char));
+	if (dup == NULL)
+		return (NULL);
+	i = 0;
+	while (src[i] != '\0' && src[i] != '\n')
+	{
+		dup[i] = src[i];
+		i++;
+	}
+	dup[i] = '\0';
+	return (dup);
+}
+
+int	skip_spaces(char *str, int *pos)
+{
+	while (str[*pos] == ' ')
+		(*pos)++;
+	return (*pos);
 }

@@ -6,7 +6,7 @@
 /*   By: juitz <juitz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 09:19:21 by shaintha          #+#    #+#             */
-/*   Updated: 2024/10/09 11:52:11 by juitz            ###   ########.fr       */
+/*   Updated: 2024/10/09 12:33:30 by juitz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,5 +75,7 @@ bool	is_map_border_valid(char **map);
 
 void	put_error(char *error_message);
 int		ft_strncmp_pos(const char *str1, const char *str2, size_t n, int *pos);
+int		skip_spaces(char *str, int *pos);
+char	*ft_strdup_nl(const char *src);
 
 #endif
