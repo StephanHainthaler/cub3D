@@ -6,7 +6,7 @@
 /*   By: juitz <juitz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 12:12:38 by shaintha          #+#    #+#             */
-/*   Updated: 2024/10/09 12:32:26 by juitz            ###   ########.fr       */
+/*   Updated: 2024/10/09 14:37:01 by juitz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,9 +87,9 @@ char	*ft_strdup_nl(const char *src)
 	return (dup);
 }
 
-int	skip_spaces(char *str, int *pos)
+int	skip_spaces_nl(char *str, int *pos)
 {
-	while (str[*pos] == ' ')
+	while (str[*pos] == ' ' || str[*pos] == '\n')
 		(*pos)++;
 	return (*pos);
 }
