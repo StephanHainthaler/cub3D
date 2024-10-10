@@ -6,7 +6,7 @@
 /*   By: juitz <juitz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 12:12:38 by shaintha          #+#    #+#             */
-/*   Updated: 2024/10/10 18:15:20 by juitz            ###   ########.fr       */
+/*   Updated: 2024/10/10 18:32:37 by juitz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ bool	is_color_valid(char *color_str)
 				return (false);
 			j++;
 		}
+		ft_strlcpy(n_str, color_str + i, j);
 		ft_strlcpy(n_str, color_str + i, j);
 		printf("Number %i: '%s'\n", count, n_str);
 		if (ft_atoi(n_str) < 0 || ft_atoi(n_str) > 255 || j == 0)

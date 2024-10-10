@@ -6,7 +6,7 @@
 /*   By: juitz <juitz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 09:19:21 by shaintha          #+#    #+#             */
-/*   Updated: 2024/10/10 16:03:45 by juitz            ###   ########.fr       */
+/*   Updated: 2024/10/10 18:31:28 by juitz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ typedef struct s_cube
 
 
 void	initialize_cube(t_cube *cube);
+void	free_cube(t_cube *cube);
 
 //map.c
 bool	is_in_border(char **map, size_t x, size_t y);
@@ -71,10 +72,11 @@ int		identifier_check(t_cube *cube, char *map_str);
 char	*get_map_str(char *map_name);
 char	*read_map(int fd, char *line, char *temp, int bytes_read);
 int		get_identifier(t_cube *cube, char *map_str);
-bool	check_map_elements(char **map);
-bool	is_map_border_valid(char **map);
+bool	is_map_valid(char **map, size_t x, size_t y, bool found);
+bool	is_in_border(char **map, size_t x, size_t y);
+int	get_map_startline(char *map_str);
+bool	has_empty_line(char *map_str);
 
-//utils.c
 
 //utils.c
 bool    is_format_valid(char *file, char *format);
