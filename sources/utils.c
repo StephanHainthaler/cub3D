@@ -6,7 +6,7 @@
 /*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 12:12:38 by shaintha          #+#    #+#             */
-/*   Updated: 2024/10/10 13:14:52 by shaintha         ###   ########.fr       */
+/*   Updated: 2024/10/10 13:24:58 by shaintha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,59 @@ void	put_error(char *error_message)
 {
 	ft_putendl_fd("Error", 2);
 	ft_putendl_fd(error_message, 2);
+}
+
+int	ft_strncmp_pos(const char *str1, const char *str2, size_t n, int *pos)
+{
+	int					res;
+	unsigned char		*str1ptr;
+	unsigned char		*str2ptr;
+	size_t				i;
+
+	str1ptr = (unsigned char *)str1;
+	str2ptr = (unsigned char *)str2;
+	res = 0;
+	if (n == 0)
+		return (0);
+	i = 0;
+	while ((str1ptr[i] != '\0' || str2ptr[i] != '\0') && i < n)
+	{
+		if (str1ptr[i] != str2ptr[i])
+		{
+			res = str1ptr[i] - str2ptr[i];
+			return (res);
+		}
+		i++;
+	}
+	*pos = i;
+	return (res);
+}
+
+char	*ft_strdup_nl(const char *src)
+{
+	char	*dup;
+	int		count;
+	int		i;
+
+	count = 0;
+	while (src[count] != '\0')
+		count++;
+	dup = (char *)malloc((count + 1) * sizeof(char));
+	if (dup == NULL)
+		return (NULL);
+	i = 0;
+	while (src[i] != '\0' && src[i] != '\n')
+	{
+		dup[i] = src[i];
+		i++;
+	}
+	dup[i] = '\0';
+	return (dup);
+}
+
+int	skip_spaces_nl(char *str, int *pos)
+{
+	while (str[*pos] == ' ' || str[*pos] == '\n')
+		(*pos)++;
+	return (*pos);
 }
