@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_map.c                                        :+:      :+:    :+:   */
+/*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juitz <juitz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 13:12:09 by juitz             #+#    #+#             */
-/*   Updated: 2024/10/09 16:05:16 by juitz            ###   ########.fr       */
+/*   Updated: 2024/10/10 12:19:15 by juitz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,9 @@ int	check_duplicate_id(t_cube *cube, char *map_str)
 			return (1);
 		if (ft_strncmp_pos(&map_str[i], "EA ", 3, &pos) == 0 && cube->e_path != NULL)
 			return (1);
-		if (ft_strncmp_pos(&map_str[i], "C ", 3, &pos) == 0 && cube->c_color != NULL)
+		if (ft_strncmp_pos(&map_str[i], "C ", 2, &pos) == 0 && cube->c_color != NULL)
 			return (1);
-		if (ft_strncmp_pos(&map_str[i], "F ", 3, &pos) == 0 && cube->f_color != NULL)
+		if (ft_strncmp_pos(&map_str[i], "F ", 2, &pos) == 0 && cube->f_color != NULL)
 			return (1);
 	}
 	return (0);
@@ -94,4 +94,5 @@ int		parse_map(t_cube *cube, char *map_str)
 		return (put_error("Missing Identifiers"), 1);
 	if (check_duplicate_id(cube, map_str) == 1)
 		return (put_error("Duplicate Identifiers"), 1);
+	return (0);
 }
