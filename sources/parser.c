@@ -6,7 +6,7 @@
 /*   By: juitz <juitz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 13:12:09 by juitz             #+#    #+#             */
-/*   Updated: 2024/10/10 12:19:15 by juitz            ###   ########.fr       */
+/*   Updated: 2024/10/10 13:18:43 by juitz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ int	check_duplicate_id(t_cube *cube, char *map_str)
 
 	pos = 0;
 	i = 0;
-	
 	while (map_str[i])
 	{
 		if (ft_strncmp_pos(&map_str[i], "NO ", 3, &pos) == 0 && cube->n_path != NULL)
