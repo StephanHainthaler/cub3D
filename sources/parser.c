@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juitz <juitz@student.42.fr>                +#+  +:+       +#+        */
+/*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 13:12:09 by juitz             #+#    #+#             */
-/*   Updated: 2024/10/10 13:18:43 by juitz            ###   ########.fr       */
+/*   Updated: 2024/10/10 13:27:25 by shaintha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int	check_duplicate_id(t_cube *cube, char *map_str)
 }
 
 
-int		parse_map(t_cube *cube, char *map_str)
+int		map_check_julian(t_cube *cube, char *map_str)
 {
 	if (get_identifier(cube, map_str) == 1)
 		return (put_error("Missing Identifiers"), 1);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juitz <juitz@student.42.fr>                +#+  +:+       +#+        */
+/*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 10:35:26 by shaintha          #+#    #+#             */
-/*   Updated: 2024/10/10 13:20:42 by juitz            ###   ########.fr       */
+/*   Updated: 2024/10/10 14:51:12 by shaintha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,26 @@
 int	parse_map(t_cube *cube, char *map_name)
 {
 	char	*map_str;
+	int		start;
 
 	map_str = get_map_str(map_name);
 	if (map_str == NULL)
 		return (1);
-	cube->map = ft_split(map_str, '\n');
+	start = get_map_startline(map_str);
+	if (start == -1)
+		return (free(map_str), 1);
+	if (has_empty_line(map_str + start) == true)
+		return (free(map_str), 1);
+
+	//GET_IDS_AND_STUFF (JULIAN_PART)
+	
+	cube->map = ft_split(map_str + start, '\n');
 	if (cube->map == NULL)
 		return (free(map_str), 1);
-	ft_putstrarr_fd(cube->map, 1);
 	free(map_str);
 	if (is_map_valid(cube->map, 0, 0, false) == false)
-		return (ft_free_strarr(cube->map), 1);
-	ft_free_strarr(cube->map);
-	return (0);
+		return (free_cube(cube), 1);
+	return (free_cube(cube), 0);
 }
 
 char	*get_map_str(char *map_name)
@@ -136,4 +143,54 @@ bool	is_in_border(char **map, size_t x, size_t y)
 		&& (map[y][x + 1] == ' ' || map[y][x + 1] == '\0'))
 		return (false);
 	return (true);
+}
+
+int	get_map_startline(char *map_str)
+{
+	int		i;
+	int		j;
+	bool	is_starting_line;
+	bool	found;
+
+	i = 0;
+	while (map_str[i] != '\0')
+	{
+		is_starting_line = false;
+		found = false;
+		j = i;
+		while (map_str[j] != '\0')
+		{
+			if (map_str[j] == '\n')
+				break ;
+			if (map_str[j] == '1')
+			{
+				found = true;
+				is_starting_line = true;
+			}
+			if (map_str[j] != '1' && map_str[j] != ' ')
+				is_starting_line = false;
+			j++;
+		}
+		j++;
+		if (is_starting_line == true && found == true)
+			return (i);
+		i = j;
+	}
+	return (-1);
+}
+
+bool	has_empty_line(char *map_str)
+{
+	int	i;
+
+	i = 0;
+	if (map_str[ft_strlen(map_str) - 1] == '\n')
+		return (put_error("Map contains empty line(s)!"), true);
+	while (map_str[i] != '\0')
+	{
+		if (map_str[i] == '\n' && map_str[i + 1] == '\n')
+			return (put_error("Map contains empty line(s)!"), true);
+		i++;
+	}
+	return (false);
 }
