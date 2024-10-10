@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juitz <juitz@student.42.fr>                +#+  +:+       +#+        */
+/*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 13:12:09 by juitz             #+#    #+#             */
-/*   Updated: 2024/10/09 16:05:16 by juitz            ###   ########.fr       */
+/*   Updated: 2024/10/10 11:33:12 by shaintha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ int	check_duplicate_id(t_cube *cube, char *map_str)
 
 	pos = 0;
 	i = 0;
-	
 	while (map_str[i])
 	{
 		if (ft_strncmp_pos(&map_str[i], "NO ", 3, &pos) == 0 && cube->n_path != NULL)
@@ -79,8 +78,10 @@ int	check_duplicate_id(t_cube *cube, char *map_str)
 			return (1);
 		if (ft_strncmp_pos(&map_str[i], "EA ", 3, &pos) == 0 && cube->e_path != NULL)
 			return (1);
+		//Line: 83: 3 nicht 2?
 		if (ft_strncmp_pos(&map_str[i], "C ", 3, &pos) == 0 && cube->c_color != NULL)
 			return (1);
+		//Line: 86: 3 nicht 2?
 		if (ft_strncmp_pos(&map_str[i], "F ", 3, &pos) == 0 && cube->f_color != NULL)
 			return (1);
 	}
