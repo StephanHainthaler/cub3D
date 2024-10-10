@@ -6,7 +6,7 @@
 /*   By: juitz <juitz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 09:19:21 by shaintha          #+#    #+#             */
-/*   Updated: 2024/10/10 13:18:20 by juitz            ###   ########.fr       */
+/*   Updated: 2024/10/10 13:21:25 by juitz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,9 @@ typedef struct s_cube
 }			t_cube;
 
 
-bool    is_format_valid(char *file, char *format);
-
 void	initialize_cube(t_cube *cube);
 
+//map.c
 int		parse_map(t_cube *cube, char *map_name);
 char	*get_map_str(char *map_name);
 char	*read_map(int fd, char *line, char *temp, int bytes_read);
@@ -74,6 +73,8 @@ bool	is_map_border_valid(char **map);
 
 //utils.c
 
+//utils.c
+bool    is_format_valid(char *file, char *format);
 void	put_error(char *error_message);
 int		ft_strncmp_pos(const char *str1, const char *str2, size_t n, int *pos);
 int		skip_spaces_nl(char *str, int *pos);
