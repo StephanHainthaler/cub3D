@@ -6,7 +6,7 @@
 /*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 10:35:26 by shaintha          #+#    #+#             */
-/*   Updated: 2024/10/08 14:37:10 by shaintha         ###   ########.fr       */
+/*   Updated: 2024/10/10 10:13:55 by shaintha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	parse_map(t_cube *cube, char *map_name)
 {
 	char	*map_str;
-	
+
 	map_str = get_map_str(map_name);
 	if (map_str == NULL)
 		return (1);
@@ -24,8 +24,9 @@ int	parse_map(t_cube *cube, char *map_name)
 		return (free(map_str), 1);
 	ft_putstrarr_fd(cube->map, 1);
 	free(map_str);
-	if (is_map_valid(cube->map) == false)
+	if (is_map_valid(cube->map, 0, 0, false) == false)
 		return (ft_free_strarr(cube->map), 1);
+	ft_free_strarr(cube->map);
 	return (0);
 }
 
@@ -82,21 +83,8 @@ char	*read_map(int fd, char *line, char *temp, int bytes_read)
 	return (free(temp), line);
 }
 
-bool	is_map_valid(char **map)
+bool	is_map_valid(char **map, size_t x, size_t y, bool found)
 {
-	if (check_map_elements(map) == false)
-		return (put_error("Wrong map elements!"), false);
-	if (is_map_border_valid(map) == false)
-		return (put_error("Incorrect map border control!"), false);
-	return (true);
-}
-
-bool	check_map_elements(char **map)
-{
-	int		x;
-	int		y;
-
-	y = 0;
 	while (map[y] != NULL)
 	{
 		x = 0;
@@ -106,7 +94,17 @@ bool	check_map_elements(char **map)
 				&& map[y][x] != 'N' && map[y][x] != 'E'
 				&& map[y][x] != 'S' && map[y][x] != 'W'
 				&& map[y][x] != ' ')
-				return (false);
+				return (put_error("Invalid map elements!"), false);
+			if (map[y][x] == 'N' || map[y][x] == 'E'
+				|| map[y][x] == 'S' || map[y][x] == 'W')
+			{
+				if (found == false)
+					found = true;
+				else
+					return (put_error("Too many players!"), false);
+			}
+			if (is_in_border(map, x, y) == false)
+				return (put_error("Incorrect map border!"), false);
 			x++;
 		}
 		y++;
@@ -114,50 +112,28 @@ bool	check_map_elements(char **map)
 	return (true);
 }
 
-bool	is_map_border_valid(char **map)
+bool	is_in_border(char **map, size_t x, size_t y)
 {
-	unsigned int	x;
-	unsigned int	y;
-
-	y = 0;
-	while (map[y] != NULL)
-	{
-		if (map[y][0] != '1' && map[y][0] != ' ')
-			return (printf("1: %i\n", y), false);
-		x = 0;
-		while (map[y][x] != '\0')
-		{
-			//TO DO
-			// if (is_in_border(map, x, y) == false)
-			// 	return (false);
-			if (map[y][x] == ' ' && (map[y][x + 1] != '1'
-				&& map[y][x + 1] != ' ' && map[y][x + 1] != '\0'))
-				return (printf("2: x=%i y=%i\n", x, y), false);
-			x++;
-		}
-		y++;
-	}
-	return (true);
-}
-
-bool	is_in_border(char **map, unsigned int x, unsigned int y)
-{
-	unsigned int	i;
+	size_t	i;
 
 	i = 0;
 	while (map[i] != NULL)
 		i++;
 	if (y == 0)
-		if (map[y][x] != ' ' || map[y][x] != '1')
+		if (map[y][x] != '1' && map[y][x] != ' ')
 			return (false);
-	if (y > 0)
+	if (y > 0 && y != i - 1)
 	{
-		if ((map[y][x] == '0' || map[y][x] == 'N' || map[y][x] == 'E' || map[y][x] == 'S' || map[y][x] == 'W') &&
-			(map[y - 1][x] != ' ' && map[y - 1][x] != '1')) //maybe not && but ||
+		if ((map[y][x] != '1' && map[y][x] != ' ') && map[y - 1][x] == ' ')
+			return (false);
+		if ((map[y][x] != '1' && map[y][x] != ' ') && map[y + 1][x] == ' ')
 			return (false);
 	}
-	if (y == i)
-		if (map[y][x] != ' ' || map[y][x] != '1')
+	if (y == i - 1)
+		if (map[y][x] != '1' && map[y][x] != ' ')
 			return (false);
+	if ((map[y][x] != '1' && map[y][x] != ' ')
+		&& (map[y][x + 1] == ' ' || map[y][x + 1] == '\0'))
+		return (false);
 	return (true);
 }

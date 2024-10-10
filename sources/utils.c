@@ -6,7 +6,7 @@
 /*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 12:12:38 by shaintha          #+#    #+#             */
-/*   Updated: 2024/10/08 12:13:23 by shaintha         ###   ########.fr       */
+/*   Updated: 2024/10/10 10:16:09 by shaintha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 bool    is_format_valid(char *file, char *format)
 {
-	int i;
-	int j;
+	size_t i;
+	size_t j;
 
 	if (file == NULL || format == NULL)
 		return (false);
