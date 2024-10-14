@@ -6,7 +6,7 @@
 /*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 09:19:21 by shaintha          #+#    #+#             */
-/*   Updated: 2024/10/10 14:47:04 by shaintha         ###   ########.fr       */
+/*   Updated: 2024/10/14 11:15:34 by shaintha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@
 # include <X11/X.h>
 # include <X11/keysym.h>
 
+# define IMAGE_WIDTH	64
+# define IMAGE_HEIGHT	64
+
 //Define keys
 # define KEY_W		119
 # define KEY_S		115
@@ -38,8 +41,8 @@
 typedef struct s_image
 {
 	void			*ptr;
-	unsigned int	x;
-	unsigned int	y;
+	int	x;
+	int	y;
 }					t_image;
 
 typedef struct s_cube
@@ -53,15 +56,16 @@ typedef struct s_cube
 	char	*w_path;
 	char	*f_color;
 	char	*c_color;
-	t_image	*wall_north;
-	t_image	*wall_east;
-	t_image	*wall_south;
-	t_image	*wall_west;
+	t_image	wall_north;
+	t_image	wall_east;
+	t_image	wall_south;
+	t_image	wall_west;
 	int		map_pos;
 }			t_cube;
 
 
 void	initialize_cube(t_cube *cube);
+void	initialize_images(t_cube *cube);
 void	free_cube(t_cube *cube);
 
 //map.c
@@ -83,5 +87,16 @@ int		ft_strncmp_pos(const char *str1, const char *str2, size_t n, int *pos);
 int		skip_spaces_nl(char *str, int *pos);
 int		skip_spaces_nl(char *str, int *pos);
 char	*ft_strdup_nl(const char *src);
+int		get_color(char *color_str);
+int		rgb_to_int(int red, int green, int blue);
+t_image	get_image(t_cube *cube, char *image_path);
+int	get_images(t_cube *cube);
+
+//cube.c
+int		run_cube(t_cube *cube);
+int	setup_cube(t_cube *cube);
+int	key_pressed(int syskey, t_cube *cube);
+int	close_cube(t_cube *cube);
+void	print_cube(t_cube *cube);
 
 #endif

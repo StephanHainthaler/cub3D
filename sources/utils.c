@@ -6,7 +6,7 @@
 /*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 12:12:38 by shaintha          #+#    #+#             */
-/*   Updated: 2024/10/10 14:06:14 by shaintha         ###   ########.fr       */
+/*   Updated: 2024/10/14 10:09:05 by shaintha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,4 +123,43 @@ int	skip_spaces_nl(char *str, int *pos)
 	while (str[*pos] == ' ' || str[*pos] == '\n')
 		(*pos)++;
 	return (*pos);
+}
+
+int	get_color(char *color_str)
+{
+	int		color_code;
+	int		red;
+	int		green;
+	int		blue;
+	int		i;
+	int		j;
+
+	j = 0;
+	i = 0;
+	while (color_str[i] != ',')
+		i++;
+	red = ft_atoi_n(color_str + j, i);
+	j = i + 1;
+	i = 0;
+	while (color_str[i] != ',')
+		i++;
+	green = ft_atoi_n(color_str + j, i);
+	j = j + i + 1;
+	i = 0;
+	while (color_str[i] != '\0')
+		i++;
+	blue = ft_atoi_n(color_str + j, i);
+	color_code = rgb_to_int(red, green, blue);
+	return (color_code);
+}
+
+int	rgb_to_int(int red, int green, int blue)
+{
+	int	color_code;
+
+	color_code = 0;
+	color_code |= (blue * 255);
+	color_code |= (green * 255) << 8;
+	color_code |= (red * 255) << 16;
+	return (color_code);
 }

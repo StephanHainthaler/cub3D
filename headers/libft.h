@@ -6,7 +6,7 @@
 /*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 11:52:49 by shaintha          #+#    #+#             */
-/*   Updated: 2024/09/26 09:23:48 by shaintha         ###   ########.fr       */
+/*   Updated: 2024/10/14 09:58:00 by shaintha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ size_t	ft_strlcpy(char *dest, const char *src, size_t n);
 size_t	ft_strlcat(char *dest, const char *src, size_t n);
 char	*ft_strnstr(const char *big, const char *little, size_t n);
 int		ft_atoi(const char *str);
+int		ft_atoi_n(const char *str, size_t n);
 void	ft_bzero(void *str, size_t n);
 void	*ft_memset(void *str, int c, size_t n);
 void	*ft_memchr(const void *str, int c, size_t n);

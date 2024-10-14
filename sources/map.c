@@ -6,7 +6,7 @@
 /*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 10:35:26 by shaintha          #+#    #+#             */
-/*   Updated: 2024/10/10 14:51:12 by shaintha         ###   ########.fr       */
+/*   Updated: 2024/10/14 11:16:25 by shaintha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	parse_map(t_cube *cube, char *map_name)
 	free(map_str);
 	if (is_map_valid(cube->map, 0, 0, false) == false)
 		return (free_cube(cube), 1);
-	return (free_cube(cube), 0);
+	return (0);
 }
 
 char	*get_map_str(char *map_name)
