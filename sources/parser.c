@@ -6,7 +6,7 @@
 /*   By: juitz <juitz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 13:12:09 by juitz             #+#    #+#             */
-/*   Updated: 2024/10/14 14:29:46 by juitz            ###   ########.fr       */
+/*   Updated: 2024/10/14 14:31:31 by juitz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	get_identifier(t_cube *cube, char *map_str)
 	{
 		if (ft_strncmp(&map_str[i], "NO ", 3) == 0)
 		{
+			skip_spaces_nl(map_str, &pos);
 			pos += 3;
 			if (cube->n_path != NULL)
 				return (1);
@@ -32,6 +33,7 @@ int	get_identifier(t_cube *cube, char *map_str)
 		}
 		if (ft_strncmp(&map_str[i], "EA ", 3) == 0)
 		{
+			skip_spaces_nl(map_str, &pos);
 			pos += 3;
 			if (cube->e_path != NULL)
 				return (1);
@@ -41,6 +43,7 @@ int	get_identifier(t_cube *cube, char *map_str)
 		}
 		if (ft_strncmp(&map_str[i], "SO ", 3) == 0)
 		{
+			skip_spaces_nl(map_str, &pos);
 			pos += 3;
 			if (cube->s_path != NULL)
 				return (1);
@@ -50,6 +53,7 @@ int	get_identifier(t_cube *cube, char *map_str)
 		}
 		if (ft_strncmp(&map_str[i], "WE ", 3) == 0)
 		{
+			skip_spaces_nl(map_str, &pos);
 			pos += 3;
 			if (cube->w_path != NULL)
 				return (1);
