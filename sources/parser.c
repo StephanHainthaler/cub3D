@@ -6,7 +6,7 @@
 /*   By: juitz <juitz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 13:12:09 by juitz             #+#    #+#             */
-/*   Updated: 2024/10/10 18:31:18 by juitz            ###   ########.fr       */
+/*   Updated: 2024/10/14 14:29:46 by juitz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ int	get_identifier(t_cube *cube, char *map_str)
 		}
 		if (ft_strncmp(&map_str[i], "C ", 2) == 0)
 		{
+			skip_spaces_nl(map_str, &pos);
 			pos += 2;
 			if (cube->c_color != NULL)
 				return (1);
@@ -68,6 +69,7 @@ int	get_identifier(t_cube *cube, char *map_str)
 		}
 		if (ft_strncmp(&map_str[i], "F ", 2) == 0)
 		{
+			skip_spaces_nl(map_str, &pos);
 			pos += 2;
 			if (cube->f_color != NULL)
 				return (1);
