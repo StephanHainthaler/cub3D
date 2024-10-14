@@ -6,7 +6,7 @@
 /*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 09:18:58 by shaintha          #+#    #+#             */
-/*   Updated: 2024/10/14 11:17:03 by shaintha         ###   ########.fr       */
+/*   Updated: 2024/10/14 14:54:31 by shaintha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,9 @@ int main(int argc, char *argv[])
 	if (parse_map(&cube, argv[1]) == 1)
 		return (1);
 	print_cube(&cube);
-	if (run_cube(&cube) == 1)
-		return (1);
-	return (0);
+	if (get_images(&cube) == 1)
+		return (free_images(&cube), free_cube(&cube), 1);
+	// if (run_cube(&cube) == 1)
+	// 	return (1);
+	return (free_cube(&cube), 0);
 }

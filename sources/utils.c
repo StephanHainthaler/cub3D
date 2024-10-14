@@ -6,7 +6,7 @@
 /*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 12:12:38 by shaintha          #+#    #+#             */
-/*   Updated: 2024/10/14 12:54:36 by shaintha         ###   ########.fr       */
+/*   Updated: 2024/10/14 13:56:57 by shaintha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,6 @@ int	skip_spaces_nl(char *str, int *pos)
 
 int	get_color(char *color_str)
 {
-	int		color_code;
 	int		red;
 	int		green;
 	int		blue;
@@ -155,17 +154,8 @@ int	get_color(char *color_str)
 	while (color_str[i] != '\0')
 		i++;
 	blue = ft_atoi_n(color_str + j, i);
-	color_code = rgb_to_int(red, green, blue);
-	return (color_code);
-}
-
-int	rgb_to_int(int red, int green, int blue)
-{
-	int	color_code;
-
-	color_code = 0;
-	color_code |= (blue * 255);
-	color_code |= (green * 255) << 8;
-	color_code |= (red * 255) << 16;
-	return (color_code);
+	printf("RED: %i\n", red);
+	printf("GREEN: %i\n", green);
+	printf("BLUE: %i\n", blue);
+	return (red << 16 | green << 8 | blue);
 }

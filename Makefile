@@ -6,14 +6,14 @@
 #    By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/26 09:18:50 by shaintha          #+#    #+#              #
-#    Updated: 2024/10/14 11:11:24 by shaintha         ###   ########.fr        #
+#    Updated: 2024/10/14 14:35:50 by shaintha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME := cub3D
 
 CC := cc
-CFLAGS := -Wall -Wextra -Werror #-g
+CFLAGS := -Wall -Wextra -Werror -g
 MLXFLAGS := -lmlx -lXext -lX11
 
 SRC_DIR := sources

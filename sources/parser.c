@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juitz <juitz@student.42.fr>                +#+  +:+       +#+        */
+/*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 13:12:09 by juitz             #+#    #+#             */
-/*   Updated: 2024/10/10 18:31:18 by juitz            ###   ########.fr       */
+/*   Updated: 2024/10/14 14:34:40 by shaintha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ int	get_identifier(t_cube *cube, char *map_str)
 			if (cube->n_path != NULL)
 				return (1);
 			skip_spaces_nl(map_str, &pos);
-			cube->n_path = ft_strdup_nl (&map_str[pos], &pos);
-			printf("%s\n", cube->n_path);
+			cube->n_path = ft_strdup_nl(&map_str[pos], &pos);
+			//printf("%s\n", cube->n_path);
 		}
 		if (ft_strncmp(&map_str[i], "EA ", 3) == 0)
 		{
@@ -37,7 +37,7 @@ int	get_identifier(t_cube *cube, char *map_str)
 				return (1);
 			skip_spaces_nl(map_str, &pos);
 			cube->e_path = ft_strdup_nl(&map_str[pos], &pos);
-			printf("%s\n", cube->e_path);
+			//printf("%s\n", cube->e_path);
 		}
 		if (ft_strncmp(&map_str[i], "SO ", 3) == 0)
 		{
@@ -46,7 +46,7 @@ int	get_identifier(t_cube *cube, char *map_str)
 				return (1);
 			skip_spaces_nl(map_str, &pos);
 			cube->s_path = ft_strdup_nl (&map_str[pos], &pos);
-			printf("%s\n", cube->s_path);
+			//printf("%s\n", cube->s_path);
 		}
 		if (ft_strncmp(&map_str[i], "WE ", 3) == 0)
 		{
@@ -55,7 +55,7 @@ int	get_identifier(t_cube *cube, char *map_str)
 				return (1);
 			skip_spaces_nl(map_str, &pos);
 			cube->w_path = ft_strdup_nl (&map_str[pos], &pos);
-			printf("%s\n", cube->w_path);
+			//printf("%s\n", cube->w_path);
 		}
 		if (ft_strncmp(&map_str[i], "C ", 2) == 0)
 		{
@@ -64,7 +64,7 @@ int	get_identifier(t_cube *cube, char *map_str)
 				return (1);
 			skip_spaces_nl(map_str, &pos);
 			cube->c_color = ft_strdup_nl (&map_str[pos], &pos);
-			printf("%s\n", cube->c_color);
+			//printf("%s\n", cube->c_color);
 		}
 		if (ft_strncmp(&map_str[i], "F ", 2) == 0)
 		{
@@ -73,7 +73,7 @@ int	get_identifier(t_cube *cube, char *map_str)
 				return (1);
 			skip_spaces_nl(map_str, &pos);
 			cube->f_color = ft_strdup_nl (&map_str[pos], &pos);
-			printf("%s\n", cube->f_color);
+			//printf("%s\n", cube->f_color);
 		}
 		i++;
 	}
@@ -114,5 +114,7 @@ int		identifier_check(t_cube *cube, char *map_str)
 		return (put_error("Invalid Identifiers"), 1);
 	/* if (check_duplicate_id(cube, map_str) == 1)
 		return (put_error("Duplicate Identifiers"), 1); */
+	cube->floor_color = get_color(cube->f_color);
+	cube->ceiling_color = get_color(cube->c_color);
 	return (0);
 }

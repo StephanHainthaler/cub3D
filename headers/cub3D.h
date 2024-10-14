@@ -6,7 +6,7 @@
 /*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 09:19:21 by shaintha          #+#    #+#             */
-/*   Updated: 2024/10/14 12:54:59 by shaintha         ###   ########.fr       */
+/*   Updated: 2024/10/14 14:42:27 by shaintha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ typedef struct s_cube
 	t_image	wall_east;
 	t_image	wall_south;
 	t_image	wall_west;
+	int		floor_color;
+	int		ceiling_color;
 	int		map_pos;
 }			t_cube;
 
@@ -88,11 +90,11 @@ void	put_error(char *error_message);
 int		ft_strncmp_pos(const char *str1, const char *str2, size_t n, int *pos);
 int		skip_spaces_nl(char *str, int *pos);
 int		skip_spaces_nl(char *str, int *pos);
-char	*ft_strdup_nl(const char *src);
+char	*ft_strdup_nl(const char *src, int *pos);
 int		get_color(char *color_str);
 int		rgb_to_int(int red, int green, int blue);
 t_image	get_image(t_cube *cube, char *image_path);
-int	get_images(t_cube *cube);
+int		get_images(t_cube *cube);
 
 //cube.c
 int		run_cube(t_cube *cube);
@@ -100,5 +102,7 @@ int	setup_cube(t_cube *cube);
 int	key_pressed(int syskey, t_cube *cube);
 int	close_cube(t_cube *cube);
 void	print_cube(t_cube *cube);
+void	free_images(t_cube *cube);
+void	free_mlx(t_cube *cube);
 
 #endif
