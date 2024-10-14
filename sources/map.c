@@ -6,7 +6,7 @@
 /*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 10:35:26 by shaintha          #+#    #+#             */
-/*   Updated: 2024/10/14 11:16:25 by shaintha         ###   ########.fr       */
+/*   Updated: 2024/10/14 12:55:10 by shaintha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ int	parse_map(t_cube *cube, char *map_name)
 		return (free(map_str), 1);
 	if (has_empty_line(map_str + start) == true)
 		return (free(map_str), 1);
-
+	if (identifier_check(cube, map_str) == 1)
+		return (free(map_str), 1);
 	//GET_IDS_AND_STUFF (JULIAN_PART)
-	
 	cube->map = ft_split(map_str + start, '\n');
 	if (cube->map == NULL)
 		return (free(map_str), 1);

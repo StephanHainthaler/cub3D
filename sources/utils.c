@@ -6,7 +6,7 @@
 /*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 12:12:38 by shaintha          #+#    #+#             */
-/*   Updated: 2024/10/14 10:09:05 by shaintha         ###   ########.fr       */
+/*   Updated: 2024/10/14 12:54:36 by shaintha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ bool	is_color_valid(char *color_str)
 			j++;
 		}
 		ft_strlcpy(n_str, color_str + i, j);
+		ft_strlcpy(n_str, color_str + i, j);
 		printf("Number %i: '%s'\n", count, n_str);
 		if (ft_atoi(n_str) < 0 || ft_atoi(n_str) > 255 || j == 0)
 			return (false);
@@ -92,11 +93,15 @@ int	ft_strncmp_pos(const char *str1, const char *str2, size_t n, int *pos)
 		}
 		i++;
 	}
-	*pos = i;
+	i = 0;
+	while (str1ptr[i] != '\0' && str1ptr[i] != '\n')
+		i++;
+	// *pos += i;
+	*pos += i;
 	return (res);
 }
 
-char	*ft_strdup_nl(const char *src)
+char	*ft_strdup_nl(const char *src, int *pos)
 {
 	char	*dup;
 	int		count;
@@ -114,6 +119,7 @@ char	*ft_strdup_nl(const char *src)
 		dup[i] = src[i];
 		i++;
 	}
+	*pos += i;
 	dup[i] = '\0';
 	return (dup);
 }

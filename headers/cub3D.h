@@ -6,7 +6,7 @@
 /*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 09:19:21 by shaintha          #+#    #+#             */
-/*   Updated: 2024/10/14 11:15:34 by shaintha         ###   ########.fr       */
+/*   Updated: 2024/10/14 12:54:59 by shaintha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,10 @@ void	initialize_images(t_cube *cube);
 void	free_cube(t_cube *cube);
 
 //map.c
+bool	is_in_border(char **map, size_t x, size_t y);
+bool	is_map_valid(char **map, size_t x, size_t y, bool found);
 int		parse_map(t_cube *cube, char *map_name);
-int		map_check_julian(t_cube *cube, char *map_str);
+int		identifier_check(t_cube *cube, char *map_str);
 char	*get_map_str(char *map_name);
 char	*read_map(int fd, char *line, char *temp, int bytes_read);
 int		get_identifier(t_cube *cube, char *map_str);
