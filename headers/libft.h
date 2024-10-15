@@ -6,7 +6,7 @@
 /*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 11:52:49 by shaintha          #+#    #+#             */
-/*   Updated: 2024/10/14 09:58:00 by shaintha         ###   ########.fr       */
+/*   Updated: 2024/10/15 15:57:44 by shaintha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_list
 bool	ft_isalpha(int c);
 bool	ft_isdigit(int c);
 bool	ft_isnumber(char *str);
+bool	ft_isnumber_n(char *str, size_t n);
 bool	ft_isint(char *str);
 bool	ft_isalnum(int c);
 bool	ft_isascii(int c);

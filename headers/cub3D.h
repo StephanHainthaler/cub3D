@@ -6,7 +6,7 @@
 /*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 09:19:21 by shaintha          #+#    #+#             */
-/*   Updated: 2024/10/14 14:42:27 by shaintha         ###   ########.fr       */
+/*   Updated: 2024/10/15 10:43:32 by shaintha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@
 
 typedef struct s_image
 {
-	void			*ptr;
-	int	x;
-	int	y;
+	void	*ptr;
+	int		x;
+	int		y;
 }					t_image;
 
 typedef struct s_cube
@@ -91,6 +91,7 @@ int		ft_strncmp_pos(const char *str1, const char *str2, size_t n, int *pos);
 int		skip_spaces_nl(char *str, int *pos);
 int		skip_spaces_nl(char *str, int *pos);
 char	*ft_strdup_nl(const char *src, int *pos);
+bool	is_color_valid(char *color_str);
 int		get_color(char *color_str);
 int		rgb_to_int(int red, int green, int blue);
 t_image	get_image(t_cube *cube, char *image_path);

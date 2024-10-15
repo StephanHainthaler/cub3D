@@ -6,7 +6,7 @@
 /*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 10:35:26 by shaintha          #+#    #+#             */
-/*   Updated: 2024/10/14 14:29:25 by shaintha         ###   ########.fr       */
+/*   Updated: 2024/10/15 16:34:53 by shaintha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	parse_map(t_cube *cube, char *map_name)
 	start = get_map_startline(map_str);
 	if (start == -1)
 		return (free(map_str), 1);
-	if (has_empty_line(map_str + start) == true)
+	if (has_empty_line(map_str + start) == true || map_str[0] == '\n')
 		return (free(map_str), 1);
 	if (identifier_check(cube, map_str) == 1)
 		return (free(map_str), 1);
@@ -115,6 +115,8 @@ bool	is_map_valid(char **map, size_t x, size_t y, bool found)
 		}
 		y++;
 	}
+	if (found == false)
+		return (put_error("No player!"), false);
 	return (true);
 }
 
@@ -183,6 +185,8 @@ bool	has_empty_line(char *map_str)
 	int	i;
 
 	i = 0;
+	if (map_str[0] == '\n')
+		return (put_error("Map contains empty line(s)!"), true);
 	if (map_str[ft_strlen(map_str) - 1] == '\n')
 		return (put_error("Map contains empty line(s)!"), true);
 	while (map_str[i] != '\0')
