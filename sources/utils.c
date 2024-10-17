@@ -6,7 +6,7 @@
 /*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 12:12:38 by shaintha          #+#    #+#             */
-/*   Updated: 2024/10/15 16:30:15 by shaintha         ###   ########.fr       */
+/*   Updated: 2024/10/17 13:56:59 by shaintha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	put_error(char *error_message)
 	ft_putendl_fd(error_message, 2);
 }
 
-int	ft_strncmp_pos(const char *str1, const char *str2, size_t n, int *pos)
+int	ft_strncmp_pos(const char *str1, const char *str2, size_t n, size_t *pos)
 {
 	int					res;
 	unsigned char		*str1ptr;
@@ -69,7 +69,7 @@ int	ft_strncmp_pos(const char *str1, const char *str2, size_t n, int *pos)
 	return (res);
 }
 
-char	*ft_strdup_nl(const char *src, int *pos)
+char	*ft_strdup_nl(const char *src, size_t *pos)
 {
 	char	*dup;
 	int		count;
@@ -92,7 +92,7 @@ char	*ft_strdup_nl(const char *src, int *pos)
 	return (dup);
 }
 
-int	skip_spaces_nl(char *str, int *pos)
+int	skip_spaces_nl(char *str, size_t *pos)
 {
 	while (str[*pos] == ' ' || str[*pos] == '\n')
 		(*pos)++;
