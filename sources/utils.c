@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juitz <juitz@student.42.fr>                +#+  +:+       +#+        */
+/*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 12:12:38 by shaintha          #+#    #+#             */
-/*   Updated: 2024/10/10 18:32:37 by juitz            ###   ########.fr       */
+/*   Updated: 2024/10/17 13:56:59 by shaintha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,45 +33,13 @@ bool    is_format_valid(char *file, char *format)
 	return (true);
 }
 
-bool	is_color_valid(char *color_str)
-{
-	char	*n_str;
-	int		count;
-	size_t	i;
-	size_t	j;
-
-	n_str = NULL;
-	count = 0;
-	i = 0;
-	while (color_str[i] != '\0')
-	{
-		j = 0;
-		while (color_str[j] != '\0' && color_str[j] != ',')
-		{
-			if (ft_isdigit(color_str[j]) == false && color_str[j] != ' ')
-				return (false);
-			j++;
-		}
-		ft_strlcpy(n_str, color_str + i, j);
-		ft_strlcpy(n_str, color_str + i, j);
-		printf("Number %i: '%s'\n", count, n_str);
-		if (ft_atoi(n_str) < 0 || ft_atoi(n_str) > 255 || j == 0)
-			return (false);
-		count++;
-		i = i + j;
-	}
-	if (count != 3)
-		return (false);
-	return (true);
-}
-
 void	put_error(char *error_message)
 {
 	ft_putendl_fd("Error", 2);
 	ft_putendl_fd(error_message, 2);
 }
 
-int	ft_strncmp_pos(const char *str1, const char *str2, size_t n, int *pos)
+int	ft_strncmp_pos(const char *str1, const char *str2, size_t n, size_t *pos)
 {
 	int					res;
 	unsigned char		*str1ptr;
@@ -101,7 +69,7 @@ int	ft_strncmp_pos(const char *str1, const char *str2, size_t n, int *pos)
 	return (res);
 }
 
-char	*ft_strdup_nl(const char *src, int *pos)
+char	*ft_strdup_nl(const char *src, size_t *pos)
 {
 	char	*dup;
 	int		count;
@@ -124,9 +92,64 @@ char	*ft_strdup_nl(const char *src, int *pos)
 	return (dup);
 }
 
-int	skip_spaces_nl(char *str, int *pos)
+int	skip_spaces_nl(char *str, size_t *pos)
 {
 	while (str[*pos] == ' ' || str[*pos] == '\n')
 		(*pos)++;
 	return (*pos);
+}
+
+bool	is_color_valid(char *str)
+{
+	int		count;
+	size_t	i;
+	size_t	j;
+
+	count = 0;
+	i = 0;
+	while (str[i] != '\0')
+	{
+		while (str[i] != '\0' && ft_isspace(str[i]) == true)
+			i++;
+		j = i;
+		while (str[j] != '\0' && str[j] != ',')
+			if (ft_isdigit(str[j++]) == false
+				&& str[j - 1] != '-' && str[j - 1] != '+')
+				return (false);
+		j++;
+		if (ft_atoi_n(str + i, j - i) < 0 || ft_atoi_n(str + i, j - i) > 255
+			|| ft_isnumber_n(str + i, j - i - 1) == false)
+			return (false);
+		count++;
+		i += (j - i);
+	}
+	if (count != 3 || str[i - 1] != '\0')
+		return (false);
+	return (true);
+}
+
+int	get_color(char *color_str)
+{
+	int		red;
+	int		green;
+	int		blue;
+	size_t	i;
+	size_t	j;
+
+	j = 0;
+	i = 0;
+	while (color_str[i] != ',')
+		i++;
+	red = ft_atoi_n(color_str + j, i);
+	j = i + 1;
+	i = 0;
+	while (color_str[i] != ',')
+		i++;
+	green = ft_atoi_n(color_str + j, i);
+	j = j + i + 1;
+	i = 0;
+	while (color_str[i] != '\0')
+		i++;
+	blue = ft_atoi_n(color_str + j, i);
+	return (red << 16 | green << 8 | blue);
 }

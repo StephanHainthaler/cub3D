@@ -3,14 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shaintha <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 14:36:06 by shaintha          #+#    #+#             */
-/*   Updated: 2023/09/12 16:39:07 by shaintha         ###   ########.fr       */
+/*   Updated: 2024/10/14 09:57:23 by shaintha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/libft.h"
+
+int	ft_atoi_n(const char *str, size_t n)
+{
+	int		res;
+	int		minus;
+	size_t	i;
+
+	res = 0;
+	minus = 0;
+	i = 0;
+	while (ft_isspace(str[i]) == true)
+		i++;
+	if (str[i] == '+' || str[i] == '-')
+	{
+		if (str[i] == '-')
+			minus = 1;
+		i++;
+	}
+	while (str[i] >= '0' && str[i] <= '9' && i < n)
+	{
+		res = res * 10 + str[i] - '0';
+		i++;
+	}
+	if (minus == 1)
+		res = res * -1;
+	return (res);
+}
 
 int	ft_atoi(const char *str)
 {
