@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juitz <juitz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 13:12:09 by juitz             #+#    #+#             */
-/*   Updated: 2024/10/17 14:03:18 by shaintha         ###   ########.fr       */
+/*   Updated: 2024/10/17 14:21:19 by juitz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,8 @@ int	get_identifier(t_cube *cube, char *map_str, size_t end)
 			i += 3;
 			if (cube->n_path != NULL)
 				return (1);
+			cube->n_path = ft_strdup_nl(&map_str[i], &i);
 			skip_spaces_nl(map_str, &i);
-			cube->n_path = ft_strdup_nl (&map_str[i], &i);
-			i++;
 			printf("'%c' i = %zu\n", map_str[i], i);
 			//printf("%s\n", cube->n_path);
 		} 
@@ -37,9 +36,8 @@ int	get_identifier(t_cube *cube, char *map_str, size_t end)
 			i += 3;
 			if (cube->e_path != NULL)
 				return (1);
-			skip_spaces_nl(map_str, &i);
 			cube->e_path = ft_strdup_nl(&map_str[i], &i);
-			i++;
+			skip_spaces_nl(map_str, &i);
 			printf("'%c' i = %zu\n", map_str[i], i);
 			//printf("%s\n", cube->e_path);
 		}
@@ -49,9 +47,8 @@ int	get_identifier(t_cube *cube, char *map_str, size_t end)
 			i += 3;
 			if (cube->s_path != NULL)
 				return (1);
+			cube->s_path = ft_strdup_nl(&map_str[i], &i);
 			skip_spaces_nl(map_str, &i);
-			cube->s_path = ft_strdup_nl (&map_str[i], &i);
-			i++;
 			printf("'%c' i = %zu\n", map_str[i], i);
 			//printf("%s\n", cube->s_path);
 		}
@@ -61,9 +58,8 @@ int	get_identifier(t_cube *cube, char *map_str, size_t end)
 			i += 3;
 			if (cube->w_path != NULL)
 				return (1);
+			cube->w_path = ft_strdup_nl(&map_str[i], &i);
 			skip_spaces_nl(map_str, &i);
-			cube->w_path = ft_strdup_nl (&map_str[i], &i);
-			i++;
 			printf("'%c' i = %zu\n", map_str[i], i);
 			//printf("%s\n", cube->w_path);
 		}
@@ -73,9 +69,8 @@ int	get_identifier(t_cube *cube, char *map_str, size_t end)
 			i += 2;
 			if (cube->c_color != NULL)
 				return (1);
-			skip_spaces_nl(map_str, &i);
 			cube->c_color = ft_strdup_nl(&map_str[i], &i);
-			i++;
+			skip_spaces_nl(map_str, &i);
 			printf("'%c' i = %zu\n", map_str[i], i);
 			//printf("%s\n", cube->c_color);
 		}
@@ -85,14 +80,14 @@ int	get_identifier(t_cube *cube, char *map_str, size_t end)
 			i += 2;
 			if (cube->f_color != NULL)
 				return (1);
+			cube->f_color = ft_strdup_nl(&map_str[i], &i);
 			skip_spaces_nl(map_str, &i);
-			cube->f_color = ft_strdup_nl (&map_str[i], &i);
-			i++;
 			printf("'%c' i = %zu\n", map_str[i], i);
 			//printf("%s\n", cube->f_color);
 		}
 		else
 			return (printf("'%c' i = %zu\n", map_str[i], i), put_error("OO00FF"), 1);
+		i++;
 	}
 	if (!cube->n_path || !cube->s_path || !cube->w_path || !cube->e_path
 		|| !cube->c_color || !cube->f_color)
