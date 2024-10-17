@@ -6,7 +6,7 @@
 /*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 10:35:26 by shaintha          #+#    #+#             */
-/*   Updated: 2024/10/15 16:34:53 by shaintha         ###   ########.fr       */
+/*   Updated: 2024/10/17 12:16:34 by shaintha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,18 @@ int	parse_map(t_cube *cube, char *map_name)
 	if (map_str == NULL)
 		return (1);
 	start = get_map_startline(map_str);
-	if (start == -1)
+	if (start == 0)
 		return (free(map_str), 1);
-	if (has_empty_line(map_str + start) == true || map_str[0] == '\n')
+	if (has_map_empty_line(map_str + start) == true || map_str[0] == '\n')
 		return (free(map_str), 1);
+	//ADD END OF INFORMATION TO IDENTIFIER_CHECK
 	if (identifier_check(cube, map_str) == 1)
-		return (free(map_str), 1);
+		return (free_cube(cube), free(map_str), 1);
 	cube->map = ft_split(map_str + start, '\n');
 	if (cube->map == NULL)
 		return (free(map_str), 1);
 	free(map_str);
+	print_cube(cube);
 	if (is_map_valid(cube->map, 0, 0, false) == false)
 		return (free_cube(cube), 1);
 	return (0);
@@ -146,10 +148,10 @@ bool	is_in_border(char **map, size_t x, size_t y)
 	return (true);
 }
 
-int	get_map_startline(char *map_str)
+size_t	get_map_startline(char *map_str)
 {
-	int		i;
-	int		j;
+	size_t	i;
+	size_t	j;
 	bool	is_starting_line;
 	bool	found;
 
@@ -159,39 +161,47 @@ int	get_map_startline(char *map_str)
 		is_starting_line = false;
 		found = false;
 		j = i;
-		while (map_str[j] != '\0')
+		while (map_str[j] != '\0' && map_str[j] != '\n')
 		{
-			if (map_str[j] == '\n')
-				break ;
-			if (map_str[j] == '1')
+			if (map_str[j] == '1' && found == false)
 			{
 				found = true;
 				is_starting_line = true;
 			}
-			if (map_str[j] != '1' && map_str[j] != ' ')
+			if (is_map_element(map_str[j++]) == false)
 				is_starting_line = false;
-			j++;
 		}
-		j++;
 		if (is_starting_line == true && found == true)
 			return (i);
+		if (map_str[j] != '\0')
+			j++;
 		i = j;
 	}
-	return (-1);
+	return (0);
 }
 
-bool	has_empty_line(char *map_str)
+bool	is_map_element(char e)
+{
+	if (e == '1' || e == '0' || e == 'N'
+		|| e == 'E' || e == 'S' || e == 'W'
+		|| e == ' ')
+		return (true);
+	return (false);
+}
+
+
+bool	has_map_empty_line(char *str)
 {
 	int	i;
 
 	i = 0;
-	if (map_str[0] == '\n')
+	if (str[0] == '\n')
 		return (put_error("Map contains empty line(s)!"), true);
-	if (map_str[ft_strlen(map_str) - 1] == '\n')
+	if (str[ft_strlen(str) - 1] == '\n')
 		return (put_error("Map contains empty line(s)!"), true);
-	while (map_str[i] != '\0')
+	while (str[i] != '\0')
 	{
-		if (map_str[i] == '\n' && map_str[i + 1] == '\n')
+		if (str[i] == '\n' && str[i + 1] == '\n')
 			return (put_error("Map contains empty line(s)!"), true);
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 13:12:09 by juitz             #+#    #+#             */
-/*   Updated: 2024/10/15 16:28:10 by shaintha         ###   ########.fr       */
+/*   Updated: 2024/10/17 10:58:41 by shaintha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,11 +118,11 @@ int		identifier_check(t_cube *cube, char *map_str)
 		return (put_error("Invalid Identifiers"), 1);
 	/* if (check_duplicate_id(cube, map_str) == 1)
 		return (put_error("Duplicate Identifiers"), 1); */
-	if (is_color_valid(cube->f_color) == false)
-		return (put_error("Invalid floor color configuration!"), 1);
-	if (is_color_valid(cube->c_color) == false)
-		return (put_error("Invalid ceiling color configuration!"), 1);
-	cube->floor_color = get_color(cube->f_color);
-	cube->ceiling_color = get_color(cube->c_color);
+	// if (is_color_valid(cube->f_color) == false)
+	// 	return (put_error("Invalid floor color configuration!"), 1);
+	// if (is_color_valid(cube->c_color) == false)
+	// 	return (put_error("Invalid ceiling color configuration!"), 1);
+	// cube->floor_color = get_color(cube->f_color);
+	// cube->ceiling_color = get_color(cube->c_color);
 	return (0);
 }

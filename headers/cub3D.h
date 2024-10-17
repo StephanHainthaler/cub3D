@@ -6,7 +6,7 @@
 /*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 09:19:21 by shaintha          #+#    #+#             */
-/*   Updated: 2024/10/15 10:43:32 by shaintha         ###   ########.fr       */
+/*   Updated: 2024/10/17 12:16:14 by shaintha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,10 @@ char	*get_map_str(char *map_name);
 char	*read_map(int fd, char *line, char *temp, int bytes_read);
 int		get_identifier(t_cube *cube, char *map_str);
 bool	is_map_valid(char **map, size_t x, size_t y, bool found);
+bool	is_map_element(char e);
 bool	is_in_border(char **map, size_t x, size_t y);
-int	get_map_startline(char *map_str);
-bool	has_empty_line(char *map_str);
+size_t	get_map_startline(char *map_str);
+bool	has_map_empty_line(char *map_str);
 
 
 //utils.c
