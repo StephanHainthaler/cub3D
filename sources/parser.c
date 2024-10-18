@@ -6,7 +6,7 @@
 /*   By: juitz <juitz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 13:12:09 by juitz             #+#    #+#             */
-/*   Updated: 2024/10/18 15:58:04 by juitz            ###   ########.fr       */
+/*   Updated: 2024/10/18 16:02:53 by juitz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ int	get_identifier(t_cube *cube, char *map_str, size_t end)
 	i = 0;
 	while (map_str[i] && i < end)
 	{
-		//skip_spaces_nl(map_str, &i);
 		if (ft_strncmp(&map_str[i], "NO ", 3) == 0)
 		{
 			i += 3;

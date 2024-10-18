@@ -6,7 +6,7 @@
 /*   By: juitz <juitz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 09:19:21 by shaintha          #+#    #+#             */
-/*   Updated: 2024/10/17 17:50:18 by juitz            ###   ########.fr       */
+/*   Updated: 2024/10/18 17:20:58 by juitz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,9 @@
 # include <mlx.h>
 # include <X11/X.h>
 # include <X11/keysym.h>
+# include <math.h>
 
+# define PI	3.1415926535
 # define IMAGE_WIDTH	64
 # define IMAGE_HEIGHT	64
 
@@ -44,6 +46,14 @@ typedef struct s_image
 	int		x;
 	int		y;
 }					t_image;
+
+typedef struct s_player
+{
+	float	fov;
+	float	pos_x;
+	float	pos_y;
+	float	direction;
+}					t_player;
 
 typedef struct s_cube
 {
