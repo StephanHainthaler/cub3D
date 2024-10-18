@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juitz <juitz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 12:12:38 by shaintha          #+#    #+#             */
-/*   Updated: 2024/10/17 13:56:59 by shaintha         ###   ########.fr       */
+/*   Updated: 2024/10/17 18:00:02 by juitz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,19 @@ char	*ft_strdup_nl(const char *src, size_t *pos)
 	dup[i] = '\0';
 	return (dup);
 }
+int	skip_spaces(char *str, size_t *pos)
+{
+	while (str[*pos] == ' ')
+		(*pos)++;
+	return (*pos);
+}
 
+int	skip_nl(char *str, size_t *pos)
+{
+	while (str[*pos] == '\n')
+		(*pos)++;
+	return (*pos);
+}
 int	skip_spaces_nl(char *str, size_t *pos)
 {
 	while (str[*pos] == ' ' || str[*pos] == '\n')

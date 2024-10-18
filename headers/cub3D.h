@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juitz <juitz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 09:19:21 by shaintha          #+#    #+#             */
-/*   Updated: 2024/10/17 13:51:45 by shaintha         ###   ########.fr       */
+/*   Updated: 2024/10/17 17:50:18 by juitz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,8 @@ bool	has_map_empty_line(char *map_str);
 bool    is_format_valid(char *file, char *format);
 void	put_error(char *error_message);
 int		ft_strncmp_pos(const char *str1, const char *str2, size_t n, size_t *pos);
+int		skip_spaces(char *str, size_t *pos);
+int		skip_nl(char *str, size_t *pos);
 int		skip_spaces_nl(char *str, size_t *pos);
 char	*ft_strdup_nl(const char *src, size_t *pos);
 bool	is_color_valid(char *color_str);
