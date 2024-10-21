@@ -6,7 +6,7 @@
 /*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 10:35:19 by shaintha          #+#    #+#             */
-/*   Updated: 2024/10/15 10:35:53 by shaintha         ###   ########.fr       */
+/*   Updated: 2024/10/21 12:39:27 by shaintha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	initialize_cube(t_cube *cube)
 {
 	cube->mlx_ptr = NULL;
 	cube->window_ptr = NULL;
+	cube->map_str = NULL;
 	cube->map = NULL;
 	cube->n_path = NULL;
 	cube->e_path = NULL;
@@ -27,10 +28,12 @@ void	initialize_cube(t_cube *cube)
 	cube->wall_west.ptr = NULL;
 	cube->f_color = NULL;
 	cube->c_color = NULL;
+	cube->error_code = 0;
 }
 
 void	free_cube(t_cube *cube)
 {
+	ft_free(cube->map_str);
 	ft_free(cube->n_path);
 	ft_free(cube->e_path);
 	ft_free(cube->s_path);

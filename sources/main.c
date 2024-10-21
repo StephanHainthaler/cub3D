@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juitz <juitz@student.42.fr>                +#+  +:+       +#+        */
+/*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 09:18:58 by shaintha          #+#    #+#             */
-/*   Updated: 2024/10/17 14:59:42 by juitz            ###   ########.fr       */
+/*   Updated: 2024/10/21 13:58:17 by shaintha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int main(int argc, char *argv[])
 	initialize_cube(&cube);
 	if (parse_map(&cube, argv[1]) == 1)
 		return (1);
-	//print_cube(&cube);
+	print_cube(&cube);
 	// if (run_cube(&cube) == 1)
 	// 	return (1);
 	free_cube(&cube);

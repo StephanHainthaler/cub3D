@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juitz <juitz@student.42.fr>                +#+  +:+       +#+        */
+/*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 10:35:26 by shaintha          #+#    #+#             */
-/*   Updated: 2024/10/17 14:57:10 by juitz            ###   ########.fr       */
+/*   Updated: 2024/10/21 14:40:06 by shaintha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,22 @@
 
 int	parse_map(t_cube *cube, char *map_name)
 {
-	char	*map_str;
 	int		start;
 
-	map_str = get_map_str(map_name);
-	if (map_str == NULL)
+	cube->map_str = get_map_str(map_name);
+	if (cube->map_str == NULL)
 		return (1);
-	start = get_map_startline(map_str);
+	start = get_map_startline(cube->map_str);
 	if (start == 0)
-		return (free(map_str), 1);
-	if (has_map_empty_line(map_str + start) == true || map_str[0] == '\n')
-		return (free(map_str), 1);
-	//ADD END OF INFORMATION TO IDENTIFIER_CHECK
-	if (identifier_check(cube, map_str, start - 1) == 1)
-		return (free_cube(cube), free(map_str), 1);
-	cube->map = ft_split(map_str + start, '\n');
+		return (free_cube(cube), 1);
+	if (has_map_empty_line(cube->map_str + start) == true || cube->map_str[0] == '\n')
+		return (free_cube(cube), 1);
+	if (is_information_valid(cube, cube->map_str, start - 1) == 1)
+		return (free_cube(cube), 1);
+	cube->map = ft_split(cube->map_str + start, '\n');
 	if (cube->map == NULL)
-		return (free(map_str), 1);
-	free(map_str);
-	print_cube(cube);
-	if (is_map_valid(cube->map, 0, 0, false) == false)
+		return (free_cube(cube), 1);
+	if (is_layout_valid(cube->map, 0, 0, false) == false)
 		return (free_cube(cube), 1);
 	return (0);
 }
@@ -91,7 +87,7 @@ char	*read_map(int fd, char *line, char *temp, int bytes_read)
 	return (free(temp), line);
 }
 
-bool	is_map_valid(char **map, size_t x, size_t y, bool found)
+bool	is_layout_valid(char **map, size_t x, size_t y, bool found)
 {
 	while (map[y] != NULL)
 	{
@@ -194,7 +190,7 @@ bool	has_map_empty_line(char *str)
 	int	i;
 
 	i = 0;
-	if (str[0] == '\n')
+	if (str[i] == '\n')
 		return (put_error("Map contains empty line(s)!"), true);
 	if (str[ft_strlen(str) - 1] == '\n')
 		return (put_error("Map contains empty line(s)!"), true);

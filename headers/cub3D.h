@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juitz <juitz@student.42.fr>                +#+  +:+       +#+        */
+/*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 09:19:21 by shaintha          #+#    #+#             */
-/*   Updated: 2024/10/18 17:20:58 by juitz            ###   ########.fr       */
+/*   Updated: 2024/10/21 14:40:19 by shaintha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ typedef struct s_cube
 {
 	void	*mlx_ptr;
 	void	*window_ptr;
+	char	*map_str;
 	char	**map;
 	char	*n_path;
 	char	*e_path;
@@ -73,6 +74,7 @@ typedef struct s_cube
 	int		floor_color;
 	int		ceiling_color;
 	int		map_pos;
+	int		error_code;
 }			t_cube;
 
 
@@ -82,13 +84,12 @@ void	free_cube(t_cube *cube);
 
 //map.c
 bool	is_in_border(char **map, size_t x, size_t y);
-bool	is_map_valid(char **map, size_t x, size_t y, bool found);
+bool	is_layout_valid(char **map, size_t x, size_t y, bool found);
 int		parse_map(t_cube *cube, char *map_name);
 int		identifier_check(t_cube *cube, char *map_str, size_t end);
 char	*get_map_str(char *map_name);
 char	*read_map(int fd, char *line, char *temp, int bytes_read);
 int		get_identifier(t_cube *cube, char *map_str, size_t end);
-bool	is_map_valid(char **map, size_t x, size_t y, bool found);
 bool	is_map_element(char e);
 bool	is_in_border(char **map, size_t x, size_t y);
 size_t	get_map_startline(char *map_str);
@@ -97,12 +98,20 @@ bool	has_map_empty_line(char *map_str);
 
 //utils.c
 bool    is_format_valid(char *file, char *format);
+bool    is_information_valid(t_cube *cube, char *map_str, size_t end);
+
 void	put_error(char *error_message);
 int		ft_strncmp_pos(const char *str1, const char *str2, size_t n, size_t *pos);
 int		skip_spaces(char *str, size_t *pos);
 int		skip_nl(char *str, size_t *pos);
 int		skip_spaces_nl(char *str, size_t *pos);
 char	*ft_strdup_nl(const char *src, size_t *pos);
+char	*ft_strdup_nl2(const char *src);
+char	*get_id_content(t_cube *cube, char *id_str, char *id_content, size_t *i);
+bool	are_identifiers_valid(t_cube *cube, char *map_str, size_t end);
+int		parse_information(t_cube *cube, char *map_str, size_t end, size_t i);
+
+
 bool	is_color_valid(char *color_str);
 int		get_color(char *color_str);
 int		rgb_to_int(int red, int green, int blue);

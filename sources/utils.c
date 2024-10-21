@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juitz <juitz@student.42.fr>                +#+  +:+       +#+        */
+/*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 12:12:38 by shaintha          #+#    #+#             */
-/*   Updated: 2024/10/17 18:00:02 by juitz            ###   ########.fr       */
+/*   Updated: 2024/10/21 13:34:19 by shaintha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,28 @@ char	*ft_strdup_nl(const char *src, size_t *pos)
 		i++;
 	}
 	*pos += i;
+	dup[i] = '\0';
+	return (dup);
+}
+
+char	*ft_strdup_nl2(const char *src)
+{
+	char	*dup;
+	int		count;
+	int		i;
+
+	count = 0;
+	while (src[count] != '\0')
+		count++;
+	dup = (char *)malloc((count + 1) * sizeof(char));
+	if (dup == NULL)
+		return (NULL);
+	i = 0;
+	while (src[i] != '\0' && src[i] != '\n')
+	{
+		dup[i] = src[i];
+		i++;
+	}
 	dup[i] = '\0';
 	return (dup);
 }
