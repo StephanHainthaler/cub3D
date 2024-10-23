@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juitz <juitz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 09:19:21 by shaintha          #+#    #+#             */
-/*   Updated: 2024/10/21 14:40:19 by shaintha         ###   ########.fr       */
+/*   Updated: 2024/10/23 11:34:26 by juitz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@
 # include <X11/keysym.h>
 # include <math.h>
 
+# define SCREEN_WIDTH 1920
+# define SCREEN_HEIGHT	1024
 # define PI	3.1415926535
 # define IMAGE_WIDTH	64
 # define IMAGE_HEIGHT	64
@@ -49,10 +51,14 @@ typedef struct s_image
 
 typedef struct s_player
 {
-	float	fov;
-	float	pos_x;
-	float	pos_y;
-	float	direction;
+	double	fov;
+	double	pos_x;
+	double	pos_y;
+	double	dirX;
+	double	dirY;
+	double	planeX;
+	double	planeY;
+	double	direction;
 }					t_player;
 
 typedef struct s_cube
