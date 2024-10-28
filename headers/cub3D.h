@@ -6,7 +6,7 @@
 /*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 09:19:21 by shaintha          #+#    #+#             */
-/*   Updated: 2024/10/21 14:40:19 by shaintha         ###   ########.fr       */
+/*   Updated: 2024/10/28 10:33:14 by shaintha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ typedef struct s_player
 	float	fov;
 	float	pos_x;
 	float	pos_y;
-	float	direction;
+	float	dir_x;
+	float	dir_y;
 }					t_player;
 
 typedef struct s_cube
@@ -75,6 +76,7 @@ typedef struct s_cube
 	int		ceiling_color;
 	int		map_pos;
 	int		error_code;
+	t_player	player;
 }			t_cube;
 
 
@@ -121,10 +123,15 @@ int		get_images(t_cube *cube);
 //cube.c
 int		run_cube(t_cube *cube);
 int	setup_cube(t_cube *cube);
-int	key_pressed(int syskey, t_cube *cube);
 int	close_cube(t_cube *cube);
 void	print_cube(t_cube *cube);
 void	free_images(t_cube *cube);
 void	free_mlx(t_cube *cube);
+
+int		key_pressed(int syskey, t_cube *cube);
+bool	is_wall(t_cube *cube, float x, float y);
+void	get_player_info(t_player *player, char **map);
+void	get_player_direction(t_player *player, char dir_char);
+void	move_pov(t_cube *cube, int syskey);
 
 #endif
