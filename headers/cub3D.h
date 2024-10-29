@@ -6,7 +6,7 @@
 /*   By: juitz <juitz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 09:19:21 by shaintha          #+#    #+#             */
-/*   Updated: 2024/10/23 11:34:26 by juitz            ###   ########.fr       */
+/*   Updated: 2024/10/28 17:15:22 by juitz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,12 @@ typedef struct s_image
 
 typedef struct s_player
 {
-	double	fov;
 	double	pos_x;
 	double	pos_y;
-	double	dirX;
-	double	dirY;
-	double	planeX;
-	double	planeY;
-	double	direction;
+	double	dir_x;
+	double	dir_y;
+	double	plane_x;
+	double	plane_y;
 }					t_player;
 
 typedef struct s_cube
@@ -84,8 +82,9 @@ typedef struct s_cube
 }			t_cube;
 
 
-void	initialize_cube(t_cube *cube);
+void	initialize_cube(t_cube *cube, t_player *player);
 void	initialize_images(t_cube *cube);
+void	init_player(t_cube *cube, t_player *player);
 void	free_cube(t_cube *cube);
 
 //map.c
@@ -126,9 +125,9 @@ int		get_images(t_cube *cube);
 
 //cube.c
 int		run_cube(t_cube *cube);
-int	setup_cube(t_cube *cube);
-int	key_pressed(int syskey, t_cube *cube);
-int	close_cube(t_cube *cube);
+int		setup_cube(t_cube *cube);
+int		key_pressed(int syskey, t_cube *cube);
+int		close_cube(t_cube *cube);
 void	print_cube(t_cube *cube);
 void	free_images(t_cube *cube);
 void	free_mlx(t_cube *cube);
