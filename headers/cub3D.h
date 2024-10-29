@@ -6,7 +6,7 @@
 /*   By: juitz <juitz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 09:19:21 by shaintha          #+#    #+#             */
-/*   Updated: 2024/10/29 14:00:02 by juitz            ###   ########.fr       */
+/*   Updated: 2024/10/29 16:09:17 by juitz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,12 @@ typedef struct s_image
 	int		x;
 	int		y;
 }					t_image;
+
+/* typedef struct s_raycaster
+{
+	double	delta_dist_x;
+	double	delta_dist_y;
+}					t_raycaster; */
 
 typedef struct s_player
 {
