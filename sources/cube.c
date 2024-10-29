@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juitz <juitz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 10:32:10 by shaintha          #+#    #+#             */
-/*   Updated: 2024/10/28 10:43:50 by shaintha         ###   ########.fr       */
+/*   Updated: 2024/10/29 14:12:41 by juitz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,26 +124,44 @@ void	get_player_info(t_player *player, char **map)
 	}
 }
 
-void	get_player_direction(t_player *player, char dir_char)
+void	get_player_direction_ns(t_player *player, char dir_char)
 {
 	if (dir_char == 'N')
 	{
 		player->dir_x = 0;
 		player->dir_y = -1;
-	}
-	if (dir_char == 'E')
-	{
-		player->dir_x = 1;
-		player->dir_y = 0;
+		player->plane_x = 0.66;
+		player->plane_y = 0;
 	}
 	if (dir_char == 'S')
 	{
 		player->dir_x = 0;
 		player->dir_y = 1;
+		player->plane_x = -0.66;
+		player->plane_y = 0;
+	}
+}
+void	get_player_direction_ew(t_player *player, char dir_char)
+{
+
+	if (dir_char == 'E')
+	{
+		player->dir_x = 1;
+		player->dir_y = 0;
+		player->plane_x = 0;
+		player->plane_y = 0.66;
 	}
 	if (dir_char == 'W')
 	{
 		player->dir_x = -1;
 		player->dir_y = 0;
+		player->plane_x = 0;
+		player->plane_y = -0.66;
 	}
+}
+
+void	get_player_direction(t_player *player, char dir_char)
+{
+	get_player_direction_ns(player, dir_char);
+	get_player_direction_ew(player, dir_char);
 }

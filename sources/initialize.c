@@ -6,7 +6,7 @@
 /*   By: juitz <juitz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 10:35:19 by shaintha          #+#    #+#             */
-/*   Updated: 2024/10/29 13:45:50 by juitz            ###   ########.fr       */
+/*   Updated: 2024/10/29 14:13:04 by juitz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,19 +87,3 @@ void	init_player(t_cube *cube, t_player *player)
 	}
 }
 
-void	init_plane(t_cube *cube, t_player *player)
-{
-	size_t	y;
-	size_t	x;
-	
-	if (cube->map[y][x] == 'N' || cube->map[y][x] == 'S')
-	{
-		player->plane_x = 0.66;
-		player->plane_y = 0;
-	}
-	if (cube->map[y][x] == 'E' || cube->map[y][x] == 'W')
-	{
-		player->plane_x = 0;
-		player->plane_y = 0.66;
-	}
-}
