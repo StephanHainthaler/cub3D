@@ -6,7 +6,7 @@
 /*   By: juitz <juitz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 09:18:58 by shaintha          #+#    #+#             */
-/*   Updated: 2024/10/29 14:00:39 by juitz            ###   ########.fr       */
+/*   Updated: 2024/10/31 14:12:34 by juitz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ int main(int argc, char *argv[])
 	// if (run_cube(&cube) == 1)
 	// 	return (1);
 	init_player(&cube, &player);
-	printf("%f\n", player.pos_y);
-	printf("%f\n", player.pos_x);
+	/* printf("%f\n", player.pos_y);
+	printf("%f\n", player.pos_x); */
 	free_cube(&cube);
 	return (0);
 }

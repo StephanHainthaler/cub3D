@@ -6,7 +6,7 @@
 /*   By: juitz <juitz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 09:19:21 by shaintha          #+#    #+#             */
-/*   Updated: 2024/10/29 16:09:17 by juitz            ###   ########.fr       */
+/*   Updated: 2024/10/31 16:33:57 by juitz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,20 +49,26 @@ typedef struct s_image
 	int		y;
 }					t_image;
 
-/* typedef struct s_raycaster
+typedef struct s_rays
 {
-	double	delta_dist_x;
-	double	delta_dist_y;
-}					t_raycaster; */
+	float	delta_dist_x;
+	float	delta_dist_y;
+	int		step_x;
+	int		step_y;
+	float	init_step_x;
+	float	init_step_y;
+	float	ray_dir_x;
+	float	ray_dir_y;
+}					t_rays;
 
 typedef struct s_player
 {
-	double	pos_x;
-	double	pos_y;
-	double	dir_x;
-	double	dir_y;
-	double	plane_x;
-	double	plane_y;
+	float	pos_x;
+	float	pos_y;
+	float	dir_x;
+	float	dir_y;
+	float	plane_x;
+	float	plane_y;
 }					t_player;
 
 typedef struct s_cube
