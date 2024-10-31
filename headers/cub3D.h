@@ -6,7 +6,7 @@
 /*   By: juitz <juitz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 09:19:21 by shaintha          #+#    #+#             */
-/*   Updated: 2024/10/31 16:33:57 by juitz            ###   ########.fr       */
+/*   Updated: 2024/10/31 17:28:30 by juitz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,5 +149,9 @@ bool	is_wall(t_cube *cube, float x, float y);
 void	get_player_info(t_player *player, char **map);
 void	get_player_direction(t_player *player, char dir_char);
 void	move_pov(t_cube *cube, int syskey);
+
+//raycaster.c
+void	calc_ray_direction(t_cube *cube, t_player *player, t_rays *rays);
+void	calc_distances(t_cube *cube, t_player *player, t_rays *rays);
 
 #endif
