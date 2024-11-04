@@ -6,7 +6,7 @@
 /*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 10:32:10 by shaintha          #+#    #+#             */
-/*   Updated: 2024/10/28 10:43:50 by shaintha         ###   ########.fr       */
+/*   Updated: 2024/10/28 12:12:04 by shaintha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	run_cube(t_cube *cube)
 	mlx_pixel_put(cube->mlx_ptr, cube->window_ptr, 100, 100, cube->floor_color);
 	mlx_hook(cube->window_ptr, KeyPress, KeyPressMask, key_pressed, cube);
 	mlx_hook(cube->window_ptr, DestroyNotify, StructureNotifyMask,
-		&close_cube, cube);
+		close_cube, cube);
 	mlx_loop(cube->mlx_ptr);
 	return (0);
 }
@@ -51,7 +51,7 @@ int	key_pressed(int syskey, t_cube *cube)
 		|| syskey ==  KEY_S || syskey == KEY_D)
 		move_pov(cube, syskey);
 	// else if (syskey ==  KEY_LEFT || syskey == KEY_RIGHT)
-	// 	move_direction(cube);
+	// 	rotate_pov(cube);
 	return (0);
 }
 
@@ -68,31 +68,30 @@ void	move_pov(t_cube *cube, int syskey)
 
 	player = cube->player;
 	if (syskey == KEY_W)
-		if (is_wall(cube, player.pos_x, player.pos_y - 0.1) == false)
-			player.pos_y = player.pos_y - 0.1;
+		if (is_wall(cube, player.pos_x, player.pos_y - MOV_SPD) == false)
+			player.pos_y = player.pos_y - MOV_SPD;
 	if (syskey == KEY_A)
-		if (is_wall(cube, player.pos_x - 0.1, player.pos_y) == false)
-			player.pos_x = player.pos_x - 0.1;
+		if (is_wall(cube, player.pos_x - MOV_SPD, player.pos_y) == false)
+			player.pos_x = player.pos_x - MOV_SPD;
 	if (syskey == KEY_S)
-		if (is_wall(cube, player.pos_x, player.pos_y + 0.1) == false)
-			player.pos_y = player.pos_y + 0.1;
+		if (is_wall(cube, player.pos_x, player.pos_y + MOV_SPD) == false)
+			player.pos_y = player.pos_y + MOV_SPD;
 	if (syskey == KEY_D)
-		if (is_wall(cube, player.pos_x + 0.1, player.pos_y) == false)
-			player.pos_x = player.pos_x + 0.1;
+		if (is_wall(cube, player.pos_x + MOV_SPD, player.pos_y) == false)
+			player.pos_x = player.pos_x + MOV_SPD;
 	cube->player = player;
 	printf("Current POS: x = %f, y = %f\n", cube->player.pos_x, cube->player.pos_y);
+	//RENDER
 }
 
 bool	is_wall(t_cube *cube, float x, float y)
 {
-	char **map;
 	int		ix;
 	int		iy;
-
-	map = cube->map;
+	
 	ix = x;
 	iy = y;
-	if (cube->map[iy][ix] == '1')// || map[iy][ix] == ' ')
+	if (cube->map[iy][ix] == '1' || cube->map[iy][ix] == ' ')
 		return (true);
 	return (false);
 }
@@ -114,8 +113,8 @@ void	get_player_info(t_player *player, char **map)
 				get_player_direction(player, map[y][x]);
 				player->pos_x = x;
 				player->pos_y = y;
-				// player->pos_x = player->pos_x - 0.5;
-				// player->pos_y = player->pos_y - 0.5;
+				// player->pos_x = player->pos_x + 0.5;
+				// player->pos_y = player->pos_y + 0.5;
 				return ;
 			}
 			x++;

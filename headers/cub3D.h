@@ -6,7 +6,7 @@
 /*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 09:19:21 by shaintha          #+#    #+#             */
-/*   Updated: 2024/10/28 10:33:14 by shaintha         ###   ########.fr       */
+/*   Updated: 2024/10/28 11:57:54 by shaintha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@
 # define PI	3.1415926535
 # define IMAGE_WIDTH	64
 # define IMAGE_HEIGHT	64
+# define MOV_SPD 0.1
+# define ROT_SPD 0.1
 
 //Define keys
 # define KEY_W		119
