@@ -6,7 +6,7 @@
 /*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 12:12:38 by shaintha          #+#    #+#             */
-/*   Updated: 2024/10/21 13:34:19 by shaintha         ###   ########.fr       */
+/*   Updated: 2024/11/04 14:16:58 by shaintha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,7 @@ int	skip_nl(char *str, size_t *pos)
 		(*pos)++;
 	return (*pos);
 }
+
 int	skip_spaces_nl(char *str, size_t *pos)
 {
 	while (str[*pos] == ' ' || str[*pos] == '\n')

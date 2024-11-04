@@ -6,7 +6,7 @@
 /*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 10:32:10 by shaintha          #+#    #+#             */
-/*   Updated: 2024/11/04 09:18:56 by shaintha         ###   ########.fr       */
+/*   Updated: 2024/11/04 12:47:52 by shaintha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	move_pov(t_cube *cube, int syskey)
 			player.pos_x = player.pos_x + MOV_SPD;
 	cube->player = player;
 	printf("Current POS: x = %f, y = %f\n", cube->player.pos_x, cube->player.pos_y);
-	//RENDER
+	render_pov(cube, player);
 }
 
 bool	is_wall(t_cube *cube, float x, float y)

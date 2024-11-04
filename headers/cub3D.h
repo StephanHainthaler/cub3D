@@ -6,7 +6,7 @@
 /*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 09:19:21 by shaintha          #+#    #+#             */
-/*   Updated: 2024/11/04 09:18:29 by shaintha         ###   ########.fr       */
+/*   Updated: 2024/11/04 12:47:18 by shaintha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@
 # include <math.h>
 
 # define SCREEN_WIDTH 1920
-# define SCREEN_HEIGHT	1024
+# define SCREEN_HEIGHT 1024
 # define PI	3.1415926535
-# define IMAGE_WIDTH	64
-# define IMAGE_HEIGHT	64
+# define IMAGE_WIDTH 64
+# define IMAGE_HEIGHT 64
 # define MOV_SPD 0.1
 # define ROT_SPD 0.1
 
@@ -155,5 +155,6 @@ void	move_pov(t_cube *cube, int syskey);
 //raycaster.c
 void	calc_ray_direction(t_cube *cube, t_player *player, t_rays *rays);
 void	calc_distances(t_cube *cube, t_player *player, t_rays *rays);
+void    render_pov(t_cube *cube, t_player player);
 
 #endif
