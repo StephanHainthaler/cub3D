@@ -6,7 +6,7 @@
 /*   By: juitz <juitz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 10:32:10 by shaintha          #+#    #+#             */
-/*   Updated: 2024/10/29 15:21:06 by juitz            ###   ########.fr       */
+/*   Updated: 2024/11/04 16:35:16 by juitz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,6 +161,8 @@ void	get_player_direction_ew(t_player *player, char dir_char)
 
 void	get_player_direction(t_player *player, char dir_char)
 {
-	get_player_direction_ns(player, dir_char);
-	get_player_direction_ew(player, dir_char);
+	if (dir_char == 'N' || dir_char == 'S')
+		get_player_direction_ns(player, dir_char);
+	if (dir_char == 'E' || dir_char == 'W')
+		get_player_direction_ew(player, dir_char);
 }

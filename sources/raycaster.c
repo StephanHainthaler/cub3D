@@ -6,7 +6,7 @@
 /*   By: juitz <juitz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 15:33:58 by juitz             #+#    #+#             */
-/*   Updated: 2024/11/04 15:19:48 by juitz            ###   ########.fr       */
+/*   Updated: 2024/11/04 16:30:29 by juitz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	calc_rays(t_cube *cube, t_player *player, t_rays *rays)
 		rays->ray_dir_x = player->dir_x + player->plane_x * camera_x;
 		rays->ray_dir_y = player->dir_y + player->plane_y * camera_x;
 		calc_distances(cube, player, rays);
+		check_next_wall(cube, player, rays);
 		x++;
 	}
 }
@@ -54,5 +55,26 @@ void	calc_distances(t_cube *cube, t_player *player, t_rays *rays)
 	{
 		rays->step_y = 1;
 		rays->init_step_y = (rays->map_y + 1 - player->pos_y) * rays->delta_dist_y;
+	}
+}
+
+void	check_next_wall(t_cube *cube, t_player *player, t_rays *rays)
+{
+	while(1)
+	{
+		if (rays->init_step_x > rays->init_step_y)
+		{
+			rays->side = 0;
+			rays->init_step_x += rays->delta_dist_x;
+			rays->map_x = rays->step_x;
+		}
+		else 
+		{
+			rays->side = 1;
+			rays->init_step_y += rays->delta_dist_y;
+			rays->map_y = rays->step_y;
+		}
+		if (cube->map[rays->map_x][rays->map_y] == '1')
+			break ;
 	}
 }
