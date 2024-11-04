@@ -6,7 +6,7 @@
 /*   By: juitz <juitz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 09:19:21 by shaintha          #+#    #+#             */
-/*   Updated: 2024/10/31 17:28:30 by juitz            ###   ########.fr       */
+/*   Updated: 2024/11/04 15:19:14 by juitz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ typedef struct s_rays
 	float	delta_dist_y;
 	int		step_x;
 	int		step_y;
+	int		map_x;
+	int		map_y;
 	float	init_step_x;
 	float	init_step_y;
 	float	ray_dir_x;
@@ -151,7 +153,7 @@ void	get_player_direction(t_player *player, char dir_char);
 void	move_pov(t_cube *cube, int syskey);
 
 //raycaster.c
-void	calc_ray_direction(t_cube *cube, t_player *player, t_rays *rays);
+void	calc_rays(t_cube *cube, t_player *player, t_rays *rays);
 void	calc_distances(t_cube *cube, t_player *player, t_rays *rays);
 
 #endif
