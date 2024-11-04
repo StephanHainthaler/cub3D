@@ -6,7 +6,7 @@
 /*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 09:19:21 by shaintha          #+#    #+#             */
-/*   Updated: 2024/10/28 11:57:54 by shaintha         ###   ########.fr       */
+/*   Updated: 2024/11/04 09:18:29 by shaintha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@
 # include <X11/keysym.h>
 # include <math.h>
 
+# define SCREEN_WIDTH 1920
+# define SCREEN_HEIGHT	1024
 # define PI	3.1415926535
 # define IMAGE_WIDTH	64
 # define IMAGE_HEIGHT	64
@@ -49,13 +51,26 @@ typedef struct s_image
 	int		y;
 }					t_image;
 
+typedef struct s_rays
+{
+	float	delta_dist_x;
+	float	delta_dist_y;
+	int		step_x;
+	int		step_y;
+	float	init_step_x;
+	float	init_step_y;
+	float	ray_dir_x;
+	float	ray_dir_y;
+}					t_rays;
+
 typedef struct s_player
 {
-	float	fov;
 	float	pos_x;
 	float	pos_y;
 	float	dir_x;
 	float	dir_y;
+	float	plane_x;
+	float	plane_y;
 }					t_player;
 
 typedef struct s_cube
@@ -82,8 +97,9 @@ typedef struct s_cube
 }			t_cube;
 
 
-void	initialize_cube(t_cube *cube);
+void	initialize_cube(t_cube *cube, t_player *player);
 void	initialize_images(t_cube *cube);
+void	init_player(t_cube *cube, t_player *player);
 void	free_cube(t_cube *cube);
 
 //map.c
@@ -135,5 +151,9 @@ bool	is_wall(t_cube *cube, float x, float y);
 void	get_player_info(t_player *player, char **map);
 void	get_player_direction(t_player *player, char dir_char);
 void	move_pov(t_cube *cube, int syskey);
+
+//raycaster.c
+void	calc_ray_direction(t_cube *cube, t_player *player, t_rays *rays);
+void	calc_distances(t_cube *cube, t_player *player, t_rays *rays);
 
 #endif
