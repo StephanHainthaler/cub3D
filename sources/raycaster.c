@@ -6,7 +6,7 @@
 /*   By: juitz <juitz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 15:33:58 by juitz             #+#    #+#             */
-/*   Updated: 2024/11/07 16:01:02 by juitz            ###   ########.fr       */
+/*   Updated: 2024/11/07 18:17:22 by juitz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ void	check_next_wall(t_cube *cube, t_player *player, t_rays *rays)
 void	calc_wall_height(t_cube *cube, t_player *player, t_rays * rays)
 {
 	float	wall_dist;
+	float	wall_hit;
 	int		line_height;
 	int		draw_start;
 	int		draw_end;
@@ -99,5 +100,9 @@ void	calc_wall_height(t_cube *cube, t_player *player, t_rays * rays)
 	draw_end = line_height / 2 + WINDOW_HEIGHT / 2;
 	if (draw_end >= WINDOW_HEIGHT)
 		draw_end = WINDOW_HEIGHT - 1;
-	
+	if (rays->side == 0)
+		wall_hit = player->pos_y + wall_dist * rays->ray_dir_y;
+	else
+	 	wall_hit = player->pos_x + wall_dist * rays->ray_dir_x;
+	wall_hit -= floor(wall_hit);
 }
