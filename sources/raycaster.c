@@ -6,12 +6,11 @@
 /*   By: juitz <juitz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 15:33:58 by juitz             #+#    #+#             */
-/*   Updated: 2024/11/07 18:17:22 by juitz            ###   ########.fr       */
+/*   Updated: 2024/11/07 18:19:25 by juitz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/cub3D.h"
-#include <stdlib.h>
 
 void	calc_rays(t_cube *cube, t_player *player, t_rays *rays)
 {
