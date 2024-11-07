@@ -6,11 +6,12 @@
 /*   By: juitz <juitz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 15:33:58 by juitz             #+#    #+#             */
-/*   Updated: 2024/11/04 16:30:29 by juitz            ###   ########.fr       */
+/*   Updated: 2024/11/07 16:01:02 by juitz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/cub3D.h"
+#include <stdlib.h>
 
 void	calc_rays(t_cube *cube, t_player *player, t_rays *rays)
 {
@@ -18,13 +19,14 @@ void	calc_rays(t_cube *cube, t_player *player, t_rays *rays)
 	float camera_x;
 	
 	x = 0;
-	while (x < SCREEN_WIDTH)
+	while (x < WINDOW_WIDTH)
 	{
-		camera_x = 2 * x / (float)SCREEN_WIDTH - 1;
+		camera_x = 2 * x / (float)WINDOW_WIDTH - 1;
 		rays->ray_dir_x = player->dir_x + player->plane_x * camera_x;
 		rays->ray_dir_y = player->dir_y + player->plane_y * camera_x;
 		calc_distances(cube, player, rays);
 		check_next_wall(cube, player, rays);
+		calc_wall_height(cube, player, rays);
 		x++;
 	}
 }
@@ -77,4 +79,25 @@ void	check_next_wall(t_cube *cube, t_player *player, t_rays *rays)
 		if (cube->map[rays->map_x][rays->map_y] == '1')
 			break ;
 	}
+}
+
+void	calc_wall_height(t_cube *cube, t_player *player, t_rays * rays)
+{
+	float	wall_dist;
+	int		line_height;
+	int		draw_start;
+	int		draw_end;
+
+	if (rays->side == 0)
+		wall_dist = (rays->map_x - player->pos_x + (float)(1 - rays->step_x) / 2) / rays->ray_dir_x;
+	else if (rays->side == 1)
+		wall_dist = (rays->map_y - player->pos_y + (float)(1 - rays->step_y) / 2) / rays->ray_dir_y;
+	line_height = (int)(WINDOW_HEIGHT / wall_dist);
+	draw_start = -line_height / 2 + WINDOW_HEIGHT / 2;
+	if (draw_start < 0)
+		draw_start = 0;
+	draw_end = line_height / 2 + WINDOW_HEIGHT / 2;
+	if (draw_end >= WINDOW_HEIGHT)
+		draw_end = WINDOW_HEIGHT - 1;
+	
 }

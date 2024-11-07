@@ -6,7 +6,7 @@
 /*   By: juitz <juitz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 09:19:21 by shaintha          #+#    #+#             */
-/*   Updated: 2024/11/04 16:31:08 by juitz            ###   ########.fr       */
+/*   Updated: 2024/11/07 14:41:30 by juitz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@
 # include <X11/keysym.h>
 # include <math.h>
 
-# define SCREEN_WIDTH 1920
-# define SCREEN_HEIGHT	1024
+# define WINDOW_WIDTH 1920
+# define WINDOW_HEIGHT	1024
 # define PI	3.1415926535
 # define IMAGE_WIDTH	64
 # define IMAGE_HEIGHT	64
@@ -62,6 +62,7 @@ typedef struct s_rays
 	float	init_step_y;
 	float	ray_dir_x;
 	float	ray_dir_y;
+	float	wall_height;
 }					t_rays;
 
 typedef struct s_player
@@ -157,5 +158,6 @@ void	move_pov(t_cube *cube, int syskey);
 void	calc_rays(t_cube *cube, t_player *player, t_rays *rays);
 void	calc_distances(t_cube *cube, t_player *player, t_rays *rays);
 void	check_next_wall(t_cube *cube, t_player *player, t_rays *rays);
+void	calc_wall_height(t_cube *cube, t_player *player, t_rays * rays);
 
 #endif
