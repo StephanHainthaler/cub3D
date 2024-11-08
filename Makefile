@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+         #
+#    By: juitz <juitz@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/26 09:18:50 by shaintha          #+#    #+#              #
-#    Updated: 2024/10/14 14:35:50 by shaintha         ###   ########.fr        #
+#    Updated: 2024/11/08 16:17:37 by juitz            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME := cub3D
 
 CC := cc
 CFLAGS := -Wall -Wextra -Werror -g
-MLXFLAGS := -lmlx -lXext -lX11
+MLXFLAGS := -lmlx -lXext -lX11 -lm
 
 SRC_DIR := sources
 OBJ_DIR := objects
@@ -27,6 +27,7 @@ SRCS := $(SRC_DIR)/main.c \
 	$(SRC_DIR)/image.c \
 	$(SRC_DIR)/cube.c \
 	$(SRC_DIR)/utils.c \
+	$(SRC_DIR)/player.c \
 	$(SRC_DIR)/parser.c
 
 OBJS := $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRCS))
