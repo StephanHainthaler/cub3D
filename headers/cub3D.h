@@ -6,7 +6,7 @@
 /*   By: juitz <juitz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 09:19:21 by shaintha          #+#    #+#             */
-/*   Updated: 2024/11/07 18:00:10 by juitz            ###   ########.fr       */
+/*   Updated: 2024/11/08 15:02:32 by juitz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 # define WINDOW_WIDTH 1920
 # define WINDOW_HEIGHT	1080
 # define PI	3.1415926535
+# define NUM_OF_TEXTURES 4
 # define IMAGE_WIDTH	64
 # define IMAGE_HEIGHT	64
 
@@ -142,8 +143,8 @@ int		get_images(t_cube *cube);
 
 //cube.c
 int		run_cube(t_cube *cube);
-int	setup_cube(t_cube *cube);
-int	close_cube(t_cube *cube);
+int		setup_cube(t_cube *cube);
+int		close_cube(t_cube *cube);
 void	print_cube(t_cube *cube);
 void	free_images(t_cube *cube);
 void	free_mlx(t_cube *cube);
@@ -151,8 +152,9 @@ void	free_mlx(t_cube *cube);
 int		key_pressed(int syskey, t_cube *cube);
 bool	is_wall(t_cube *cube, float x, float y);
 void	get_player_info(t_player *player, char **map);
-void	get_player_direction(t_player *player, char dir_char);
+void	init_player_dir(t_player *player, char dir_char);
 void	move_pov(t_cube *cube, int syskey);
+void	change_direction(t_cube *cube, int syskey);
 
 //raycaster.c
 void	calc_rays(t_cube *cube, t_player *player, t_rays *rays);
