@@ -6,7 +6,7 @@
 /*   By: juitz <juitz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 14:30:10 by juitz             #+#    #+#             */
-/*   Updated: 2024/11/08 16:05:15 by juitz            ###   ########.fr       */
+/*   Updated: 2024/11/08 18:35:38 by juitz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,41 +19,75 @@ void	move_pov(t_cube *cube, int syskey)
 	player = cube->player;
 	if (syskey == KEY_W)
 		if (is_wall(cube, player.pos_x, player.pos_y - 0.1) == false)
-			player.pos_y = player.pos_y - 0.1;
+			player.pos_y = player.pos_y - WALK_SPEED;
 	if (syskey == KEY_A)
 		if (is_wall(cube, player.pos_x - 0.1, player.pos_y) == false)
-			player.pos_x = player.pos_x - 0.1;
+			player.pos_x = player.pos_x - WALK_SPEED;
 	if (syskey == KEY_S)
 		if (is_wall(cube, player.pos_x, player.pos_y + 0.1) == false)
-			player.pos_y = player.pos_y + 0.1;
+			player.pos_y = player.pos_y + WALK_SPEED;
 	if (syskey == KEY_D)
 		if (is_wall(cube, player.pos_x + 0.1, player.pos_y) == false)
-			player.pos_x = player.pos_x + 0.1;
+			player.pos_x = player.pos_x + WALK_SPEED;
 	cube->player = player;
 	printf("Current POS: x = %f, y = %f\n", cube->player.pos_x, cube->player.pos_y);
 }
 
 void	change_direction(t_cube *cube, int syskey)
 {
-	t_player	player;
+    t_player	player;
+    double		old_dir_x;
+    double		old_plane_x;
 
-	player = cube->player;
-	if (syskey == KEY_LEFT)
-	{
-		player.dir_x = player.dir_x * cos(-PI / 2) - player.dir_y * sin(-PI / 2);
-		player.dir_y = player.dir_x * sin(-PI / 2) + player.dir_y * cos(-PI / 2);
-		player.plane_x = player.plane_x * cos(-PI / 2) - player.plane_y * sin(-PI / 2);
-		player.plane_y = player.plane_x * sin(-PI / 2) + player.plane_y * cos(-PI / 2);
-	}
-	if (syskey == KEY_RIGHT)
-	{
-		player.dir_x = player.dir_x * cos(PI / 2) - player.dir_y * sin(PI / 2);
-		player.dir_y = player.dir_x * sin(PI / 2) + player.dir_y * cos(PI / 2);
-		player.plane_x = player.plane_x * cos(PI / 2) - player.plane_y * sin(PI / 2);
-		player.plane_y = player.plane_x * sin(PI / 2) + player.plane_y * cos(PI / 2);
-	}
-	cube->player = player;
+    player = cube->player;
+    old_dir_x = player.dir_x;
+    old_plane_x = player.plane_x;
+
+    if (syskey == KEY_LEFT)
+    {
+        player.dir_x = old_dir_x * cos(-TURN_SPEED) - player.dir_y * sin(-TURN_SPEED);
+        player.dir_y = old_dir_x * sin(-TURN_SPEED / 2) + player.dir_y * cos(-TURN_SPEED);
+        player.plane_x = old_plane_x * cos(-TURN_SPEED / 2) - player.plane_y * sin(-TURN_SPEED);
+        player.plane_y = old_plane_x * sin(-TURN_SPEED/ 2) + player.plane_y * cos(-TURN_SPEED);
+    }
+    if (syskey == KEY_RIGHT)
+    {
+        player.dir_x = old_dir_x * cos(TURN_SPEED) - player.dir_y * sin(TURN_SPEED);
+        player.dir_y = old_dir_x * sin(TURN_SPEED) + player.dir_y * cos(TURN_SPEED);
+        player.plane_x = old_plane_x * cos(TURN_SPEED) - player.plane_y * sin(TURN_SPEED);
+        player.plane_y = old_plane_x * sin(TURN_SPEED) + player.plane_y * cos(TURN_SPEED);
+    }
+    cube->player = player;
+    printf("Current DIR: x = %f, y = %f\n", cube->player.dir_x, cube->player.dir_y);
 }
+
+/* void	change_direction(t_cube *cube, int syskey)
+{
+    t_player	player;
+    double		old_dir_x;
+    double		old_plane_x;
+
+    player = cube->player;
+    old_dir_x = player.dir_x;
+    old_plane_x = player.plane_x;
+
+    if (syskey == KEY_LEFT)
+    {
+        player.dir_x = old_dir_x * cos(-TURN_SPEED) - player.dir_y * sin(-TURN_SPEED);
+        player.dir_y = old_dir_x * sin(-TURN_SPEED) + player.dir_y * cos(-TURN_SPEED);
+        player.plane_x = old_plane_x * cos(-TURN_SPEED) - player.plane_y * sin(-TURN_SPEED);
+        player.plane_y = old_plane_x * sin(-TURN_SPEED) + player.plane_y * cos(-TURN_SPEED);
+    }
+    if (syskey == KEY_RIGHT)
+    {
+        player.dir_x = old_dir_x * cos(TURN_SPEED) - player.dir_y * sin(TURN_SPEED);
+        player.dir_y = old_dir_x * sin(TURN_SPEED) + player.dir_y * cos(TURN_SPEED);
+        player.plane_x = old_plane_x * cos(TURN_SPEED) - player.plane_y * sin(TURN_SPEED);
+        player.plane_y = old_plane_x * sin(TURN_SPEED) + player.plane_y * cos(TURN_SPEED);
+    }
+    cube->player = player;
+    printf("Current DIR: x = %f, y = %f\n", cube->player.dir_x, cube->player.dir_y);
+} */
 
 bool	is_wall(t_cube *cube, float x, float y)
 {
