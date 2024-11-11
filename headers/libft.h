@@ -6,7 +6,7 @@
 /*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 11:52:49 by shaintha          #+#    #+#             */
-/*   Updated: 2024/10/15 15:57:44 by shaintha         ###   ########.fr       */
+/*   Updated: 2024/11/11 12:54:37 by shaintha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,11 @@
 # endif
 
 # include <unistd.h>
+# include <stdio.h>
 # include <stdlib.h>
 # include <stdbool.h>
 # include <limits.h>
+# include <fcntl.h>
 
 typedef struct s_list
 {
@@ -59,6 +61,7 @@ void	*ft_memmove(void *dest, const void *src, size_t n);
 int		ft_memcmp(const void *str1, const void *str2, size_t n);
 void	*ft_calloc(size_t nmemb, size_t n);
 char	*ft_strdup(const char *src);
+char	*ft_strdup_until(const char *src, char c);
 char	**ft_strarrdup(char **src);
 char	**ft_stradd_tostrarr(char **strarr, char *str);
 char	**ft_strdel_fromstrarr(char **strarr, int pos);
@@ -87,5 +90,6 @@ void	ft_lstdelone(t_list **lst, t_list *node);
 void	ft_lstclear(t_list **lst);
 void	ft_free(void *ptr);
 void	ft_free_strarr(char **strarr);
+char	*get_file_content(char *file_name);
 
 #endif
