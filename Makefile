@@ -6,7 +6,7 @@
 #    By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/26 09:18:50 by shaintha          #+#    #+#              #
-#    Updated: 2024/11/11 09:23:27 by shaintha         ###   ########.fr        #
+#    Updated: 2024/11/11 12:26:46 by shaintha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,11 +24,14 @@ MAIN_DIR := main
 SRCS := $(SRC_DIR)/main.c \
 	$(SRC_DIR)/initialize.c \
 	$(SRC_DIR)/map.c \
+	$(SRC_DIR)/map_information.c \
+	$(SRC_DIR)/map_layout.c \
 	$(SRC_DIR)/image.c \
 	$(SRC_DIR)/cube.c \
 	$(SRC_DIR)/utils.c \
 	$(SRC_DIR)/player.c \
-	$(SRC_DIR)/parser.c
+	$(SRC_DIR)/raycaster.c
+
 
 OBJS := $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRCS))
 
