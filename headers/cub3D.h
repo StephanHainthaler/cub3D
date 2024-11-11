@@ -6,7 +6,7 @@
 /*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 09:19:21 by shaintha          #+#    #+#             */
-/*   Updated: 2024/11/11 12:57:13 by shaintha         ###   ########.fr       */
+/*   Updated: 2024/11/11 13:10:06 by shaintha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,9 +102,11 @@ typedef struct s_cube
 	t_player	player;
 }			t_cube;
 
+
+//----------PLS--DO--NOT--CHANGE--FUNCTIONS--BELOW-----------//
+
 //initialize.c
 void	initialize_cube(t_cube *cube);
-void	initialize_images(t_cube *cube);
 void	free_cube(t_cube *cube);
 
 //utils.c
