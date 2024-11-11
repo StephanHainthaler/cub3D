@@ -6,16 +6,16 @@
 /*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 12:12:38 by shaintha          #+#    #+#             */
-/*   Updated: 2024/11/04 14:16:58 by shaintha         ###   ########.fr       */
+/*   Updated: 2024/11/11 13:00:41 by shaintha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/cub3D.h"
 
-bool    is_format_valid(char *file, char *format)
+bool	is_format_valid(char *file, char *format)
 {
-	size_t i;
-	size_t j;
+	size_t	i;
+	size_t	j;
 
 	if (file == NULL || format == NULL)
 		return (false);
@@ -33,107 +33,6 @@ bool    is_format_valid(char *file, char *format)
 	return (true);
 }
 
-void	put_error(char *error_message)
-{
-	ft_putendl_fd("Error", 2);
-	ft_putendl_fd(error_message, 2);
-}
-
-int	ft_strncmp_pos(const char *str1, const char *str2, size_t n, size_t *pos)
-{
-	int					res;
-	unsigned char		*str1ptr;
-	unsigned char		*str2ptr;
-	size_t				i;
-
-	str1ptr = (unsigned char *)str1;
-	str2ptr = (unsigned char *)str2;
-	res = 0;
-	if (n == 0)
-		return (0);
-	i = 0;
-	while ((str1ptr[i] != '\0' || str2ptr[i] != '\0') && i < n)
-	{
-		if (str1ptr[i] != str2ptr[i])
-		{
-			res = str1ptr[i] - str2ptr[i];
-			return (res);
-		}
-		i++;
-	}
-	i = 0;
-	while (str1ptr[i] != '\0' && str1ptr[i] != '\n')
-		i++;
-	// *pos += i;
-	*pos += i;
-	return (res);
-}
-
-char	*ft_strdup_nl(const char *src, size_t *pos)
-{
-	char	*dup;
-	int		count;
-	int		i;
-
-	count = 0;
-	while (src[count] != '\0')
-		count++;
-	dup = (char *)malloc((count + 1) * sizeof(char));
-	if (dup == NULL)
-		return (NULL);
-	i = 0;
-	while (src[i] != '\0' && src[i] != '\n')
-	{
-		dup[i] = src[i];
-		i++;
-	}
-	*pos += i;
-	dup[i] = '\0';
-	return (dup);
-}
-
-char	*ft_strdup_nl2(const char *src)
-{
-	char	*dup;
-	int		count;
-	int		i;
-
-	count = 0;
-	while (src[count] != '\0')
-		count++;
-	dup = (char *)malloc((count + 1) * sizeof(char));
-	if (dup == NULL)
-		return (NULL);
-	i = 0;
-	while (src[i] != '\0' && src[i] != '\n')
-	{
-		dup[i] = src[i];
-		i++;
-	}
-	dup[i] = '\0';
-	return (dup);
-}
-int	skip_spaces(char *str, size_t *pos)
-{
-	while (str[*pos] == ' ')
-		(*pos)++;
-	return (*pos);
-}
-
-int	skip_nl(char *str, size_t *pos)
-{
-	while (str[*pos] == '\n')
-		(*pos)++;
-	return (*pos);
-}
-
-int	skip_spaces_nl(char *str, size_t *pos)
-{
-	while (str[*pos] == ' ' || str[*pos] == '\n')
-		(*pos)++;
-	return (*pos);
-}
-
 bool	is_color_valid(char *str)
 {
 	int		count;
@@ -142,7 +41,7 @@ bool	is_color_valid(char *str)
 
 	count = 0;
 	i = 0;
-	while (str[i] != '\0')
+	while (i < ft_strlen(str))
 	{
 		while (str[i] != '\0' && ft_isspace(str[i]) == true)
 			i++;
@@ -187,4 +86,10 @@ int	get_color(char *color_str)
 		i++;
 	blue = ft_atoi_n(color_str + j, i);
 	return (red << 16 | green << 8 | blue);
+}
+
+void	put_error(char *error_message)
+{
+	ft_putendl_fd("Error", 2);
+	ft_putendl_fd(error_message, 2);
 }

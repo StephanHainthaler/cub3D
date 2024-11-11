@@ -3,17 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   initialize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juitz <juitz@student.42.fr>                +#+  +:+       +#+        */
+/*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 10:35:19 by shaintha          #+#    #+#             */
-/*   Updated: 2024/10/29 14:13:04 by juitz            ###   ########.fr       */
+/*   Updated: 2024/11/11 12:59:50 by shaintha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/cub3D.h"
 
-void	initialize_cube(t_cube *cube, t_player *player)
+void	initialize_cube(t_cube *cube)
 {
+	t_player	player;
+
 	cube->mlx_ptr = NULL;
 	cube->window_ptr = NULL;
 	cube->map_str = NULL;
@@ -29,7 +31,8 @@ void	initialize_cube(t_cube *cube, t_player *player)
 	cube->f_color = NULL;
 	cube->c_color = NULL;
 	cube->error_code = 0;
-	ft_bzero(player, sizeof(&player));
+	ft_bzero(&player, sizeof(&player));
+	cube->player = player;
 }
 
 void	free_cube(t_cube *cube)
@@ -52,38 +55,3 @@ void	free_cube(t_cube *cube)
 		free(cube->mlx_ptr);
 	}
 }
-
-void	free_images(t_cube *cube)
-{
-	if (cube->wall_north.ptr != NULL)
-		mlx_destroy_image(cube->mlx_ptr, cube->wall_north.ptr);
-	if (cube->wall_east.ptr != NULL)
-		mlx_destroy_image(cube->mlx_ptr, cube->wall_east.ptr);
-	if (cube->wall_south.ptr != NULL)
-		mlx_destroy_image(cube->mlx_ptr, cube->wall_south.ptr);
-	if (cube->wall_west.ptr != NULL)
-		mlx_destroy_image(cube->mlx_ptr, cube->wall_west.ptr);
-}
-
-void	init_player(t_cube *cube, t_player *player)
-{
-	size_t	y;
-	size_t	x;
-	
-	y = 0;
-	while (cube->map[y])
-	{
-		x = 0;
-		while (cube->map[y][x])
-		{
-			if (cube->map[y][x] == 'N' || cube->map[y][x] == 'E' || cube->map[y][x] == 'S' || cube->map[y][x] == 'W')
-			{
-				player->pos_y = y;
-				player->pos_x = x;
-			}
-			x++;
-		}
-		y++;
-	}
-}
-

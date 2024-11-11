@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   map_information.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 13:12:09 by juitz             #+#    #+#             */
-/*   Updated: 2024/10/21 13:57:36 by shaintha         ###   ########.fr       */
+/*   Updated: 2024/11/11 12:58:49 by shaintha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/cub3D.h"
 
-bool    is_information_valid(t_cube *cube, char *map_str, size_t end)
+bool	is_information_valid(t_cube *cube, char *map_str, size_t end)
 {
 	if (parse_information(cube, map_str, end, 0) == 1)
 		return (1);
-	
-	//Conditional Jumps from is_color_valid!!
 	if (is_color_valid(cube->f_color) == false)
 		return (put_error("Invalid floor color configuration!"), 1);
 	if (is_color_valid(cube->c_color) == false)
@@ -44,7 +42,7 @@ int	parse_information(t_cube *cube, char *map_str, size_t end, size_t i)
 		else if (ft_strncmp(map_str + i, "C ", 2) == 0)
 			cube->c_color = get_id_content(cube, "C ", cube->c_color, &i);
 		else if (ft_strncmp(map_str + i++, "\n", 1) == 0)
-			continue;
+			continue ;
 		else
 			return (put_error("Invalid Identifier!"), 1);
 		if (cube->error_code > 0)
@@ -64,7 +62,7 @@ char	*get_id_content(t_cube *cube, char *id_str, char *id_content, size_t *i)
 	*i += ft_strlen(id_str);
 	while (cube->map_str[*i] != '\0' && cube->map_str[*i] == ' ')
 		*i = *i + 1;
-	id_content = ft_strdup_nl2(cube->map_str + *i);
+	id_content = ft_strdup_until(cube->map_str + *i, '\n');
 	if (id_content == NULL)
 	{
 		cube->error_code = 1;

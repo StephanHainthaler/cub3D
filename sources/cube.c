@@ -6,7 +6,7 @@
 /*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 10:32:10 by shaintha          #+#    #+#             */
-/*   Updated: 2024/11/11 09:23:04 by shaintha         ###   ########.fr       */
+/*   Updated: 2024/11/11 13:02:17 by shaintha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,20 @@
 int	setup_cube(t_cube *cube)
 {
 	t_player	player;
-	
+
 	cube->mlx_ptr = mlx_init();
 	if (cube->mlx_ptr == NULL)
 		return (put_error("MLX pointer initialization failed!"), 1);
 	cube->window_ptr = mlx_new_window(cube->mlx_ptr,
-		500, 500, "cub:3D");
+			500, 500, "cub:3D");
 	if (cube->window_ptr == NULL)
 		return (put_error("Window pointer initialization failed!"), 1);
 	if (get_images(cube) == 1)
 		return (put_error("Texture(s) have not been found!"), 1);
 	get_player_info(&player, cube->map);
 	cube->player = player;
-	printf("Player Start: x = %f, y = %f\n", cube->player.pos_x, cube->player.pos_y);
+	printf("Player Start: x = %f, y = %f\n",
+		cube->player.pos_x, cube->player.pos_y);
 	return (0);
 }
 
@@ -47,11 +48,11 @@ int	key_pressed(int syskey, t_cube *cube)
 {
 	if (syskey == KEY_ESC)
 		close_cube(cube);
-	else if (syskey ==  KEY_W || syskey == KEY_A
-		|| syskey ==  KEY_S || syskey == KEY_D)
+	else if (syskey == KEY_W || syskey == KEY_A
+		|| syskey == KEY_S || syskey == KEY_D)
 		move_pov(cube, syskey);
-	else if (syskey ==  KEY_LEFT || syskey == KEY_RIGHT)
-		change_direction(cube, syskey);
+	else if (syskey == KEY_LEFT || syskey == KEY_RIGHT)
+		rotate_pov(cube, syskey);
 	return (0);
 }
 

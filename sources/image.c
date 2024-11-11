@@ -6,7 +6,7 @@
 /*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 11:06:11 by shaintha          #+#    #+#             */
-/*   Updated: 2024/10/15 10:35:47 by shaintha         ###   ########.fr       */
+/*   Updated: 2024/11/11 12:41:11 by shaintha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,16 @@ t_image	get_image(t_cube *cube, char *image_path)
 	image.ptr = mlx_xpm_file_to_image(cube->mlx_ptr, image_path,
 			&image.x, &image.y);
 	return (image);
+}
+
+void	free_images(t_cube *cube)
+{
+	if (cube->wall_north.ptr != NULL)
+		mlx_destroy_image(cube->mlx_ptr, cube->wall_north.ptr);
+	if (cube->wall_east.ptr != NULL)
+		mlx_destroy_image(cube->mlx_ptr, cube->wall_east.ptr);
+	if (cube->wall_south.ptr != NULL)
+		mlx_destroy_image(cube->mlx_ptr, cube->wall_south.ptr);
+	if (cube->wall_west.ptr != NULL)
+		mlx_destroy_image(cube->mlx_ptr, cube->wall_west.ptr);
 }
