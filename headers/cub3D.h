@@ -6,7 +6,7 @@
 /*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 09:19:21 by shaintha          #+#    #+#             */
-/*   Updated: 2024/11/04 12:47:18 by shaintha         ###   ########.fr       */
+/*   Updated: 2024/11/11 09:23:34 by shaintha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,12 @@
 # include <X11/keysym.h>
 # include <math.h>
 
-# define SCREEN_WIDTH 1920
-# define SCREEN_HEIGHT 1024
+# define WINDOW_WIDTH 1920
+# define WINDOW_HEIGHT	1080
 # define PI	3.1415926535
-# define IMAGE_WIDTH 64
-# define IMAGE_HEIGHT 64
-# define MOV_SPD 0.1
-# define ROT_SPD 0.1
+# define NUM_OF_TEXTURES 4
+# define IMAGE_WIDTH	64
+# define IMAGE_HEIGHT	64
 
 //Define keys
 # define KEY_W		119
@@ -43,6 +42,9 @@
 # define KEY_ESC	65307
 # define KEY_LEFT	65361
 # define KEY_RIGHT	65363
+
+# define WALK_SPEED 0.1
+# define TURN_SPEED 0.1
 
 typedef struct s_image
 {
@@ -57,10 +59,14 @@ typedef struct s_rays
 	float	delta_dist_y;
 	int		step_x;
 	int		step_y;
+	int		map_x;
+	int		map_y;
+	int		side;
 	float	init_step_x;
 	float	init_step_y;
 	float	ray_dir_x;
 	float	ray_dir_y;
+	float	wall_height;
 }					t_rays;
 
 typedef struct s_player
@@ -140,8 +146,8 @@ int		get_images(t_cube *cube);
 
 //cube.c
 int		run_cube(t_cube *cube);
-int	setup_cube(t_cube *cube);
-int	close_cube(t_cube *cube);
+int		setup_cube(t_cube *cube);
+int		close_cube(t_cube *cube);
 void	print_cube(t_cube *cube);
 void	free_images(t_cube *cube);
 void	free_mlx(t_cube *cube);
@@ -149,12 +155,14 @@ void	free_mlx(t_cube *cube);
 int		key_pressed(int syskey, t_cube *cube);
 bool	is_wall(t_cube *cube, float x, float y);
 void	get_player_info(t_player *player, char **map);
-void	get_player_direction(t_player *player, char dir_char);
+void	init_player_dir(t_player *player, char dir_char);
 void	move_pov(t_cube *cube, int syskey);
+void	change_direction(t_cube *cube, int syskey);
 
 //raycaster.c
-void	calc_ray_direction(t_cube *cube, t_player *player, t_rays *rays);
+void	calc_rays(t_cube *cube, t_player *player, t_rays *rays);
 void	calc_distances(t_cube *cube, t_player *player, t_rays *rays);
-void    render_pov(t_cube *cube, t_player player);
+void	check_next_wall(t_cube *cube, t_player *player, t_rays *rays);
+void	calc_wall_height(t_cube *cube, t_player *player, t_rays * rays);
 
 #endif
