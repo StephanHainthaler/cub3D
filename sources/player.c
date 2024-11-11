@@ -36,8 +36,8 @@ void	move_pov(t_cube *cube, int syskey)
 void	change_direction(t_cube *cube, int syskey)
 {
     t_player	player;
-    double		old_dir_x;
-    double		old_plane_x;
+    float	old_dir_x;
+    float	old_plane_x;
 
     player = cube->player;
     old_dir_x = player.dir_x;
@@ -46,9 +46,9 @@ void	change_direction(t_cube *cube, int syskey)
     if (syskey == KEY_LEFT)
     {
         player.dir_x = old_dir_x * cos(-TURN_SPEED) - player.dir_y * sin(-TURN_SPEED);
-        player.dir_y = old_dir_x * sin(-TURN_SPEED / 2) + player.dir_y * cos(-TURN_SPEED);
-        player.plane_x = old_plane_x * cos(-TURN_SPEED / 2) - player.plane_y * sin(-TURN_SPEED);
-        player.plane_y = old_plane_x * sin(-TURN_SPEED/ 2) + player.plane_y * cos(-TURN_SPEED);
+        player.dir_y = old_dir_x * sin(-TURN_SPEED) + player.dir_y * cos(-TURN_SPEED);
+        player.plane_x = old_plane_x * cos(-TURN_SPEED) - player.plane_y * sin(-TURN_SPEED);
+        player.plane_y = old_plane_x * sin(-TURN_SPEED) + player.plane_y * cos(-TURN_SPEED);
     }
     if (syskey == KEY_RIGHT)
     {
