@@ -6,7 +6,7 @@
 /*   By: juitz <juitz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 09:19:21 by shaintha          #+#    #+#             */
-/*   Updated: 2024/11/08 18:57:23 by juitz            ###   ########.fr       */
+/*   Updated: 2024/11/11 13:28:16 by juitz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@
 # define KEY_LEFT	65361
 # define KEY_RIGHT	65363
 
-# define WALK_SPEED 0.1
-# define TURN_SPEED 0.1
+# define MOV_SPD 0.1
+# define ROT_SPD 0.1
 
 typedef struct s_image
 {
@@ -104,66 +104,60 @@ typedef struct s_cube
 }			t_cube;
 
 
-void	initialize_cube(t_cube *cube, t_player *player);
-void	initialize_images(t_cube *cube);
-void	init_player(t_cube *cube, t_player *player);
+//----------PLS--DO--NOT--CHANGE--FUNCTIONS--BELOW-----------//
+
+//initialize.c
+void	initialize_cube(t_cube *cube);
 void	free_cube(t_cube *cube);
-
-//map.c
-bool	is_in_border(char **map, size_t x, size_t y);
-bool	is_layout_valid(char **map, size_t x, size_t y, bool found);
-int		parse_map(t_cube *cube, char *map_name);
-int		identifier_check(t_cube *cube, char *map_str, size_t end);
-char	*get_map_str(char *map_name);
-char	*read_map(int fd, char *line, char *temp, int bytes_read);
-int		get_identifier(t_cube *cube, char *map_str, size_t end);
-bool	is_map_element(char e);
-bool	is_in_border(char **map, size_t x, size_t y);
-size_t	get_map_startline(char *map_str);
-bool	has_map_empty_line(char *map_str);
-
 
 //utils.c
 bool    is_format_valid(char *file, char *format);
-bool    is_information_valid(t_cube *cube, char *map_str, size_t end);
-
-void	put_error(char *error_message);
-int		ft_strncmp_pos(const char *str1, const char *str2, size_t n, size_t *pos);
-int		skip_spaces(char *str, size_t *pos);
-int		skip_nl(char *str, size_t *pos);
-int		skip_spaces_nl(char *str, size_t *pos);
-char	*ft_strdup_nl(const char *src, size_t *pos);
-char	*ft_strdup_nl2(const char *src);
-char	*get_id_content(t_cube *cube, char *id_str, char *id_content, size_t *i);
-bool	are_identifiers_valid(t_cube *cube, char *map_str, size_t end);
-int		parse_information(t_cube *cube, char *map_str, size_t end, size_t i);
-
-
 bool	is_color_valid(char *color_str);
 int		get_color(char *color_str);
-int		rgb_to_int(int red, int green, int blue);
+void	put_error(char *error_message);
+
+//map.c
+int		parse_map(t_cube *cube, char *map_name);
+char	*get_map_content(char *file_name);
+char	*read_map(int fd, char *line, char *temp, int bytes_read);
+size_t	get_map_startline(char *map_str, size_t i, size_t j);
+bool	has_map_empty_line(char *str, char first_char_of_file);
+
+//map_information.c
+bool    is_information_valid(t_cube *cube, char *map_str, size_t end);
+int		parse_information(t_cube *cube, char *map_str, size_t end, size_t i);
+char	*get_id_content(t_cube *cube, char *id_str, char *id_content, size_t *i);
+
+//map_layout.c
+bool	is_layout_valid(char **map, size_t x, size_t y, bool found);
+bool	is_in_border(char **map, size_t x, size_t y);
+bool	is_map_element(char e);
+
+//image.c
 t_image	get_image(t_cube *cube, char *image_path);
 int		get_images(t_cube *cube);
+void	free_images(t_cube *cube);
+
+//----------PLS--DO--NOT--CHANGE--FUNCTIONS--ABOVE-----------//
 
 //cube.c
-int		run_cube(t_cube *cube);
 int		setup_cube(t_cube *cube);
-int		close_cube(t_cube *cube);
-void	print_cube(t_cube *cube);
-void	free_images(t_cube *cube);
-void	free_mlx(t_cube *cube);
-
+int		run_cube(t_cube *cube);
 int		key_pressed(int syskey, t_cube *cube);
-bool	is_wall(t_cube *cube, float x, float y);
+int		close_cube(t_cube *cube);
+
+//player.c
 void	get_player_info(t_player *player, char **map);
-void	init_player_dir(t_player *player, char dir_char);
+void	get_player_direction_1(t_player *player, char dir_char);
+void	get_player_direction_2(t_player *player, char dir_char);
 void	move_pov(t_cube *cube, int syskey);
-void	change_direction(t_cube *cube, int syskey);
+void	rotate_pov(t_cube *cube, int syskey);
 
 //raycaster.c
 void	calc_rays(t_cube *cube, t_player *player, t_rays *rays);
 void	calc_distances(t_cube *cube, t_player *player, t_rays *rays);
 void	check_next_wall(t_cube *cube, t_player *player, t_rays *rays);
 void	calc_wall_height(t_cube *cube, t_player *player, t_rays * rays);
+bool	is_wall(t_cube *cube, float x, float y);
 
 #endif

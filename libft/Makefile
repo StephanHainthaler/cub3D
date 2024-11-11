@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: juitz <juitz@student.42.fr>                +#+  +:+       +#+         #
+#    By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/12 09:25:55 by shaintha          #+#    #+#              #
-#    Updated: 2024/08/13 11:57:11 by juitz            ###   ########.fr        #
+#    Updated: 2024/11/11 12:38:29 by shaintha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,7 +73,8 @@ SRCS :=  $(SRC_DIR)/ft_atoi.c \
 		$(SRC_DIR)/ft_lstdelone.c \
 		$(SRC_DIR)/ft_lstclear.c \
 		$(SRC_DIR)/ft_free.c \
-		$(SRC_DIR)/ft_free_strarr.c
+		$(SRC_DIR)/ft_free_strarr.c \
+		$(SRC_DIR)/get_file_content.c
 
 OBJS := $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRCS))
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juitz <juitz@student.42.fr>                +#+  +:+       +#+        */
+/*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 10:35:26 by shaintha          #+#    #+#             */
-/*   Updated: 2024/10/23 14:15:51 by juitz            ###   ########.fr       */
+/*   Updated: 2024/11/11 12:59:15 by shaintha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 int	parse_map(t_cube *cube, char *map_name)
 {
-	int		start;
+	size_t	start;
 
-	cube->map_str = get_map_str(map_name);
+	cube->map_str = get_map_content(map_name);
 	if (cube->map_str == NULL)
 		return (1);
-	start = get_map_startline(cube->map_str);
+	start = get_map_startline(cube->map_str, 0, 0);
 	if (start == 0)
 		return (free_cube(cube), 1);
-	if (has_map_empty_line(cube->map_str + start) == true || cube->map_str[0] == '\n')
+	if (has_map_empty_line(cube->map_str + start, cube->map_str[0]) == true)
 		return (free_cube(cube), 1);
 	if (is_information_valid(cube, cube->map_str, start - 1) == 1)
 		return (free_cube(cube), 1);
@@ -34,15 +34,15 @@ int	parse_map(t_cube *cube, char *map_name)
 	return (0);
 }
 
-char	*get_map_str(char *map_name)
+char	*get_map_content(char *file_name)
 {
-	char	*map_str;
+	int		fd;
 	char	*line;
 	char	*temp;
 	int		bytes_read;
-	int		fd;
+	char	*content;
 
-	fd = open(map_name, O_RDONLY);
+	fd = open(file_name, O_RDONLY);
 	if (fd < 0)
 		return (put_error("Failed to find/open the file!"), NULL);
 	line = ft_strdup("");
@@ -52,10 +52,10 @@ char	*get_map_str(char *map_name)
 	if (temp == NULL)
 		return (close(fd), free(line), put_error("Malloc error!"), NULL);
 	bytes_read = 1;
-	map_str = read_map(fd, line, temp, bytes_read);
-	if (map_str == NULL)
+	content = read_map(fd, line, temp, bytes_read);
+	if (content == NULL)
 		return (close(fd), NULL);
-	return (close(fd), map_str);
+	return (close(fd), content);
 }
 
 char	*read_map(int fd, char *line, char *temp, int bytes_read)
@@ -87,71 +87,11 @@ char	*read_map(int fd, char *line, char *temp, int bytes_read)
 	return (free(temp), line);
 }
 
-bool	is_layout_valid(char **map, size_t x, size_t y, bool found)
+size_t	get_map_startline(char *map_str, size_t i, size_t j)
 {
-	while (map[y] != NULL)
-	{
-		x = 0;
-		while (map[y][x] != '\0')
-		{
-			if (map[y][x] != '0' && map[y][x] != '1'
-				&& map[y][x] != 'N' && map[y][x] != 'E'
-				&& map[y][x] != 'S' && map[y][x] != 'W'
-				&& map[y][x] != ' ')
-				return (put_error("Invalid map elements!"), false);
-			if (map[y][x] == 'N' || map[y][x] == 'E'
-				|| map[y][x] == 'S' || map[y][x] == 'W')
-			{
-				if (found == false)
-					found = true;
-				else
-					return (put_error("Too many players!"), false);
-			}
-			if (is_in_border(map, x, y) == false)
-				return (put_error("Incorrect map border!"), false);
-			x++;
-		}
-		y++;
-	}
-	if (found == false)
-		return (put_error("No player!"), false);
-	return (true);
-}
-
-bool	is_in_border(char **map, size_t x, size_t y)
-{
-	size_t	i;
-
-	i = 0;
-	while (map[i] != NULL)
-		i++;
-	if (y == 0)
-		if (map[y][x] != '1' && map[y][x] != ' ')
-			return (false);
-	if (y > 0 && y != i - 1)
-	{
-		if ((map[y][x] != '1' && map[y][x] != ' ') && map[y - 1][x] == ' ')
-			return (false);
-		if ((map[y][x] != '1' && map[y][x] != ' ') && map[y + 1][x] == ' ')
-			return (false);
-	}
-	if (y == i - 1)
-		if (map[y][x] != '1' && map[y][x] != ' ')
-			return (false);
-	if ((map[y][x] != '1' && map[y][x] != ' ')
-		&& (map[y][x + 1] == ' ' || map[y][x + 1] == '\0'))
-		return (false);
-	return (true);
-}
-
-size_t	get_map_startline(char *map_str)
-{
-	size_t	i;
-	size_t	j;
 	bool	is_starting_line;
 	bool	found;
 
-	i = 0;
 	while (map_str[i] != '\0')
 	{
 		is_starting_line = false;
@@ -176,19 +116,12 @@ size_t	get_map_startline(char *map_str)
 	return (0);
 }
 
-bool	is_map_element(char e)
-{
-	if (e == '1' || e == '0' || e == 'N'
-		|| e == 'E' || e == 'S' || e == 'W'
-		|| e == ' ')
-		return (true);
-	return (false);
-}
-
-bool	has_map_empty_line(char *str)
+bool	has_map_empty_line(char *str, char first_char_of_file)
 {
 	int	i;
 
+	if (first_char_of_file == '\n')
+		return (put_error("Map contains empty line(s)!"), true);
 	i = 0;
 	if (str[i] == '\n')
 		return (put_error("Map contains empty line(s)!"), true);
