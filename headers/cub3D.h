@@ -6,7 +6,7 @@
 /*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 09:19:21 by shaintha          #+#    #+#             */
-/*   Updated: 2024/11/11 13:10:06 by shaintha         ###   ########.fr       */
+/*   Updated: 2024/11/11 15:38:37 by shaintha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,6 +144,7 @@ int		setup_cube(t_cube *cube);
 int		run_cube(t_cube *cube);
 int		key_pressed(int syskey, t_cube *cube);
 int		close_cube(t_cube *cube);
+void	render_background(t_cube *cube);
 
 //player.c
 void	get_player_info(t_player *player, char **map);

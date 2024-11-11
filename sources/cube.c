@@ -6,7 +6,7 @@
 /*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 10:32:10 by shaintha          #+#    #+#             */
-/*   Updated: 2024/11/11 13:02:17 by shaintha         ###   ########.fr       */
+/*   Updated: 2024/11/11 15:45:16 by shaintha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ int	run_cube(t_cube *cube)
 {
 	if (setup_cube(cube) == 1)
 		return (free_cube(cube), 1);
-	mlx_pixel_put(cube->mlx_ptr, cube->window_ptr, 100, 100, cube->floor_color);
 	mlx_hook(cube->window_ptr, KeyPress, KeyPressMask, key_pressed, cube);
 	mlx_hook(cube->window_ptr, DestroyNotify, StructureNotifyMask,
 		close_cube, cube);
@@ -46,6 +45,7 @@ int	run_cube(t_cube *cube)
 
 int	key_pressed(int syskey, t_cube *cube)
 {
+	render_background(cube);
 	if (syskey == KEY_ESC)
 		close_cube(cube);
 	else if (syskey == KEY_W || syskey == KEY_A
@@ -61,4 +61,25 @@ int	close_cube(t_cube *cube)
 	free_cube(cube);
 	exit(0);
 	return (0);
+}
+
+void	render_background(t_cube *cube)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	while (y < WINDOW_HEIGHT)
+	{
+		x = 0;
+		while (x < WINDOW_WIDTH)
+		{
+			//if (y < (WINDOW_HEIGHT / 2))
+			//mlx_pixel_put(cube->mlx_ptr, cube->window_ptr, x, y, cube->ceiling_color);
+			//if	(y > (WINDOW_HEIGHT / 2))
+			mlx_pixel_put(cube->mlx_ptr, cube->window_ptr, x, y, cube->floor_color);
+			x++;
+		}
+		y++;
+	}
 }
