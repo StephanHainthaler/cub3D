@@ -6,7 +6,7 @@
 /*   By: juitz <juitz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 09:19:21 by shaintha          #+#    #+#             */
-/*   Updated: 2024/11/11 13:28:16 by juitz            ###   ########.fr       */
+/*   Updated: 2024/11/11 13:29:29 by juitz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # include <math.h>
 
 # define WINDOW_WIDTH 1920
-# define WINDOW_HEIGHT	1080
+# define WINDOW_HEIGHT 1080
 # define PI	3.1415926535
 # define NUM_OF_TEXTURES 4
 # define IMAGE_WIDTH	64
