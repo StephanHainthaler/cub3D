@@ -6,9 +6,15 @@
 /*   By: juitz <juitz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 18:59:45 by juitz             #+#    #+#             */
-/*   Updated: 2024/11/08 18:59:59 by juitz            ###   ########.fr       */
+/*   Updated: 2024/11/12 16:25:08 by juitz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/cub3D.h"
 
+void	draw_3d_walls(t_cube *cube, t_rays)
+{
+	float line_height;
+
+	line_height = 
+}

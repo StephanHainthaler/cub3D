@@ -6,7 +6,7 @@
 /*   By: juitz <juitz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 09:19:21 by shaintha          #+#    #+#             */
-/*   Updated: 2024/11/11 13:29:29 by juitz            ###   ########.fr       */
+/*   Updated: 2024/11/12 17:07:10 by juitz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ typedef struct s_rays
 	float	ray_dir_x;
 	float	ray_dir_y;
 	float	wall_height;
+	float	wall_hit;
 }					t_rays;
 
 typedef struct s_player

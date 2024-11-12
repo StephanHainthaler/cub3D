@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycaster.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juitz <juitz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 15:33:58 by juitz             #+#    #+#             */
-/*   Updated: 2024/11/11 12:29:46 by shaintha         ###   ########.fr       */
+/*   Updated: 2024/11/12 17:56:59 by juitz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,7 @@ void	check_next_wall(t_cube *cube, t_player *player, t_rays *rays)
 void	calc_wall_height(t_cube *cube, t_player *player, t_rays *rays)
 {
 	float	wall_dist;
-	float	wall_hit;
-	int		line_height;
+	int		wall_height;
 	int		draw_start;
 	int		draw_end;
 
@@ -95,18 +94,18 @@ void	calc_wall_height(t_cube *cube, t_player *player, t_rays *rays)
 		wall_dist = (rays->map_x - player->pos_x + (float)(1 - rays->step_x) / 2) / rays->ray_dir_x;
 	if (rays->side == 1)
 		wall_dist = (rays->map_y - player->pos_y + (float)(1 - rays->step_y) / 2) / rays->ray_dir_y;
-	line_height = (int)(WINDOW_HEIGHT / wall_dist);
-	draw_start = -line_height / 2 + WINDOW_HEIGHT / 2;
+	wall_height = (int)(WINDOW_HEIGHT / wall_dist);
+	draw_start = -wall_height / 2 + WINDOW_HEIGHT / 2;
 	if (draw_start < 0)
 		draw_start = 0;
-	draw_end = line_height / 2 + WINDOW_HEIGHT / 2;
+	draw_end = wall_height / 2 + WINDOW_HEIGHT / 2;
 	if (draw_end >= WINDOW_HEIGHT)
 		draw_end = WINDOW_HEIGHT - 1;
 	if (rays->side == 0)
-		wall_hit = player->pos_y + wall_dist * rays->ray_dir_y;
+		rays->wall_hit = player->pos_y + wall_dist * rays->ray_dir_y;
 	else
-	 	wall_hit = player->pos_x + wall_dist * rays->ray_dir_x;
-	wall_hit -= floor(wall_hit);
+	 	rays->wall_hit = player->pos_x + wall_dist * rays->ray_dir_x;
+	rays->wall_hit -= floor(rays->wall_hit);
 }
 
 bool	is_wall(t_cube *cube, float x, float y)
