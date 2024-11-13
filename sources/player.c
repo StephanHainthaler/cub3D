@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juitz <juitz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 14:30:10 by juitz             #+#    #+#             */
-/*   Updated: 2024/11/11 13:03:18 by shaintha         ###   ########.fr       */
+/*   Updated: 2024/11/12 15:48:56 by juitz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,20 +79,50 @@ void	get_player_direction_2(t_player *player, char dir_char)
 void	move_pov(t_cube *cube, int syskey)
 {
 	t_player	player;
-
+	int			new_pos_x;
+	int			new_pos_y;
+	
 	player = cube->player;
 	if (syskey == KEY_W)
-		if (is_wall(cube, player.pos_x, player.pos_y - 0.1) == false)
-			player.pos_y = player.pos_y - MOV_SPD;
+	{
+		new_pos_x = player.pos_x + player.dir_x * MOV_SPD;
+        new_pos_y = player.pos_y + player.dir_y * MOV_SPD;
+		if (is_wall(cube, new_pos_x, new_pos_y) == false)
+		{
+			player.pos_y += player.dir_y * MOV_SPD;
+			player.pos_x += player.dir_x * MOV_SPD;
+		}
+	}
 	if (syskey == KEY_A)
-		if (is_wall(cube, player.pos_x - 0.1, player.pos_y) == false)
-			player.pos_x = player.pos_x - MOV_SPD;
+	{
+		new_pos_x = player.pos_x + player.dir_y * MOV_SPD;
+        new_pos_y = player.pos_y - player.dir_x * MOV_SPD;
+		if (is_wall(cube, new_pos_x, new_pos_y) == false)
+		{
+			player.pos_y += -player.dir_x * MOV_SPD;
+			player.pos_x += player.dir_y * MOV_SPD;
+		}
+	}
 	if (syskey == KEY_S)
-		if (is_wall(cube, player.pos_x, player.pos_y + 0.1) == false)
-			player.pos_y = player.pos_y + MOV_SPD;
+	{
+		new_pos_x = player.pos_x - player.dir_x * MOV_SPD;
+        new_pos_y = player.pos_y - player.dir_y * MOV_SPD;
+		if (is_wall(cube, new_pos_x, new_pos_y) == false)
+		{
+			player.pos_y -= player.dir_y * MOV_SPD;
+			player.pos_x -= player.dir_x * MOV_SPD;
+		}
+	}
 	if (syskey == KEY_D)
-		if (is_wall(cube, player.pos_x + 0.1, player.pos_y) == false)
-			player.pos_x = player.pos_x + MOV_SPD;
+	{
+		new_pos_x = player.pos_x - player.dir_y * MOV_SPD;
+        new_pos_y = player.pos_y + player.dir_x * MOV_SPD;
+		if (is_wall(cube, new_pos_x, new_pos_y) == false)
+		{
+			player.pos_y += player.dir_x * MOV_SPD;
+			player.pos_x += -player.dir_y * MOV_SPD;
+		}
+	}
 	cube->player = player;
 	printf("Current POS: x = %f, y = %f\n",
 		cube->player.pos_x, cube->player.pos_y);

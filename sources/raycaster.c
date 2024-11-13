@@ -6,7 +6,7 @@
 /*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 15:33:58 by juitz             #+#    #+#             */
-/*   Updated: 2024/11/13 13:25:55 by shaintha         ###   ########.fr       */
+/*   Updated: 2024/11/13 13:53:24 by shaintha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,10 @@ void	calc_wall_height(t_player *player, t_rays *rays)
 		rays->draw_end = WINDOW_HEIGHT - 1;
 	if (rays->side == 0)
 		rays->wall_hit = player->pos_y + wall_dist * rays->ray_dir_y;
+		rays->wall_hit = player->pos_y + wall_dist * rays->ray_dir_y;
 	else
+	 	rays->wall_hit = player->pos_x + wall_dist * rays->ray_dir_x;
+	rays->wall_hit -= floor(rays->wall_hit);
 	 	rays->wall_hit = player->pos_x + wall_dist * rays->ray_dir_x;
 	rays->wall_hit -= floor(rays->wall_hit);
 }
