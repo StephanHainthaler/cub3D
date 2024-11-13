@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juitz <juitz@student.42.fr>                +#+  +:+       +#+        */
+/*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 14:30:10 by juitz             #+#    #+#             */
-/*   Updated: 2024/11/12 15:48:56 by juitz            ###   ########.fr       */
+/*   Updated: 2024/11/13 14:36:28 by shaintha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ void	get_player_info(t_player *player, char **map)
 					get_player_direction_1(player, map[y][x]);
 				else
 					get_player_direction_2(player, map[y][x]);
-				player->pos_x = x;
-				player->pos_y = y;
+				player->pos_x = (float)x + 0.5;
+				player->pos_y = (float)y + 0.5;
 				return ;
 			}
 			x++;
