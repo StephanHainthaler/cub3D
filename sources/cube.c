@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juitz <juitz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 10:32:10 by shaintha          #+#    #+#             */
-/*   Updated: 2024/11/13 12:31:15 by shaintha         ###   ########.fr       */
+/*   Updated: 2024/11/13 15:58:40 by juitz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	run_cube(t_cube *cube)
 {
 	if (setup_cube(cube) == 1)
 		return (free_cube(cube), 1);
-	//render_background(cube);
+	draw_pov(cube);
 	mlx_hook(cube->window_ptr, KeyPress, KeyPressMask, key_pressed, cube);
 	mlx_hook(cube->window_ptr, DestroyNotify, StructureNotifyMask,
 		close_cube, cube);
@@ -50,10 +50,10 @@ int	key_pressed(int syskey, t_cube *cube)
 		close_cube(cube);
 	else if (syskey == KEY_W || syskey == KEY_A
 		|| syskey == KEY_S || syskey == KEY_D)
-		move_pov(cube, syskey);
+		move_pov(cube, &cube->player, syskey);
 	else if (syskey == KEY_LEFT || syskey == KEY_RIGHT)
-		rotate_pov(cube, syskey);
-	calc_rays(cube, &cube->player, &cube->rays);
+		rotate_pov(cube, &cube->player, syskey);
+	draw_pov(cube);
 	return (0);
 }
 
@@ -62,25 +62,4 @@ int	close_cube(t_cube *cube)
 	free_cube(cube);
 	exit(0);
 	return (0);
-}
-
-void	render_background(t_cube *cube)
-{
-	int	x;
-	int	y;
-
-	y = 0;
-	while (y < WINDOW_HEIGHT)
-	{
-		x = 0;
-		while (x < WINDOW_WIDTH)
-		{
-			if (y <= (WINDOW_HEIGHT / 2))
-			mlx_pixel_put(cube->mlx_ptr, cube->window_ptr, x, y, cube->ceiling_color);
-			if	(y > (WINDOW_HEIGHT / 2))
-			mlx_pixel_put(cube->mlx_ptr, cube->window_ptr, x, y, cube->floor_color);
-			x++;
-		}
-		y++;
-	}
 }

@@ -6,7 +6,7 @@
 /*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 10:35:19 by shaintha          #+#    #+#             */
-/*   Updated: 2024/11/13 12:21:47 by shaintha         ###   ########.fr       */
+/*   Updated: 2024/11/13 14:44:48 by shaintha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,9 @@ void	initialize_rays(t_rays *rays)
 	rays->side = 0;
 	rays->init_step_x = 0;
 	rays->init_step_y = 0;
-	rays->ray_dir_x = 0;
-	rays->ray_dir_y = 0;
+	rays->dir_x = 0;
+	rays->dir_y = 0;
 	rays->wall_height = 0;
-
 	rays->wall_hit = 0;
 	rays->line_height = 0;
 	rays->draw_start = 0;

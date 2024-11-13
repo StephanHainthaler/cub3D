@@ -6,7 +6,7 @@
 /*   By: juitz <juitz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 09:19:21 by shaintha          #+#    #+#             */
-/*   Updated: 2024/11/13 13:32:59 by juitz            ###   ########.fr       */
+/*   Updated: 2024/11/13 16:09:29 by juitz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@
 
 typedef struct s_image
 {
-	int		*textbuffer[NUM_OF_TEXTURES];
 	void	*ptr;
 	int		*addr;
 	int		x;
@@ -66,8 +65,8 @@ typedef struct s_rays
 	int		side;
 	float	init_step_x;
 	float	init_step_y;
-	float	ray_dir_x;
-	float	ray_dir_y;
+	float	dir_x;
+	float	dir_y;
 	float	wall_height;
 	float	wall_hit;
 	int		line_height;
@@ -152,21 +151,21 @@ int		setup_cube(t_cube *cube);
 int		run_cube(t_cube *cube);
 int		key_pressed(int syskey, t_cube *cube);
 int		close_cube(t_cube *cube);
-void	render_background(t_cube *cube);
 
 //player.c
 void	get_player_info(t_player *player, char **map);
 void	get_player_direction_1(t_player *player, char dir_char);
 void	get_player_direction_2(t_player *player, char dir_char);
-void	move_pov(t_cube *cube, int syskey);
-void	rotate_pov(t_cube *cube, int syskey);
+void	move_pov(t_cube *cube, t_player	*player, int syskey);
+void	rotate_pov(t_cube *cube, t_player *player, int syskey);
 
 //raycaster.c
-void	calc_rays(t_cube *cube, t_player *player, t_rays *rays);
-void	calc_distances(t_player *player, t_rays *rays);
-void	check_next_wall(t_cube *cube, t_rays *rays);
-void	calc_wall_height(t_player *player, t_rays *rays);
+void	draw_pov(t_cube *cube);
+void	calculate_ray_dir(t_rays *rays, t_player *player, size_t x);
+void	calculate_distances(t_player *p, t_rays *rays);
+void	search_for_next_wall(t_cube *cube, t_rays *rays);
+void	calculate_wall_height(t_player *player, t_rays *rays);
 bool	is_wall(t_cube *cube, float x, float y);
-void	draw_pov(t_cube *cube, t_rays *rays, int x);
+void	draw_textures(t_cube *cube, t_rays *rays, size_t x);
 
 #endif
