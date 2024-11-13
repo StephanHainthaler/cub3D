@@ -6,7 +6,7 @@
 /*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 10:35:19 by shaintha          #+#    #+#             */
-/*   Updated: 2024/11/11 12:59:50 by shaintha         ###   ########.fr       */
+/*   Updated: 2024/11/13 12:21:47 by shaintha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	initialize_cube(t_cube *cube)
 {
 	t_player	player;
+	t_rays		rays;
 
 	cube->mlx_ptr = NULL;
 	cube->window_ptr = NULL;
@@ -33,6 +34,29 @@ void	initialize_cube(t_cube *cube)
 	cube->error_code = 0;
 	ft_bzero(&player, sizeof(&player));
 	cube->player = player;
+	initialize_rays(&rays);
+	cube->rays = rays;
+}
+
+void	initialize_rays(t_rays *rays)
+{
+	rays->delta_dist_x = 0;
+	rays->delta_dist_y = 0;
+	rays->step_x = 0;
+	rays->step_y = 0;
+	rays->map_x = 0;
+	rays->map_y = 0;
+	rays->side = 0;
+	rays->init_step_x = 0;
+	rays->init_step_y = 0;
+	rays->ray_dir_x = 0;
+	rays->ray_dir_y = 0;
+	rays->wall_height = 0;
+
+	rays->wall_hit = 0;
+	rays->line_height = 0;
+	rays->draw_start = 0;
+	rays->draw_end = 0;
 }
 
 void	free_cube(t_cube *cube)

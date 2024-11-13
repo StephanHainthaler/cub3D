@@ -6,7 +6,7 @@
 /*   By: juitz <juitz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 09:19:21 by shaintha          #+#    #+#             */
-/*   Updated: 2024/11/12 17:07:10 by juitz            ###   ########.fr       */
+/*   Updated: 2024/11/13 13:32:59 by juitz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ typedef struct s_image
 {
 	int		*textbuffer[NUM_OF_TEXTURES];
 	void	*ptr;
+	int		*addr;
 	int		x;
 	int		y;
 }					t_image;
@@ -69,6 +70,9 @@ typedef struct s_rays
 	float	ray_dir_y;
 	float	wall_height;
 	float	wall_hit;
+	int		line_height;
+	int		draw_start;
+	int		draw_end;
 }					t_rays;
 
 typedef struct s_player
@@ -102,6 +106,7 @@ typedef struct s_cube
 	int		map_pos;
 	int		error_code;
 	t_player	player;
+	t_rays		rays;
 }			t_cube;
 
 
@@ -109,6 +114,7 @@ typedef struct s_cube
 
 //initialize.c
 void	initialize_cube(t_cube *cube);
+void	initialize_rays(t_rays *rays);
 void	free_cube(t_cube *cube);
 
 //utils.c
@@ -146,6 +152,7 @@ int		setup_cube(t_cube *cube);
 int		run_cube(t_cube *cube);
 int		key_pressed(int syskey, t_cube *cube);
 int		close_cube(t_cube *cube);
+void	render_background(t_cube *cube);
 
 //player.c
 void	get_player_info(t_player *player, char **map);
@@ -156,9 +163,10 @@ void	rotate_pov(t_cube *cube, int syskey);
 
 //raycaster.c
 void	calc_rays(t_cube *cube, t_player *player, t_rays *rays);
-void	calc_distances(t_cube *cube, t_player *player, t_rays *rays);
-void	check_next_wall(t_cube *cube, t_player *player, t_rays *rays);
-void	calc_wall_height(t_cube *cube, t_player *player, t_rays * rays);
+void	calc_distances(t_player *player, t_rays *rays);
+void	check_next_wall(t_cube *cube, t_rays *rays);
+void	calc_wall_height(t_player *player, t_rays *rays);
 bool	is_wall(t_cube *cube, float x, float y);
+void	draw_pov(t_cube *cube, t_rays *rays, int x);
 
 #endif
