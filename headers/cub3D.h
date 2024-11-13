@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juitz <juitz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 09:19:21 by shaintha          #+#    #+#             */
-/*   Updated: 2024/11/13 15:21:09 by shaintha         ###   ########.fr       */
+/*   Updated: 2024/11/13 15:56:25 by juitz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,8 +156,8 @@ int		close_cube(t_cube *cube);
 void	get_player_info(t_player *player, char **map);
 void	get_player_direction_1(t_player *player, char dir_char);
 void	get_player_direction_2(t_player *player, char dir_char);
-void	move_pov(t_cube *cube, int syskey);
-void	rotate_pov(t_cube *cube, int syskey);
+void	move_pov(t_cube *cube, t_player	*player, int syskey);
+void	rotate_pov(t_cube *cube, t_player *player, int syskey);
 
 //raycaster.c
 void	draw_pov(t_cube *cube);

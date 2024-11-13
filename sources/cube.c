@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juitz <juitz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 10:32:10 by shaintha          #+#    #+#             */
-/*   Updated: 2024/11/13 15:20:03 by shaintha         ###   ########.fr       */
+/*   Updated: 2024/11/13 15:58:40 by juitz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ int	key_pressed(int syskey, t_cube *cube)
 		close_cube(cube);
 	else if (syskey == KEY_W || syskey == KEY_A
 		|| syskey == KEY_S || syskey == KEY_D)
-		move_pov(cube, syskey);
+		move_pov(cube, &cube->player, syskey);
 	else if (syskey == KEY_LEFT || syskey == KEY_RIGHT)
-		rotate_pov(cube, syskey);
+		rotate_pov(cube, &cube->player, syskey);
 	draw_pov(cube);
 	return (0);
 }
