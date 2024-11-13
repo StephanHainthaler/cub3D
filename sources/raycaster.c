@@ -6,7 +6,7 @@
 /*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 15:33:58 by juitz             #+#    #+#             */
-/*   Updated: 2024/11/13 15:37:44 by shaintha         ###   ########.fr       */
+/*   Updated: 2024/11/13 16:11:17 by shaintha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,8 +139,20 @@ void	draw_textures(t_cube *cube, t_rays *rays, size_t x)
 	{
 		texY = (int)texPos & (IMAGE_HEIGHT - 1);
 		texPos = texPos + step;
-		//differentiate between N/E/S/W
-		tex_color = cube->wall_north.addr[IMAGE_HEIGHT * texY + texX];
+		if (rays->side == 1)
+		{
+			if (rays->dir_x < 0)
+				tex_color = cube->wall_east.addr[IMAGE_HEIGHT * texY + texX];
+			else
+				tex_color = cube->wall_west.addr[IMAGE_HEIGHT * texY + texX];
+		}
+		else
+		{
+			if (rays->dir_y < 0)
+				tex_color = cube->wall_north.addr[IMAGE_HEIGHT * texY + texX];
+			else
+				tex_color = cube->wall_south.addr[IMAGE_HEIGHT * texY + texX];
+		}
 		// if (rays->side == 1)
         // 	tex_color = (tex_color >> 1) & 8355711;
 		if (tex_color > 0)
