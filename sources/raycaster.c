@@ -6,7 +6,7 @@
 /*   By: juitz <juitz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 15:33:58 by juitz             #+#    #+#             */
-/*   Updated: 2024/11/13 13:32:44 by juitz            ###   ########.fr       */
+/*   Updated: 2024/11/13 15:06:57 by juitz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	calc_wall_height(t_player *player, t_rays *rays)
 
 	if (rays->side == 0)
 		wall_dist = (rays->map_x - player->pos_x + (float)(1 - rays->step_x) / 2) / rays->ray_dir_x;
-	if (rays->side == 1)
+	else
 		wall_dist = (rays->map_y - player->pos_y + (float)(1 - rays->step_y) / 2) / rays->ray_dir_y;
 	rays->line_height = (int)(WINDOW_HEIGHT / wall_dist);
 
@@ -149,8 +149,6 @@ void	draw_pov(t_cube *cube, t_rays *rays, int x)
 	}
 	
 }
-
-
 
 bool	is_wall(t_cube *cube, float x, float y)
 {
