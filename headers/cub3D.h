@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juitz <juitz@student.42.fr>                +#+  +:+       +#+        */
+/*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 09:19:21 by shaintha          #+#    #+#             */
-/*   Updated: 2024/11/13 15:56:25 by juitz            ###   ########.fr       */
+/*   Updated: 2024/11/14 10:03:23 by shaintha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@
 # include <X11/keysym.h>
 # include <math.h>
 
-# define WINDOW_WIDTH 1920
-# define WINDOW_HEIGHT 1080
+# define WINDOW_WIDTH 1000
+# define WINDOW_HEIGHT 500
 # define PI	3.1415926535
 # define NUM_OF_TEXTURES 4
 # define IMAGE_WIDTH	64
@@ -72,7 +72,7 @@ typedef struct s_rays
 	int		line_height;
 	int		draw_start;
 	int		draw_end;
-}					t_rays;
+}			t_rays;
 
 typedef struct s_player
 {
@@ -161,11 +161,12 @@ void	rotate_pov(t_cube *cube, t_player *player, int syskey);
 
 //raycaster.c
 void	draw_pov(t_cube *cube);
-void	calculate_ray_dir(t_rays *rays, t_player *player, size_t x);
+void	calculate_ray_dir(t_rays *rays, t_player *player, int x);
 void	calculate_distances(t_player *p, t_rays *rays);
 void	search_for_next_wall(t_cube *cube, t_rays *rays);
 void	calculate_wall_height(t_player *player, t_rays *rays);
+int		get_correct_texture_color(t_cube *cube, t_rays *rays, int tex_x, int tex_y);
 bool	is_wall(t_cube *cube, float x, float y);
-void	draw_textures(t_cube *cube, t_rays *rays, size_t x);
+void	draw_textures(t_cube *cube, t_rays *rays, int x, int y);
 
 #endif
