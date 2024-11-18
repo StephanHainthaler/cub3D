@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juitz <juitz@student.42.fr>                +#+  +:+       +#+        */
+/*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 10:32:10 by shaintha          #+#    #+#             */
-/*   Updated: 2024/11/13 15:58:40 by juitz            ###   ########.fr       */
+/*   Updated: 2024/11/18 10:49:01 by shaintha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ int	setup_cube(t_cube *cube)
 		return (put_error("Texture(s) have not been found!"), 1);
 	get_player_info(&player, cube->map);
 	cube->player = player;
-	printf("Player Start: x = %f, y = %f\n",
-		cube->player.pos_x, cube->player.pos_y);
 	return (0);
 }
 
@@ -52,7 +50,7 @@ int	key_pressed(int syskey, t_cube *cube)
 		|| syskey == KEY_S || syskey == KEY_D)
 		move_pov(cube, &cube->player, syskey);
 	else if (syskey == KEY_LEFT || syskey == KEY_RIGHT)
-		rotate_pov(cube, &cube->player, syskey);
+		rotate_pov(&cube->player, syskey);
 	draw_pov(cube);
 	return (0);
 }

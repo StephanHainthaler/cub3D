@@ -6,7 +6,7 @@
 /*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 09:19:21 by shaintha          #+#    #+#             */
-/*   Updated: 2024/11/18 10:27:32 by shaintha         ###   ########.fr       */
+/*   Updated: 2024/11/18 10:52:03 by shaintha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,8 +106,6 @@ typedef struct s_cube
 	t_ray		rays;
 }				t_cube;
 
-//----------PLS--DO--NOT--CHANGE--FUNCTIONS--BELOW-----------//
-
 //initialize.c
 void	initialize_cube(t_cube *cube);
 void	initialize_rays(t_ray *rays);
@@ -143,8 +141,6 @@ t_image	get_image(t_cube *cube, char *image_path);
 int		get_images(t_cube *cube);
 void	free_images(t_cube *cube);
 
-//----------PLS--DO--NOT--CHANGE--FUNCTIONS--ABOVE-----------//
-
 //cube.c
 int		setup_cube(t_cube *cube);
 int		run_cube(t_cube *cube);
@@ -156,7 +152,7 @@ void	get_player_info(t_player *player, char **map);
 void	get_player_direction_1(t_player *player, char dir_char);
 void	get_player_direction_2(t_player *player, char dir_char);
 void	move_pov(t_cube *cube, t_player	*player, int syskey);
-void	rotate_pov(t_cube *cube, t_player *player, int syskey);
+void	rotate_pov(t_player *p, int syskey);
 
 //raycaster.c
 void	draw_pov(t_cube *cube);
