@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juitz <juitz@student.42.fr>                +#+  +:+       +#+        */
+/*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 09:19:21 by shaintha          #+#    #+#             */
-/*   Updated: 2024/11/18 13:37:04 by juitz            ###   ########.fr       */
+/*   Updated: 2024/11/18 14:38:52 by shaintha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@
 
 # define WINDOW_WIDTH 1000
 # define WINDOW_HEIGHT 500
-# define IMAGE_WIDTH	64
-# define IMAGE_HEIGHT	64
 
 //Define keys
 # define KEY_W		119
@@ -86,6 +84,8 @@ typedef struct s_cube
 {
 	void		*mlx_ptr;
 	void		*window_ptr;
+	size_t		screen_h;
+	size_t		screen_w;
 	char		*map_str;
 	char		**map;
 	char		*n_path;
@@ -164,6 +164,6 @@ void	calculate_wall_height(t_player *player, t_ray *rays);
 //textures.c
 void	draw_textures(t_cube *cube, t_ray *rays, int x, int y);
 int		get_texture_color(t_cube *cube, t_ray *rays, int tex_x, int tex_y);
-double	get_texture_position(t_ray *rays, int *tex_x, double *step);
+double	get_texture_position(t_cube *cube, t_ray *rays, int *tex_x, double *step);
 
 #endif

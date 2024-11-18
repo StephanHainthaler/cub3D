@@ -6,7 +6,7 @@
 /*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 10:32:10 by shaintha          #+#    #+#             */
-/*   Updated: 2024/11/18 10:49:01 by shaintha         ###   ########.fr       */
+/*   Updated: 2024/11/18 14:43:43 by shaintha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ int	setup_cube(t_cube *cube)
 	cube->mlx_ptr = mlx_init();
 	if (cube->mlx_ptr == NULL)
 		return (put_error("MLX pointer initialization failed!"), 1);
+	if (get_images(cube) == 1)
+		return (1);
 	cube->window_ptr = mlx_new_window(cube->mlx_ptr,
 			WINDOW_WIDTH, WINDOW_HEIGHT, "cub:3D");
 	if (cube->window_ptr == NULL)
 		return (put_error("Window pointer initialization failed!"), 1);
-	if (get_images(cube) == 1)
-		return (put_error("Texture(s) have not been found!"), 1);
 	get_player_info(&player, cube->map);
 	cube->player = player;
 	return (0);
