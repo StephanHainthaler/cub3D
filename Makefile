@@ -6,7 +6,7 @@
 #    By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/26 09:18:50 by shaintha          #+#    #+#              #
-#    Updated: 2024/11/11 12:26:46 by shaintha         ###   ########.fr        #
+#    Updated: 2024/11/18 10:31:48 by shaintha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,8 @@ NAME := cub3D
 
 CC := cc
 CFLAGS := -Wall -Wextra -Werror -g
-MLXFLAGS := -lmlx -lXext -lX11 -lm
+MLXFLAGS := -lmlx -lXext -lX11
+MATHFLAGS := -lm
 
 SRC_DIR := sources
 OBJ_DIR := objects
@@ -30,7 +31,8 @@ SRCS := $(SRC_DIR)/main.c \
 	$(SRC_DIR)/cube.c \
 	$(SRC_DIR)/utils.c \
 	$(SRC_DIR)/player.c \
-	$(SRC_DIR)/raycaster.c
+	$(SRC_DIR)/raycaster.c \
+	$(SRC_DIR)/textures.c
 
 
 OBJS := $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRCS))
@@ -45,7 +47,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
 
 $(NAME): $(OBJS)
 	@cd $(LIBFT_DIR) && make -s
-	@$(CC) $(CFLAGS) $(MLXFLAGS) -o $(NAME) $(OBJS) $(LIBFT_DIR)/libft.a
+	@$(CC) $(CFLAGS) $(MLXFLAGS) $(MATHFLAGS) -o $(NAME) $(OBJS) $(LIBFT_DIR)/libft.a
 
 clean:
 	@rm -rf $(OBJ_DIR)

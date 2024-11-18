@@ -6,7 +6,7 @@
 /*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 10:35:19 by shaintha          #+#    #+#             */
-/*   Updated: 2024/11/13 14:44:48 by shaintha         ###   ########.fr       */
+/*   Updated: 2024/11/14 12:52:18 by shaintha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	initialize_cube(t_cube *cube)
 {
 	t_player	player;
-	t_rays		rays;
+	t_ray		rays;
 
 	cube->mlx_ptr = NULL;
 	cube->window_ptr = NULL;
@@ -38,21 +38,21 @@ void	initialize_cube(t_cube *cube)
 	cube->rays = rays;
 }
 
-void	initialize_rays(t_rays *rays)
+void	initialize_rays(t_ray *rays)
 {
-	rays->delta_dist_x = 0;
-	rays->delta_dist_y = 0;
+	rays->delta_dist_x = 0.0;
+	rays->delta_dist_y = 0.0;
 	rays->step_x = 0;
 	rays->step_y = 0;
 	rays->map_x = 0;
 	rays->map_y = 0;
-	rays->side = 0;
-	rays->init_step_x = 0;
-	rays->init_step_y = 0;
-	rays->dir_x = 0;
-	rays->dir_y = 0;
-	rays->wall_height = 0;
-	rays->wall_hit = 0;
+	rays->side = 0.0;
+	rays->init_step_x = 0.0;
+	rays->init_step_y = 0.0;
+	rays->dir_x = 0.0;
+	rays->dir_y = 0.0;
+	rays->wall_height = 0.0;
+	rays->wall_hit = 0.0;
 	rays->line_height = 0;
 	rays->draw_start = 0;
 	rays->draw_end = 0;

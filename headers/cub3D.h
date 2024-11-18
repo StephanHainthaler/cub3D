@@ -6,7 +6,7 @@
 /*   By: juitz <juitz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 09:19:21 by shaintha          #+#    #+#             */
-/*   Updated: 2024/11/13 16:09:29 by juitz            ###   ########.fr       */
+/*   Updated: 2024/11/18 14:36:00 by juitz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,8 @@
 # include <X11/keysym.h>
 # include <math.h>
 
-# define WINDOW_WIDTH 1920
-# define WINDOW_HEIGHT 1080
-# define PI	3.1415926535
-# define NUM_OF_TEXTURES 4
+# define WINDOW_WIDTH 1000
+# define WINDOW_HEIGHT 500
 # define IMAGE_WIDTH	64
 # define IMAGE_HEIGHT	64
 
@@ -52,7 +50,7 @@ typedef struct s_image
 	int		*addr;
 	int		x;
 	int		y;
-}					t_image;
+}			t_image;
 
 typedef struct s_rays
 {
@@ -72,7 +70,7 @@ typedef struct s_rays
 	int		line_height;
 	int		draw_start;
 	int		draw_end;
-}					t_rays;
+}			t_ray;
 
 typedef struct s_player
 {
@@ -82,42 +80,39 @@ typedef struct s_player
 	float	dir_y;
 	float	plane_x;
 	float	plane_y;
-}					t_player;
+}			t_player;
 
 typedef struct s_cube
 {
-	void	*mlx_ptr;
-	void	*window_ptr;
-	char	*map_str;
-	char	**map;
-	char	*n_path;
-	char	*e_path;
-	char	*s_path;
-	char	*w_path;
-	char	*f_color;
-	char	*c_color;
-	t_image	wall_north;
-	t_image	wall_east;
-	t_image	wall_south;
-	t_image	wall_west;
-	int		floor_color;
-	int		ceiling_color;
-	int		map_pos;
-	int		error_code;
+	void		*mlx_ptr;
+	void		*window_ptr;
+	char		*map_str;
+	char		**map;
+	char		*n_path;
+	char		*e_path;
+	char		*s_path;
+	char		*w_path;
+	char		*f_color;
+	char		*c_color;
+	t_image		wall_north;
+	t_image		wall_east;
+	t_image		wall_south;
+	t_image		wall_west;
+	int			floor_color;
+	int			ceiling_color;
+	int			map_pos;
+	int			error_code;
 	t_player	player;
-	t_rays		rays;
-}			t_cube;
-
-
-//----------PLS--DO--NOT--CHANGE--FUNCTIONS--BELOW-----------//
+	t_ray		rays;
+}				t_cube;
 
 //initialize.c
 void	initialize_cube(t_cube *cube);
-void	initialize_rays(t_rays *rays);
+void	initialize_rays(t_ray *rays);
 void	free_cube(t_cube *cube);
 
 //utils.c
-bool    is_format_valid(char *file, char *format);
+bool	is_format_valid(char *file, char *format);
 bool	is_color_valid(char *color_str);
 int		get_color(char *color_str);
 void	put_error(char *error_message);
@@ -130,21 +125,21 @@ size_t	get_map_startline(char *map_str, size_t i, size_t j);
 bool	has_map_empty_line(char *str, char first_char_of_file);
 
 //map_information.c
-bool    is_information_valid(t_cube *cube, char *map_str, size_t end);
+bool	is_information_valid(t_cube *cube, char *map_str, size_t end);
 int		parse_information(t_cube *cube, char *map_str, size_t end, size_t i);
-char	*get_id_content(t_cube *cube, char *id_str, char *id_content, size_t *i);
+char	*get_id_content(t_cube *cube, char *id_str,
+			char *id_content, size_t *i);
 
 //map_layout.c
 bool	is_layout_valid(char **map, size_t x, size_t y, bool found);
 bool	is_in_border(char **map, size_t x, size_t y);
 bool	is_map_element(char e);
+bool	is_wall(t_cube *cube, float x, float y);
 
 //image.c
 t_image	get_image(t_cube *cube, char *image_path);
 int		get_images(t_cube *cube);
 void	free_images(t_cube *cube);
-
-//----------PLS--DO--NOT--CHANGE--FUNCTIONS--ABOVE-----------//
 
 //cube.c
 int		setup_cube(t_cube *cube);
@@ -157,15 +152,18 @@ void	get_player_info(t_player *player, char **map);
 void	get_player_direction_1(t_player *player, char dir_char);
 void	get_player_direction_2(t_player *player, char dir_char);
 void	move_pov(t_cube *cube, t_player	*player, int syskey);
-void	rotate_pov(t_cube *cube, t_player *player, int syskey);
+void	rotate_pov(t_player *p, int syskey);
 
 //raycaster.c
 void	draw_pov(t_cube *cube);
-void	calculate_ray_dir(t_rays *rays, t_player *player, size_t x);
-void	calculate_distances(t_player *p, t_rays *rays);
-void	search_for_next_wall(t_cube *cube, t_rays *rays);
-void	calculate_wall_height(t_player *player, t_rays *rays);
-bool	is_wall(t_cube *cube, float x, float y);
-void	draw_textures(t_cube *cube, t_rays *rays, size_t x);
+void	calculate_ray_dir(t_ray *rays, t_player *player, int x);
+void	calculate_distances(t_player *p, t_ray *rays);
+void	search_for_next_wall(t_cube *cube, t_ray *rays);
+void	calculate_wall_height(t_player *player, t_ray *rays);
+
+//textures.c
+void	draw_textures(t_cube *cube, t_ray *rays, int x, int y);
+int		get_texture_color(t_cube *cube, t_ray *rays, int tex_x, int tex_y);
+double	get_texture_position(t_ray *rays, int *tex_x, double *step);
 
 #endif
