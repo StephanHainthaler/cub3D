@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   map_layout.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juitz <juitz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 10:17:30 by shaintha          #+#    #+#             */
-/*   Updated: 2024/11/18 10:24:39 by shaintha         ###   ########.fr       */
+/*   Updated: 2024/11/18 13:28:41 by juitz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/cub3D.h"
+#include <ctype.h>
 
 bool	is_layout_valid(char **map, size_t x, size_t y, bool found)
 {
@@ -84,7 +85,7 @@ bool	is_wall(t_cube *cube, float x, float y)
 	map = cube->map;
 	ix = x;
 	iy = y;
-	if (cube->map[iy][ix] == '1')
+	if (cube->map[iy][ix] == '1' || cube->map[iy][ix] == '\0' || cube->map[iy][ix] == ' ')
 		return (true);
 	return (false);
 }
