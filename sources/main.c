@@ -6,7 +6,7 @@
 /*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 09:18:58 by shaintha          #+#    #+#             */
-/*   Updated: 2024/11/11 13:03:01 by shaintha         ###   ########.fr       */
+/*   Updated: 2024/11/18 08:54:16 by shaintha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	print_cube(t_cube *cube)
 
 int	main(int argc, char *argv[])
 {
-	t_cube		cube;
+	t_cube	cube;
 
 	if (argc != 2)
 		return (printf("Wrong number of arguments\n"), 1);

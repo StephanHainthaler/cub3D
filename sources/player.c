@@ -6,7 +6,7 @@
 /*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 14:30:10 by juitz             #+#    #+#             */
-/*   Updated: 2024/11/14 13:00:25 by shaintha         ###   ########.fr       */
+/*   Updated: 2024/11/18 08:55:01 by shaintha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ void	get_player_info(t_player *player, char **map)
 					get_player_direction_1(player, map[y][x]);
 				else
 					get_player_direction_2(player, map[y][x]);
-				player->pos_x = (double)x + 0.5;
-				player->pos_y = (double)y + 0.5;
+				player->pos_x = (float)x + 0.5;
+				player->pos_y = (float)y + 0.5;
 				return ;
 			}
 			x++;
@@ -127,8 +127,8 @@ void	move_pov(t_cube *cube, t_player	*player, int syskey)
 
 void	rotate_pov(t_cube *cube, t_player *player, int syskey)
 {
-	double		old_dir_x;
-	double		old_plane_x;
+	float		old_dir_x;
+	float		old_plane_x;
 
 	old_dir_x = player->dir_x;
 	old_plane_x = player->plane_x;
