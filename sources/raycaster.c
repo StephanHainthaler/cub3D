@@ -6,7 +6,7 @@
 /*   By: juitz <juitz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 15:33:58 by juitz             #+#    #+#             */
-/*   Updated: 2024/11/18 14:35:22 by juitz            ###   ########.fr       */
+/*   Updated: 2024/11/18 14:38:17 by juitz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,17 +41,17 @@ void	calculate_distances(t_player *p, t_ray *rays)
 {
 	rays->delta_dist_x = fabs(1 / rays->dir_x);
 	rays->delta_dist_y = fabs(1 / rays->dir_y);
-	rays->map_x = (int)player->pos_x;
-	rays->map_y = (int)player->pos_y;
+	rays->map_x = (int)p->pos_x;
+	rays->map_y = (int)p->pos_y;
 	if (rays->dir_x < 0)
 	{
 		rays->step_x = -1;
-		rays->init_step_x = (player->pos_x - rays->map_x) * rays->delta_dist_x;
+		rays->init_step_x = (p->pos_x - rays->map_x) * rays->delta_dist_x;
 	}
 	else
 	{
 		rays->step_x = 1;
-		rays->init_step_x = (rays->map_x + 1 - player->pos_x) * rays->delta_dist_x;
+		rays->init_step_x = (rays->map_x + 1 - p->pos_x) * rays->delta_dist_x;
 	}
 	if (rays->dir_y < 0)
 	{
@@ -61,7 +61,7 @@ void	calculate_distances(t_player *p, t_ray *rays)
 	else
 	{
 		rays->step_y = 1;
-		rays->init_step_y = (rays->map_y + 1 - player->pos_y) * rays->delta_dist_y;
+		rays->init_step_y = (rays->map_y + 1 - p->pos_y) * rays->delta_dist_y;
 	}
 }
 
@@ -104,7 +104,7 @@ void	calculate_wall_height(t_player *p, t_ray *rays)
 	if (rays->draw_end >= WINDOW_HEIGHT)
 		rays->draw_end = WINDOW_HEIGHT - 1;
 	if (rays->side == 0)
-		rays->wall_hit = player->pos_y + wall_dist * rays->dir_y;
+		rays->wall_hit = p->pos_y + wall_dist * rays->dir_y;
 	else
 		rays->wall_hit = p->pos_x + wall_dist * rays->dir_x;
 	rays->wall_hit = rays->wall_hit - floor((rays->wall_hit));
