@@ -6,19 +6,19 @@
 /*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 12:34:03 by shaintha          #+#    #+#             */
-/*   Updated: 2024/11/11 12:39:03 by shaintha         ###   ########.fr       */
+/*   Updated: 2024/11/18 10:23:23 by shaintha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/libft.h"
 
-static void put_error(char *error_message)
+static void	put_error(char *error_message)
 {
 	ft_putendl_fd("Error", 2);
 	ft_putendl_fd(error_message, 2);
 }
 
-static char *read_file(int fd, char *line, char *temp, int bytes_read)
+static char	*read_file(int fd, char *line, char *temp, int bytes_read)
 {
 	int	i;
 

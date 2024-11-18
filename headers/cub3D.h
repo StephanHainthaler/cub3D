@@ -6,7 +6,7 @@
 /*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 09:19:21 by shaintha          #+#    #+#             */
-/*   Updated: 2024/11/18 08:52:29 by shaintha         ###   ########.fr       */
+/*   Updated: 2024/11/18 10:27:32 by shaintha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ typedef struct s_image
 	int		*addr;
 	int		x;
 	int		y;
-}					t_image;
+}			t_image;
 
 typedef struct s_rays
 {
@@ -70,7 +70,7 @@ typedef struct s_rays
 	int		line_height;
 	int		draw_start;
 	int		draw_end;
-}					t_ray;
+}			t_ray;
 
 typedef struct s_player
 {
@@ -80,32 +80,31 @@ typedef struct s_player
 	float	dir_y;
 	float	plane_x;
 	float	plane_y;
-}					t_player;
+}			t_player;
 
 typedef struct s_cube
 {
-	void	*mlx_ptr;
-	void	*window_ptr;
-	char	*map_str;
-	char	**map;
-	char	*n_path;
-	char	*e_path;
-	char	*s_path;
-	char	*w_path;
-	char	*f_color;
-	char	*c_color;
-	t_image	wall_north;
-	t_image	wall_east;
-	t_image	wall_south;
-	t_image	wall_west;
-	int		floor_color;
-	int		ceiling_color;
-	int		map_pos;
-	int		error_code;
+	void		*mlx_ptr;
+	void		*window_ptr;
+	char		*map_str;
+	char		**map;
+	char		*n_path;
+	char		*e_path;
+	char		*s_path;
+	char		*w_path;
+	char		*f_color;
+	char		*c_color;
+	t_image		wall_north;
+	t_image		wall_east;
+	t_image		wall_south;
+	t_image		wall_west;
+	int			floor_color;
+	int			ceiling_color;
+	int			map_pos;
+	int			error_code;
 	t_player	player;
 	t_ray		rays;
-}			t_cube;
-
+}				t_cube;
 
 //----------PLS--DO--NOT--CHANGE--FUNCTIONS--BELOW-----------//
 
@@ -115,7 +114,7 @@ void	initialize_rays(t_ray *rays);
 void	free_cube(t_cube *cube);
 
 //utils.c
-bool    is_format_valid(char *file, char *format);
+bool	is_format_valid(char *file, char *format);
 bool	is_color_valid(char *color_str);
 int		get_color(char *color_str);
 void	put_error(char *error_message);
@@ -128,9 +127,10 @@ size_t	get_map_startline(char *map_str, size_t i, size_t j);
 bool	has_map_empty_line(char *str, char first_char_of_file);
 
 //map_information.c
-bool    is_information_valid(t_cube *cube, char *map_str, size_t end);
+bool	is_information_valid(t_cube *cube, char *map_str, size_t end);
 int		parse_information(t_cube *cube, char *map_str, size_t end, size_t i);
-char	*get_id_content(t_cube *cube, char *id_str, char *id_content, size_t *i);
+char	*get_id_content(t_cube *cube, char *id_str,
+			char *id_content, size_t *i);
 
 //map_layout.c
 bool	is_layout_valid(char **map, size_t x, size_t y, bool found);
@@ -164,7 +164,10 @@ void	calculate_ray_dir(t_ray *rays, t_player *player, int x);
 void	calculate_distances(t_player *p, t_ray *rays);
 void	search_for_next_wall(t_cube *cube, t_ray *rays);
 void	calculate_wall_height(t_player *player, t_ray *rays);
+
+//textures.c
 void	draw_textures(t_cube *cube, t_ray *rays, int x, int y);
-int		get_correct_texture_color(t_cube *cube, t_ray *rays, int tex_x, int tex_y);
+int		get_texture_color(t_cube *cube, t_ray *rays, int tex_x, int tex_y);
+double	get_texture_position(t_ray *rays, int *tex_x, double *step);
 
 #endif

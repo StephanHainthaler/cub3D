@@ -6,7 +6,7 @@
 /*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 10:17:30 by shaintha          #+#    #+#             */
-/*   Updated: 2024/11/14 12:55:40 by shaintha         ###   ########.fr       */
+/*   Updated: 2024/11/18 10:24:39 by shaintha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ bool	is_map_element(char e)
 
 bool	is_wall(t_cube *cube, float x, float y)
 {
-	char **map;
+	char	**map;
 	int		ix;
 	int		iy;
 

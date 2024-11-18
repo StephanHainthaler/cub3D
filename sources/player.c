@@ -6,7 +6,7 @@
 /*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 14:30:10 by juitz             #+#    #+#             */
-/*   Updated: 2024/11/18 08:55:01 by shaintha         ###   ########.fr       */
+/*   Updated: 2024/11/18 10:27:54 by shaintha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ void	get_player_info(t_player *player, char **map)
 					get_player_direction_1(player, map[y][x]);
 				else
 					get_player_direction_2(player, map[y][x]);
-				player->pos_x = (float)x + 0.5;
-				player->pos_y = (float)y + 0.5;
+				player->pos_x = x + 0.5;
+				player->pos_y = y + 0.5;
 				return ;
 			}
 			x++;
@@ -84,7 +84,7 @@ void	move_pov(t_cube *cube, t_player	*player, int syskey)
 	if (syskey == KEY_W)
 	{
 		new_pos_x = player->pos_x + player->dir_x * MOV_SPD;
-        new_pos_y = player->pos_y + player->dir_y * MOV_SPD;
+		new_pos_y = player->pos_y + player->dir_y * MOV_SPD;
 		if (is_wall(cube, new_pos_x, new_pos_y) == false)
 		{
 			player->pos_y += player->dir_y * MOV_SPD;
@@ -94,7 +94,7 @@ void	move_pov(t_cube *cube, t_player	*player, int syskey)
 	if (syskey == KEY_A)
 	{
 		new_pos_x = player->pos_x + player->dir_y * MOV_SPD;
-        new_pos_y = player->pos_y - player->dir_x * MOV_SPD;
+		new_pos_y = player->pos_y - player->dir_x * MOV_SPD;
 		if (is_wall(cube, new_pos_x, new_pos_y) == false)
 		{
 			player->pos_y += -player->dir_x * MOV_SPD;
@@ -104,7 +104,7 @@ void	move_pov(t_cube *cube, t_player	*player, int syskey)
 	if (syskey == KEY_S)
 	{
 		new_pos_x = player->pos_x - player->dir_x * MOV_SPD;
-        new_pos_y = player->pos_y - player->dir_y * MOV_SPD;
+		new_pos_y = player->pos_y - player->dir_y * MOV_SPD;
 		if (is_wall(cube, new_pos_x, new_pos_y) == false)
 		{
 			player->pos_y -= player->dir_y * MOV_SPD;
@@ -114,7 +114,7 @@ void	move_pov(t_cube *cube, t_player	*player, int syskey)
 	if (syskey == KEY_D)
 	{
 		new_pos_x = player->pos_x - player->dir_y * MOV_SPD;
-        new_pos_y = player->pos_y + player->dir_x * MOV_SPD;
+		new_pos_y = player->pos_y + player->dir_x * MOV_SPD;
 		if (is_wall(cube, new_pos_x, new_pos_y) == false)
 		{
 			player->pos_y += player->dir_x * MOV_SPD;

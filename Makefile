@@ -6,7 +6,7 @@
 #    By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/26 09:18:50 by shaintha          #+#    #+#              #
-#    Updated: 2024/11/11 12:26:46 by shaintha         ###   ########.fr        #
+#    Updated: 2024/11/18 10:28:57 by shaintha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,8 @@ SRCS := $(SRC_DIR)/main.c \
 	$(SRC_DIR)/cube.c \
 	$(SRC_DIR)/utils.c \
 	$(SRC_DIR)/player.c \
-	$(SRC_DIR)/raycaster.c
+	$(SRC_DIR)/raycaster.c \
+	$(SRC_DIR)/textures.c
 
 
 OBJS := $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRCS))

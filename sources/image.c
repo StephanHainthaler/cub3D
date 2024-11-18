@@ -6,7 +6,7 @@
 /*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 11:06:11 by shaintha          #+#    #+#             */
-/*   Updated: 2024/11/13 12:35:26 by shaintha         ###   ########.fr       */
+/*   Updated: 2024/11/18 10:24:11 by shaintha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,15 @@ int	get_images(t_cube *cube)
 t_image	get_image(t_cube *cube, char *image_path)
 {
 	t_image	image;
-	int 	bits_per_pixel;
-	int 	size_line;
-	int 	endian;
+	int		bits_per_pixel;
+	int		size_line;
+	int		endian;
 
 	image.ptr = mlx_xpm_file_to_image(cube->mlx_ptr, image_path,
 			&image.x, &image.y);
 	if (image.ptr != NULL)
 		image.addr = (int *)mlx_get_data_addr(image.ptr,
-			&bits_per_pixel, &size_line, &endian);
+				&bits_per_pixel, &size_line, &endian);
 	return (image);
 }
 
