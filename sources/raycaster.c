@@ -6,7 +6,7 @@
 /*   By: juitz <juitz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 15:33:58 by juitz             #+#    #+#             */
-/*   Updated: 2024/11/13 17:24:47 by juitz            ###   ########.fr       */
+/*   Updated: 2024/11/18 14:29:10 by juitz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,7 +163,7 @@ bool	is_wall(t_cube *cube, float x, float y)
 	map = cube->map;
 	ix = x;
 	iy = y;
-	if (cube->map[iy][ix] == '1')
+	if (cube->map[iy][ix] == '1' || cube->map[iy][ix] == ' ' || cube->map[iy][ix] == '\0')
 		return (true);
 	return (false);
 }
