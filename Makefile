@@ -6,7 +6,7 @@
 #    By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/26 09:18:50 by shaintha          #+#    #+#              #
-#    Updated: 2024/11/18 10:28:57 by shaintha         ###   ########.fr        #
+#    Updated: 2024/11/18 10:31:48 by shaintha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,8 @@ NAME := cub3D
 
 CC := cc
 CFLAGS := -Wall -Wextra -Werror -g
-MLXFLAGS := -lmlx -lXext -lX11 -lm
+MLXFLAGS := -lmlx -lXext -lX11
+MATHFLAGS := -lm
 
 SRC_DIR := sources
 OBJ_DIR := objects
@@ -46,7 +47,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
 
 $(NAME): $(OBJS)
 	@cd $(LIBFT_DIR) && make -s
-	@$(CC) $(CFLAGS) $(MLXFLAGS) -o $(NAME) $(OBJS) $(LIBFT_DIR)/libft.a
+	@$(CC) $(CFLAGS) $(MLXFLAGS) $(MATHFLAGS) -o $(NAME) $(OBJS) $(LIBFT_DIR)/libft.a
 
 clean:
 	@rm -rf $(OBJ_DIR)
