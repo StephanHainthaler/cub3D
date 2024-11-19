@@ -6,7 +6,7 @@
 /*   By: juitz <juitz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 14:30:10 by juitz             #+#    #+#             */
-/*   Updated: 2024/11/18 14:45:25 by juitz            ###   ########.fr       */
+/*   Updated: 2024/11/19 11:13:34 by juitz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,3 @@ void	get_player_direction_2(t_player *player, char dir_char)
 		player->plane_y = -0.66;
 	}
 }
-
