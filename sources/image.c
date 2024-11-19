@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   image.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juitz <juitz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 11:06:11 by shaintha          #+#    #+#             */
-/*   Updated: 2024/11/19 10:39:29 by shaintha         ###   ########.fr       */
+/*   Updated: 2024/11/19 11:21:58 by juitz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ t_image	get_image(t_cube *cube, char *image_path)
 	int		size_line;
 	int		endian;
 
-	if (is_format_valid(image_path, ".xpm") == false)
-		return (cube->error_code = 4, image);
+	/* if (is_format_valid(image_path, ".xpm") == false)
+		return (cube->error_code = 4, image); */
 	image.ptr = mlx_xpm_file_to_image(cube->mlx_ptr, image_path,
 			&image.x, &image.y);
 	if (image.ptr == NULL)

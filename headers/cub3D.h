@@ -6,7 +6,7 @@
 /*   By: juitz <juitz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 09:19:21 by shaintha          #+#    #+#             */
-/*   Updated: 2024/11/19 11:19:46 by juitz            ###   ########.fr       */
+/*   Updated: 2024/11/19 12:45:33 by juitz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@
 # include <X11/keysym.h>
 # include <math.h>
 
-# define WINDOW_WIDTH 1000
-# define WINDOW_HEIGHT 500
+# define WINDOW_WIDTH 640
+# define WINDOW_HEIGHT 480
 
 //Define keys
 # define KEY_W		119
