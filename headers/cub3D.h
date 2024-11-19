@@ -6,7 +6,7 @@
 /*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 09:19:21 by shaintha          #+#    #+#             */
-/*   Updated: 2024/11/19 09:33:56 by shaintha         ###   ########.fr       */
+/*   Updated: 2024/11/19 10:00:25 by shaintha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,6 +164,7 @@ void	calculate_wall_height(t_player *player, t_ray *rays);
 //textures.c
 void	draw_textures(t_cube *cube, t_ray *rays, int x, int y);
 int		get_texture_color(t_cube *cube, t_ray *rays, int tex_x, int tex_y);
-double	get_texture_position(t_cube *cube, t_ray *rays, int *tex_x, double *step);
+double	get_texture_position(t_cube *cube, t_ray *rays,
+			int *tex_x, double *step);
 
 #endif

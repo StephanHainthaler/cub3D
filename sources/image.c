@@ -6,7 +6,7 @@
 /*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 11:06:11 by shaintha          #+#    #+#             */
-/*   Updated: 2024/11/19 09:37:01 by shaintha         ###   ########.fr       */
+/*   Updated: 2024/11/19 09:59:43 by shaintha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ t_image	get_image(t_cube *cube, char *image_path)
 		if (cube->image_w != (size_t)image.x)
 			return (cube->error_code = 3, image);
 	image.addr = (int *)mlx_get_data_addr(image.ptr,
-		&bits_per_pixel, &size_line, &endian);
+			&bits_per_pixel, &size_line, &endian);
 	return (image);
 }
 
