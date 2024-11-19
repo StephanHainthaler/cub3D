@@ -6,7 +6,7 @@
 /*   By: juitz <juitz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 09:19:21 by shaintha          #+#    #+#             */
-/*   Updated: 2024/11/19 12:51:41 by juitz            ###   ########.fr       */
+/*   Updated: 2024/11/19 17:08:53 by juitz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@
 
 # define WINDOW_WIDTH 640
 # define WINDOW_HEIGHT 480
+# define MAX_MAP_X 1000
+# define MAX_MAP_Y 1000
 
 //Define keys
 # define KEY_W		119
@@ -134,6 +136,7 @@ char	*get_id_content(t_cube *cube, char *id_str,
 bool	is_layout_valid(char **map, size_t x, size_t y, bool found);
 bool	is_in_border(char **map, size_t x, size_t y);
 bool	is_map_element(char e);
+bool	is_map_too_big(char **map, int x, int y);
 bool	is_wall(t_cube *cube, float x, float y);
 
 //image.c

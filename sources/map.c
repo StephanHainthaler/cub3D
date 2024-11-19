@@ -6,7 +6,7 @@
 /*   By: juitz <juitz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 10:35:26 by shaintha          #+#    #+#             */
-/*   Updated: 2024/11/19 14:17:02 by juitz            ###   ########.fr       */
+/*   Updated: 2024/11/19 16:58:01 by juitz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ int	parse_map(t_cube *cube, char *map_name)
 	if (cube->map == NULL)
 		return (free_cube(cube), 1);
 	if (is_layout_valid(cube->map, 0, 0, false) == false)
+		return (free_cube(cube), 1);
+	if (is_map_too_big(cube->map, 0, 0) == true)
 		return (free_cube(cube), 1);
 	return (0);
 }
