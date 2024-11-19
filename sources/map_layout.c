@@ -6,7 +6,7 @@
 /*   By: juitz <juitz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 10:17:30 by shaintha          #+#    #+#             */
-/*   Updated: 2024/11/19 11:18:00 by juitz            ###   ########.fr       */
+/*   Updated: 2024/11/19 15:03:45 by juitz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,17 @@ bool	is_in_border(char **map, size_t x, size_t y)
 	{
 		if ((map[y][x] != '1' && map[y][x] != ' ') && map[y - 1][x] == ' ')
 			return (false);
-		if ((map[y][x] != '1' && map[y][x] != ' ') && map[y + 1][x] == ' ')
-			return (false);
+		//printf("%zu %zu\n", ft_strlen(map[y + 1]), x);
+		if (map[y][x] != '1' && map[y][x] != ' ')
+		{
+			if (ft_strlen(map[y + 1]) < x)
+			{
+				if (map[y + 1][ft_strlen(map[y + 1])] == '\0') 
+					return (false);
+			}
+			if (map[y + 1][x] == ' ')
+				return (false);
+		}
 	}
 	if (y == i - 1)
 		if (map[y][x] != '1' && map[y][x] != ' ')

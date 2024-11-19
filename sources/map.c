@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juitz <juitz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 10:35:26 by shaintha          #+#    #+#             */
-/*   Updated: 2024/11/11 12:59:15 by shaintha         ###   ########.fr       */
+/*   Updated: 2024/11/19 14:17:02 by juitz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	parse_map(t_cube *cube, char *map_name)
 		return (1);
 	start = get_map_startline(cube->map_str, 0, 0);
 	if (start == 0)
-		return (free_cube(cube), 1);
+		return (put_error("Wrong Map Format"), free_cube(cube), 1);
 	if (has_map_empty_line(cube->map_str + start, cube->map_str[0]) == true)
 		return (free_cube(cube), 1);
 	if (is_information_valid(cube, cube->map_str, start - 1) == 1)
