@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+         #
+#    By: juitz <juitz@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/26 09:18:50 by shaintha          #+#    #+#              #
-#    Updated: 2024/11/18 10:31:48 by shaintha         ###   ########.fr        #
+#    Updated: 2024/11/18 14:54:21 by juitz            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,8 @@ SRCS := $(SRC_DIR)/main.c \
 	$(SRC_DIR)/image.c \
 	$(SRC_DIR)/cube.c \
 	$(SRC_DIR)/utils.c \
-	$(SRC_DIR)/player.c \
+	$(SRC_DIR)/player_direction.c \
+	$(SRC_DIR)/player_movement.c \
 	$(SRC_DIR)/raycaster.c \
 	$(SRC_DIR)/textures.c
 
