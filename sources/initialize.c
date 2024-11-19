@@ -6,7 +6,7 @@
 /*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 10:35:19 by shaintha          #+#    #+#             */
-/*   Updated: 2024/11/18 14:16:52 by shaintha         ###   ########.fr       */
+/*   Updated: 2024/11/19 09:33:56 by shaintha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void	initialize_cube(t_cube *cube)
 
 	cube->mlx_ptr = NULL;
 	cube->window_ptr = NULL;
-	cube->screen_h = 0;
-	cube->screen_w = 0;
+	cube->image_h = 0;
+	cube->image_w = 0;
 	cube->map_str = NULL;
 	cube->map = NULL;
 	cube->n_path = NULL;

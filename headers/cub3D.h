@@ -6,7 +6,7 @@
 /*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 09:19:21 by shaintha          #+#    #+#             */
-/*   Updated: 2024/11/18 14:38:52 by shaintha         ###   ########.fr       */
+/*   Updated: 2024/11/19 09:33:56 by shaintha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,8 @@ typedef struct s_cube
 {
 	void		*mlx_ptr;
 	void		*window_ptr;
-	size_t		screen_h;
-	size_t		screen_w;
+	size_t		image_h;
+	size_t		image_w;
 	char		*map_str;
 	char		**map;
 	char		*n_path;
