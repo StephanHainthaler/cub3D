@@ -6,12 +6,11 @@
 /*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 10:17:30 by shaintha          #+#    #+#             */
-/*   Updated: 2024/11/19 09:59:11 by shaintha         ###   ########.fr       */
+/*   Updated: 2024/11/19 10:32:12 by shaintha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/cub3D.h"
-#include <ctype.h>
 
 bool	is_layout_valid(char **map, size_t x, size_t y, bool found)
 {

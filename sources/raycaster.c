@@ -6,7 +6,7 @@
 /*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 15:33:58 by juitz             #+#    #+#             */
-/*   Updated: 2024/11/18 10:22:41 by shaintha         ###   ########.fr       */
+/*   Updated: 2024/11/19 10:17:29 by shaintha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	draw_pov(t_cube *cube)
 {
-	int		x;
+	int	x;
 
 	x = 0;
 	while (x < WINDOW_WIDTH)
