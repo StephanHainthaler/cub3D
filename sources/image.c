@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   image.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juitz <juitz@student.42.fr>                +#+  +:+       +#+        */
+/*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 11:06:11 by shaintha          #+#    #+#             */
-/*   Updated: 2024/11/19 11:21:58 by juitz            ###   ########.fr       */
+/*   Updated: 2024/11/20 11:11:07 by shaintha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,11 @@
 
 int	get_images(t_cube *cube)
 {
+	if (is_format_valid(cube->n_path, ".xpm") == false
+		|| is_format_valid(cube->e_path, ".xpm") == false
+		|| is_format_valid(cube->s_path, ".xpm") == false
+		|| is_format_valid(cube->w_path, ".xpm") == false)
+		return (put_error("Wrong image format!"), 1);
 	cube->wall_north = get_image(cube, cube->n_path);
 	cube->wall_east = get_image(cube, cube->e_path);
 	cube->wall_south = get_image(cube, cube->s_path);
@@ -24,8 +29,6 @@ int	get_images(t_cube *cube)
 		return (put_error("Inconsistent texture height!"), 1);
 	if (cube->error_code == 3)
 		return (put_error("Inconsistent texture width!"), 1);
-	if (cube->error_code == 4)
-		return (put_error("Wrong image format!"), 1);
 	return (0);
 }
 
@@ -36,8 +39,6 @@ t_image	get_image(t_cube *cube, char *image_path)
 	int		size_line;
 	int		endian;
 
-	/* if (is_format_valid(image_path, ".xpm") == false)
-		return (cube->error_code = 4, image); */
 	image.ptr = mlx_xpm_file_to_image(cube->mlx_ptr, image_path,
 			&image.x, &image.y);
 	if (image.ptr == NULL)
