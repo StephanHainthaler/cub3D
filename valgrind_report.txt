@@ -40,6 +40,18 @@ Testing invalid map: double_id_textures.cub
 Testing invalid map: empty.cub
 [Valgrind OK]
 --------------------------------
+Testing invalid map: empty_line_at_end_of_file.cub
+[Valgrind OK]
+--------------------------------
+Testing invalid map: empty_line_at_start_of_file.cub
+[Valgrind OK]
+--------------------------------
+Testing invalid map: empty_line_in_middle_of_layout.cub
+[Valgrind OK]
+--------------------------------
+Testing invalid map: empty_map.cub
+[Valgrind OK]
+--------------------------------
 Testing invalid map: extra_comma_ceiling.cub
 [Valgrind OK]
 --------------------------------
@@ -58,6 +70,9 @@ Testing invalid map: filetype_missing
 Testing invalid map: hole_in_floor.cub
 [Valgrind OK]
 --------------------------------
+Testing invalid map: hole_in_layout.cub
+[Valgrind OK]
+--------------------------------
 Testing invalid map: Hole_in_protruding_wall.cub
 [Valgrind OK]
 --------------------------------
@@ -71,6 +86,33 @@ Testing invalid map: hole_in_wall_south.cub
 [Valgrind OK]
 --------------------------------
 Testing invalid map: hole_in_wall_west.cub
+[Valgrind OK]
+--------------------------------
+Testing invalid map: huge_map.cub
+[Valgrind OK]
+--------------------------------
+Testing invalid map: invalid_color_code1.cub
+[Valgrind OK]
+--------------------------------
+Testing invalid map: invalid_color_code2.cub
+[Valgrind OK]
+--------------------------------
+Testing invalid map: invalid_color_code3.cub
+[Valgrind OK]
+--------------------------------
+Testing invalid map: invalid_color_code4.cub
+[Valgrind OK]
+--------------------------------
+Testing invalid map: invalid_color_code5.cub
+[Valgrind OK]
+--------------------------------
+Testing invalid map: invalid_elements1.cub
+[Valgrind OK]
+--------------------------------
+Testing invalid map: invalid_elements2.cub
+[Valgrind OK]
+--------------------------------
+Testing invalid map: invalid_texture_path.cub
 [Valgrind OK]
 --------------------------------
 Testing invalid map: map_blank_line.cub
@@ -94,6 +136,9 @@ Testing invalid map: map_too_small.cub
 Testing invalid map: missing_floor_identifyer.cub
 [Valgrind OK]
 --------------------------------
+Testing invalid map: missing_identifier.cub
+[Valgrind OK]
+--------------------------------
 Testing invalid map: neg_color.cub
 [Valgrind OK]
 --------------------------------
@@ -103,13 +148,25 @@ Testing invalid map: neg_floor_color.cub
 Testing invalid map: new_line_after_map.cub
 [Valgrind OK]
 --------------------------------
+Testing invalid map: no_color_code.cub
+[Valgrind OK]
+--------------------------------
 Testing invalid map: no_color.cub
 [Valgrind OK]
 --------------------------------
 Testing invalid map: no_comma.cub
 [Valgrind OK]
 --------------------------------
+Testing invalid map: no_information.cub
+[Valgrind OK]
+--------------------------------
+Testing invalid map: no_layout.cub
+[Valgrind OK]
+--------------------------------
 Testing invalid map: no_player.cub
+[Valgrind OK]
+--------------------------------
+Testing invalid map: no_texture_path.cub
 [Valgrind OK]
 --------------------------------
 Testing invalid map: no_textures.cub
@@ -124,6 +181,12 @@ Testing invalid map: no_zero.cub
 Testing invalid map: one_texture_missing.cub
 [Valgrind OK]
 --------------------------------
+Testing invalid map: open_border1.cub
+[Valgrind OK]
+--------------------------------
+Testing invalid map: open_border2.cub
+[Valgrind OK]
+--------------------------------
 Testing invalid map: player_in_wall.cub
 [Valgrind OK]
 --------------------------------
@@ -131,6 +194,9 @@ Testing invalid map: player_outside.cub
 [Valgrind OK]
 --------------------------------
 Testing invalid map: rand_char_after_texture.cub
+[Valgrind OK]
+--------------------------------
+Testing invalid map: reversed_order.cub
 [Valgrind OK]
 --------------------------------
 Testing invalid map: small_id_ceiling.cub
@@ -151,6 +217,12 @@ Testing invalid map: texture_dupl.cub
 Testing invalid map: texture_invalid.cub
 [Valgrind OK]
 --------------------------------
+Testing invalid map: too_many_players1.cub
+[Valgrind OK]
+--------------------------------
+Testing invalid map: too_many_players2.cub
+[Valgrind OK]
+--------------------------------
 Testing invalid map: two_E_players.cub
 [Valgrind OK]
 --------------------------------
@@ -158,6 +230,15 @@ Testing invalid map: two_f.cub
 [Valgrind OK]
 --------------------------------
 Testing invalid map: wall_2_instead_of_1.cub
+[Valgrind OK]
+--------------------------------
+Testing invalid map: wrong_format1.ber
+[Valgrind OK]
+--------------------------------
+Testing invalid map: wrong_format2.cup
+[Valgrind OK]
+--------------------------------
+Testing invalid map: wrong_format3.cube
 [Valgrind OK]
 --------------------------------
 Testing invalid map: wrong_NO_identifier.cub

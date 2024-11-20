@@ -2,7 +2,7 @@
 
 PROGRAM_PATH="./cub3D"
 
-MAPS_DIR="./maps/invalid"
+MAPS_DIR="./tester_maps/invalid"
 
 GREEN='\033[1;32m'
 RED='\033[1;31m'
