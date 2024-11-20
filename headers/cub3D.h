@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juitz <juitz@student.42.fr>                +#+  +:+       +#+        */
+/*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 09:19:21 by shaintha          #+#    #+#             */
-/*   Updated: 2024/11/19 17:08:53 by juitz            ###   ########.fr       */
+/*   Updated: 2024/11/20 10:52:39 by shaintha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,10 +86,10 @@ typedef struct s_cube
 {
 	void		*mlx_ptr;
 	void		*window_ptr;
-	size_t		image_h;
-	size_t		image_w;
 	char		*map_str;
 	char		**map;
+	size_t		image_h;
+	size_t		image_w;
 	char		*n_path;
 	char		*e_path;
 	char		*s_path;
@@ -102,7 +102,6 @@ typedef struct s_cube
 	t_image		wall_west;
 	int			floor_color;
 	int			ceiling_color;
-	int			map_pos;
 	int			error_code;
 	t_player	player;
 	t_ray		rays;
@@ -136,13 +135,8 @@ char	*get_id_content(t_cube *cube, char *id_str,
 bool	is_layout_valid(char **map, size_t x, size_t y, bool found);
 bool	is_in_border(char **map, size_t x, size_t y);
 bool	is_map_element(char e);
-bool	is_map_too_big(char **map, int x, int y);
 bool	is_wall(t_cube *cube, float x, float y);
-
-//image.c
-t_image	get_image(t_cube *cube, char *image_path);
-int		get_images(t_cube *cube);
-void	free_images(t_cube *cube);
+bool	is_map_too_big(char **map, int x, int y);
 
 //cube.c
 int		setup_cube(t_cube *cube);
@@ -150,12 +144,21 @@ int		run_cube(t_cube *cube);
 int		key_pressed(int syskey, t_cube *cube);
 int		close_cube(t_cube *cube);
 
-//player.c
+//image.c
+t_image	get_image(t_cube *cube, char *image_path);
+int		get_images(t_cube *cube);
+void	free_images(t_cube *cube);
+
+//player_direction.c
 void	get_player_info(t_player *player, char **map);
 void	get_player_direction_1(t_player *player, char dir_char);
 void	get_player_direction_2(t_player *player, char dir_char);
-void	movement(t_cube *cube, t_player	*player, int syskey);
 void	rotate_pov(t_player *p, int syskey);
+
+//player_movement.c
+void	movement(t_cube *cube, t_player	*player, int syskey);
+void	forward_back(t_cube *cube, t_player	*player, int syskey);
+void	strafe(t_cube *cube, t_player *player, int syskey);
 
 //raycaster.c
 void	draw_pov(t_cube *cube);

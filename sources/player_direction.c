@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_direction.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juitz <juitz@student.42.fr>                +#+  +:+       +#+        */
+/*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 14:30:10 by juitz             #+#    #+#             */
-/*   Updated: 2024/11/19 11:13:34 by juitz            ###   ########.fr       */
+/*   Updated: 2024/11/20 10:51:00 by shaintha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,28 @@ void	get_player_direction_2(t_player *player, char dir_char)
 		player->dir_y = 0;
 		player->plane_x = 0;
 		player->plane_y = -0.66;
+	}
+}
+
+void	rotate_pov(t_player *p, int syskey)
+{
+	float	old_dir_x;
+	float	old_plane_x;
+
+	old_dir_x = p->dir_x;
+	old_plane_x = p->plane_x;
+	if (syskey == KEY_LEFT)
+	{
+		p->dir_x = old_dir_x * cos(-ROT_SPD) - p->dir_y * sin(-ROT_SPD);
+		p->dir_y = old_dir_x * sin(-ROT_SPD) + p->dir_y * cos(-ROT_SPD);
+		p->plane_x = old_plane_x * cos(-ROT_SPD) - p->plane_y * sin(-ROT_SPD);
+		p->plane_y = old_plane_x * sin(-ROT_SPD) + p->plane_y * cos(-ROT_SPD);
+	}
+	if (syskey == KEY_RIGHT)
+	{
+		p->dir_x = old_dir_x * cos(ROT_SPD) - p->dir_y * sin(ROT_SPD);
+		p->dir_y = old_dir_x * sin(ROT_SPD) + p->dir_y * cos(ROT_SPD);
+		p->plane_x = old_plane_x * cos(ROT_SPD) - p->plane_y * sin(ROT_SPD);
+		p->plane_y = old_plane_x * sin(ROT_SPD) + p->plane_y * cos(ROT_SPD);
 	}
 }
