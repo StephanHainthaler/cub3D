@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juitz <juitz@student.42.fr>                +#+  +:+       +#+        */
+/*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 10:35:26 by shaintha          #+#    #+#             */
-/*   Updated: 2024/11/19 16:58:01 by juitz            ###   ########.fr       */
+/*   Updated: 2024/11/20 11:44:13 by shaintha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,18 +96,15 @@ size_t	get_map_startline(char *map_str, size_t i, size_t j)
 
 	while (map_str[i] != '\0')
 	{
-		is_starting_line = false;
+		is_starting_line = true;
 		found = false;
 		j = i;
 		while (map_str[j] != '\0' && map_str[j] != '\n')
 		{
-			if (map_str[j] == '1' && found == false)
-			{
-				found = true;
-				is_starting_line = true;
-			}
-			if (is_map_element(map_str[j++]) == false)
+			if (is_map_element(map_str[j]) == false)
 				is_starting_line = false;
+			if (is_map_element(map_str[j++]) && found == false)
+				found = true;
 		}
 		if (is_starting_line == true && found == true)
 			return (i);
