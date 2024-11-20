@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juitz <juitz@student.42.fr>                +#+  +:+       +#+        */
+/*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 10:35:26 by shaintha          #+#    #+#             */
-/*   Updated: 2024/11/20 13:29:10 by juitz            ###   ########.fr       */
+/*   Updated: 2024/11/20 14:14:33 by shaintha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,16 +75,14 @@ char	*read_map(int fd, char *line, char *temp, int bytes_read)
 			line = NULL;
 			return (free(temp), put_error("Read error!"), NULL);
 		}
-		if (i == 0)
-		{
-			if (bytes_read == 0)
-				return (free(temp), free(line), put_error("Empty file!"), NULL);
-			i = 1;
-		}
+		if (is_read_str_empty_at_start(bytes_read, &i) == true)
+			return (free(temp), free(line), put_error("Empty file!"), NULL);
 		temp[bytes_read] = '\0';
 		line = ft_strjoin_gnl(line, temp);
-		if (!line || ft_strlen(line) > (MAX_MAP_X * MAX_MAP_Y))
+		if (!line)
 			return (put_error("Malloc error!"), NULL);
+		if (ft_strlen(line) > (MAX_MAP_X * MAX_MAP_Y))
+			return (free(line), free(temp), put_error("File too big!"), NULL);
 	}
 	return (free(temp), line);
 }

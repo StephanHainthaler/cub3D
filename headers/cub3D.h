@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juitz <juitz@student.42.fr>                +#+  +:+       +#+        */
+/*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 09:19:21 by shaintha          #+#    #+#             */
-/*   Updated: 2024/11/20 13:33:42 by juitz            ###   ########.fr       */
+/*   Updated: 2024/11/20 14:16:49 by shaintha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,7 @@ bool	is_format_valid(char *file, char *format);
 bool	is_color_valid(char *color_str);
 int		get_color(char *color_str);
 void	put_error(char *error_message);
+bool	is_read_str_empty_at_start(int bytes_read, int *i);
 
 //map.c
 int		parse_map(t_cube *cube, char *map_name);

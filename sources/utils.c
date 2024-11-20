@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juitz <juitz@student.42.fr>                +#+  +:+       +#+        */
+/*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 12:12:38 by shaintha          #+#    #+#             */
-/*   Updated: 2024/11/20 13:08:34 by juitz            ###   ########.fr       */
+/*   Updated: 2024/11/20 14:07:23 by shaintha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,14 +94,13 @@ void	put_error(char *error_message)
 	ft_putendl_fd(error_message, 2);
 }
 
-/* bool	string_too_big(char *line)
+bool	is_read_str_empty_at_start(int bytes_read, int *i)
 {
-	size_t length;
-	while (line)
+	if (*i == 0)
 	{
-		if (length > (MAX_MAP_X * MAX_MAP_Y))
+		if (bytes_read == 0)
 			return (true);
-		length++;
+		*i = 1;
 	}
 	return (false);
-} */
+}
