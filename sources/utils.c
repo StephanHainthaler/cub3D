@@ -6,7 +6,7 @@
 /*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 12:12:38 by shaintha          #+#    #+#             */
-/*   Updated: 2024/11/11 13:00:41 by shaintha         ###   ########.fr       */
+/*   Updated: 2024/11/20 14:07:23 by shaintha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,4 +92,15 @@ void	put_error(char *error_message)
 {
 	ft_putendl_fd("Error", 2);
 	ft_putendl_fd(error_message, 2);
+}
+
+bool	is_read_str_empty_at_start(int bytes_read, int *i)
+{
+	if (*i == 0)
+	{
+		if (bytes_read == 0)
+			return (true);
+		*i = 1;
+	}
+	return (false);
 }

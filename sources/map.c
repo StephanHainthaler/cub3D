@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juitz <juitz@student.42.fr>                +#+  +:+       +#+        */
+/*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 10:35:26 by shaintha          #+#    #+#             */
-/*   Updated: 2024/11/19 16:58:01 by juitz            ###   ########.fr       */
+/*   Updated: 2024/11/20 14:14:33 by shaintha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,16 +75,14 @@ char	*read_map(int fd, char *line, char *temp, int bytes_read)
 			line = NULL;
 			return (free(temp), put_error("Read error!"), NULL);
 		}
-		if (i == 0)
-		{
-			if (bytes_read == 0)
-				return (free(temp), free(line), put_error("Empty file!"), NULL);
-			i = 1;
-		}
+		if (is_read_str_empty_at_start(bytes_read, &i) == true)
+			return (free(temp), free(line), put_error("Empty file!"), NULL);
 		temp[bytes_read] = '\0';
 		line = ft_strjoin_gnl(line, temp);
 		if (!line)
 			return (put_error("Malloc error!"), NULL);
+		if (ft_strlen(line) > (MAX_MAP_X * MAX_MAP_Y))
+			return (free(line), free(temp), put_error("File too big!"), NULL);
 	}
 	return (free(temp), line);
 }
@@ -96,18 +94,15 @@ size_t	get_map_startline(char *map_str, size_t i, size_t j)
 
 	while (map_str[i] != '\0')
 	{
-		is_starting_line = false;
+		is_starting_line = true;
 		found = false;
 		j = i;
 		while (map_str[j] != '\0' && map_str[j] != '\n')
 		{
-			if (map_str[j] == '1' && found == false)
-			{
-				found = true;
-				is_starting_line = true;
-			}
-			if (is_map_element(map_str[j++]) == false)
+			if (is_map_element(map_str[j]) == false)
 				is_starting_line = false;
+			if (is_map_element(map_str[j++]) && found == false)
+				found = true;
 		}
 		if (is_starting_line == true && found == true)
 			return (i);
