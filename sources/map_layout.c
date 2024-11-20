@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_layout.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juitz <juitz@student.42.fr>                +#+  +:+       +#+        */
+/*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 10:17:30 by shaintha          #+#    #+#             */
-/*   Updated: 2024/11/19 17:03:46 by juitz            ###   ########.fr       */
+/*   Updated: 2024/11/20 10:00:20 by shaintha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,32 +44,21 @@ bool	is_in_border(char **map, size_t x, size_t y)
 {
 	size_t	i;
 
-	i = 0;
-	while (map[i] != NULL)
-		i++;
-	if (y == 0)
+	i = ft_strarrlen(map);
+	if (y == 0 || y == i - 1 || x == 0 || x == ft_strlen(map[y]) - 1)
 		if (map[y][x] != '1' && map[y][x] != ' ')
 			return (false);
-	if (y > 0 && y != i - 1)
+	if (y > 0 && y < (i - 1))
 	{
-		if ((map[y][x] != '1' && map[y][x] != ' ') && map[y - 1][x] == ' ')
+		if (((map[y][x] != '1' && map[y][x] != ' ')
+			&& ft_strlen(map[y - 1]) - 1 < x)
+			|| ((map[y][x] != '1' && map[y][x] != ' ') && map[y - 1][x] == ' '))
 			return (false);
-		//printf("%zu %zu\n", ft_strlen(map[y + 1]), x);
-		if (map[y][x] != '1' && map[y][x] != ' ')
-		{
-			//ft_putchar_fd(ft_strlen(map[y + 1]), 1);
-			if (ft_strlen(map[y + 1]) < x)
-			{
-				if (map[y + 1][ft_strlen(map[y + 1])] == '\0') 
-					return (false);
-			}
-			if (map[y + 1][x] == ' ')
-				return (false);
-		}
+		if (((map[y][x] != '1' && map[y][x] != ' ')
+			&& ft_strlen(map[y + 1]) - 1 < x)
+			|| ((map[y][x] != '1' && map[y][x] != ' ') && map[y + 1][x] == ' '))
+			return (false);
 	}
-	if (y == i - 1)
-		if (map[y][x] != '1' && map[y][x] != ' ')
-			return (false);
 	if ((map[y][x] != '1' && map[y][x] != ' ')
 		&& (map[y][x + 1] == ' ' || map[y][x + 1] == '\0'))
 		return (false);
