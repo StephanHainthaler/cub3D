@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shaintha <shaintha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juitz <juitz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 10:35:26 by shaintha          #+#    #+#             */
-/*   Updated: 2024/11/20 11:44:13 by shaintha         ###   ########.fr       */
+/*   Updated: 2024/11/20 13:29:10 by juitz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ char	*read_map(int fd, char *line, char *temp, int bytes_read)
 		}
 		temp[bytes_read] = '\0';
 		line = ft_strjoin_gnl(line, temp);
-		if (!line)
+		if (!line || ft_strlen(line) > (MAX_MAP_X * MAX_MAP_Y))
 			return (put_error("Malloc error!"), NULL);
 	}
 	return (free(temp), line);

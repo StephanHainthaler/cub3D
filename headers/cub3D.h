@@ -6,7 +6,7 @@
 /*   By: juitz <juitz@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 09:19:21 by shaintha          #+#    #+#             */
-/*   Updated: 2024/11/19 17:08:53 by juitz            ###   ########.fr       */
+/*   Updated: 2024/11/20 13:33:42 by juitz            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@
 
 # define WINDOW_WIDTH 640
 # define WINDOW_HEIGHT 480
-# define MAX_MAP_X 1000
-# define MAX_MAP_Y 1000
+# define MAX_MAP_X 200
+# define MAX_MAP_Y 200
 
 //Define keys
 # define KEY_W		119
@@ -41,8 +41,8 @@
 # define KEY_LEFT	65361
 # define KEY_RIGHT	65363
 
-# define MOV_SPD 0.1
-# define ROT_SPD 0.1
+# define MOV_SPD 0.15
+# define ROT_SPD 0.05
 
 typedef struct s_image
 {
